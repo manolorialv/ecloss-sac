@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECLOSS SAC | Consultoría e Infraestructura TI</title>
+    <title>ECLOSS SAC | Soluciones Integrales TI & Infraestructura</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -11,169 +11,179 @@
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .navy-bg { background-color: #002147; }
         .navy-text { color: #002147; }
-        .navy-border { border-color: #002147; }
+        .border-navy { border-color: #002147; }
+        .service-card:hover { border-color: #3b82f6; transform: translateY(-2px); }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
 
     <!-- Navegación -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-2xl font-black tracking-tighter navy-text">
-                ECLOSS<span class="text-blue-600">.</span>
-            </div>
+            <div class="text-2xl font-black tracking-tighter navy-text">ECLOSS<span class="text-blue-600">.</span></div>
             <div class="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-widest text-slate-600">
                 <a href="#inicio" class="hover:text-blue-600 transition-colors">Inicio</a>
-                <a href="#divisiones" class="hover:text-blue-600 transition-colors">Divisiones</a>
-                <a href="#contacto" class="hover:text-blue-600 transition-colors">Contacto</a>
+                <a href="#digital" class="hover:text-blue-600 transition-colors">Digital</a>
+                <a href="#seguridad" class="hover:text-blue-600 transition-colors">Seguridad</a>
+                <a href="#infraestructura" class="hover:text-blue-600 transition-colors">Infraestructura</a>
             </div>
-            <a href="#contacto" class="navy-bg text-white px-6 py-2 rounded-full text-sm font-bold hover:opacity-90 transition-all">
-                SOLICITAR COTIZACIÓN
-            </a>
+            <a href="#contacto" class="navy-bg text-white px-6 py-2 rounded-full text-sm font-bold hover:opacity-90 shadow-lg shadow-blue-900/20">COTIZAR</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="relative py-24 px-6 overflow-hidden bg-white">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <span class="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase mb-6 tracking-widest">
-                    Lanzamiento Mayo 2026 • Lima, Perú
-                </span>
-                <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 tracking-tight">
-                    Infraestructura Crítica y <span class="navy-text">Evolución Digital.</span>
-                </h1>
-                <p class="text-lg text-slate-600 mb-8 leading-relaxed">
-                    Aseguramos la continuidad operativa de su empresa mediante integración tecnológica 360°, cumplimiento legal preventivo y soporte técnico de precisión.
-                </p>
-                <div class="flex flex-col sm:row gap-4">
-                    <a href="#contacto" class="navy-bg text-white px-8 py-4 rounded-lg font-bold text-center hover:shadow-xl transition-all">
-                        Hablar con un Especialista
-                    </a>
-                    <a href="#divisiones" class="border border-slate-300 px-8 py-4 rounded-lg font-bold text-center hover:bg-slate-50 transition-all">
-                        Nuestras Divisiones
-                    </a>
-                </div>
-            </div>
-            <div class="hidden md:block relative">
-                <div class="aspect-video bg-gradient-to-br from-slate-100 to-white rounded-3xl border border-slate-200 shadow-2xl flex items-center justify-center">
-                    <i data-lucide="server" class="w-32 h-32 text-slate-200"></i>
-                </div>
-            </div>
+    <!-- Hero -->
+    <header id="inicio" class="bg-white py-20 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <span class="bg-blue-50 text-blue-700 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Expertos en Continuidad Operativa</span>
+            <h1 class="text-5xl font-extrabold navy-text mt-6 mb-4 leading-tight">Portafolio Especializado de Servicios</h1>
+            <p class="text-slate-500 max-w-2xl mx-auto text-lg">Soluciones técnicas certificadas en Lima, Perú. Desde la nube hasta el soporte físico crítico.</p>
         </div>
-    </section>
+    </header>
 
-    <!-- Sección de Divisiones -->
-    <section id="divisiones" class="py-24 px-6 bg-slate-50">
+    <!-- SECCIÓN DIVISIÓN 1: DIGITAL -->
+    <section id="digital" class="py-20 px-6">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Especialización de Alto Nivel</h2>
-                <p class="text-slate-500">Un ecosistema de servicios diseñado para la competitividad moderna.</p>
+            <div class="flex items-center gap-4 mb-12">
+                <div class="w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center"><i data-lucide="cpu"></i></div>
+                <div>
+                    <h2 class="text-3xl font-bold">División 01: Digital</h2>
+                    <p class="text-blue-600 font-medium">Sistemas & Transformación</p>
+                </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Digital -->
-                <div class="group bg-white p-10 rounded-3xl shadow-sm border border-slate-100 hover:border-blue-400 transition-all">
-                    <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-8">
-                        <i data-lucide="cpu" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Digital</h3>
-                    <p class="text-sm text-slate-500 mb-6 font-semibold uppercase tracking-wider italic">Sistemas & Transformación</p>
-                    <ul class="text-slate-600 space-y-4 text-sm mb-8">
-                        <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 mr-3 text-blue-500 shrink-0"></i> IA & Automatización RPA</li>
-                        <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 mr-3 text-blue-500 shrink-0"></i> Modernización Legacy</li>
-                        <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 mr-3 text-blue-500 shrink-0"></i> Data & Analytics</li>
-                    </ul>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Servicio 1.1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 service-card transition-all shadow-sm">
+                    <h3 class="font-bold mb-3 text-lg">Modernización Legacy</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed italic">Refactorización de código, migración a microservicios y contenedores (Docker/Kubernetes).</p>
                 </div>
-
-                <!-- Seguridad (Destacada) -->
-                <div class="group bg-white p-10 rounded-3xl shadow-xl border-2 navy-border relative md:-translate-y-6">
-                    <div class="w-14 h-14 navy-bg text-white rounded-2xl flex items-center justify-center mb-8">
-                        <i data-lucide="shield-check" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Seguridad</h3>
-                    <p class="text-sm navy-text mb-6 font-semibold uppercase tracking-wider italic">Compliance & Legal</p>
-                    <ul class="text-slate-600 space-y-4 text-sm mb-8">
-                        <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 mr-3 navy-text shrink-0"></i> Ciberseguridad Avanzada</li>
-                        <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 mr-3 navy-text shrink-0"></i> Protección de Datos (LPDP)</li>
-                        <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 mr-3 navy-text shrink-0"></i> Firma Digital Certificada</li>
-                    </ul>
+                <!-- Servicio 1.2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 service-card transition-all shadow-sm">
+                    <h3 class="font-bold mb-3 text-lg text-blue-700">IA & Automatización</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed italic">Implementación de bots RPA y Agentes de IA Generativa para análisis masivo de documentos.</p>
                 </div>
-
-                <!-- Infraestructura -->
-                <div class="group bg-white p-10 rounded-3xl shadow-sm border border-slate-100 hover:border-orange-400 transition-all">
-                    <div class="w-14 h-14 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center mb-8">
-                        <i data-lucide="settings" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Infraestructura</h3>
-                    <p class="text-sm text-slate-500 mb-6 font-semibold uppercase tracking-wider italic">Soporte Crítico TI</p>
-                    <ul class="text-slate-600 space-y-4 text-sm mb-8">
-                        <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 mr-3 text-orange-500 shrink-0"></i> Climatización de Precisión</li>
-                        <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 mr-3 text-orange-500 shrink-0"></i> Energía Ininterrumpida (UPS)</li>
-                        <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 mr-3 text-orange-500 shrink-0"></i> Cableado & Redes de Datos</li>
-                    </ul>
+                <!-- Servicio 1.3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 service-card transition-all shadow-sm">
+                    <h3 class="font-bold mb-3 text-lg">Estrategia de Nube</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed italic">Consultoría Cloud, migración híbrida y auditoría FinOps para optimizar gastos en AWS/Azure.</p>
+                </div>
+                <!-- Servicio 1.4 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 service-card transition-all shadow-sm">
+                    <h3 class="font-bold mb-3 text-lg">Data & Analytics</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed italic">Ingeniería de datos (ETL) y Dashboards estratégicos en Power BI para toma de decisiones.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección de Contacto -->
-    <section id="contacto" class="py-24 px-6 bg-white">
-        <div class="max-w-5xl mx-auto bg-slate-900 rounded-[3rem] p-8 md:p-16 text-white overflow-hidden relative">
-            <div class="relative z-10 grid md:grid-cols-2 gap-12">
+    <!-- SECCIÓN DIVISIÓN 2: SEGURIDAD -->
+    <section id="seguridad" class="py-20 px-6 bg-slate-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-12">
+                <div class="w-12 h-12 navy-bg text-white rounded-xl flex items-center justify-center"><i data-lucide="shield-check"></i></div>
                 <div>
-                    <h2 class="text-4xl font-bold mb-6">¿Listo para dar el siguiente paso?</h2>
-                    <p class="text-slate-400 mb-8 leading-relaxed">
-                        Nuestro equipo de ingeniería evaluará su caso para proponerle la solución técnica más eficiente.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-blue-400">
-                                <i data-lucide="mail" class="w-5 h-5"></i>
-                            </div>
-                            <span>ventas@ecloss.pe</span>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-blue-400">
-                                <i data-lucide="map-pin" class="w-5 h-5"></i>
-                            </div>
-                            <span>Lima, Perú</span>
-                        </div>
-                    </div>
+                    <h2 class="text-3xl font-bold">División 02: Seguridad & Compliance</h2>
+                    <p class="navy-text font-medium">Protección y Cumplimiento Legal</p>
                 </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-navy shadow-sm">
+                    <h3 class="font-bold mb-2">Ciberseguridad Avanzada</h3>
+                    <p class="text-sm text-slate-600">Pentesting, monitoreo preventivo (SOC) y respuesta ante Ransomware.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-navy shadow-sm">
+                    <h3 class="font-bold mb-2">Protección de Datos (LPDP)</h3>
+                    <p class="text-sm text-slate-600">Adecuación a la Ley 29733, registro de bancos de datos y blindaje ANPD.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-navy shadow-sm">
+                    <h3 class="font-bold mb-2">Gobierno Digital</h3>
+                    <p class="text-sm text-slate-600">Integración con PIDE, SUNAT, RENIEC y SUNARP mediante APIs.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-navy shadow-sm">
+                    <h3 class="font-bold mb-2">Firma Digital & Cero Papel</h3>
+                    <p class="text-sm text-slate-600">Software con validez legal plena según la Ley 27269.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <form action="https://formspree.io/f/TU_ID_AQUI" method="POST" class="space-y-4">
-                    <input type="text" name="name" placeholder="Nombre completo" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3 focus:outline-none focus:border-blue-500 transition-all text-white placeholder:text-slate-500" required>
-                    <input type="email" name="email" placeholder="Correo corporativo" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3 focus:outline-none focus:border-blue-500 transition-all text-white placeholder:text-slate-500" required>
-                    <select name="service" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3 focus:outline-none focus:border-blue-500 transition-all text-slate-400">
-                        <option value="digital">División Digital</option>
-                        <option value="seguridad">Seguridad & Compliance</option>
-                        <option value="infraestructura">Infraestructura TI</option>
-                    </select>
-                    <textarea name="message" rows="4" placeholder="¿En qué podemos ayudarle?" class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3 focus:outline-none focus:border-blue-500 transition-all text-white placeholder:text-slate-500" required></textarea>
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-blue-900/20">
-                        Enviar Requerimiento
-                    </button>
+    <!-- SECCIÓN DIVISIÓN 3: INFRAESTRUCTURA -->
+    <section id="infraestructura" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-12">
+                <div class="w-12 h-12 bg-orange-600 text-white rounded-xl flex items-center justify-center"><i data-lucide="hard-hat"></i></div>
+                <div>
+                    <h2 class="text-3xl font-bold">División 03: Infraestructura Crítica</h2>
+                    <p class="text-orange-600 font-medium">Servicios Generales TI y Soporte Físico</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Tarjetas más compactas para los 9 servicios -->
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-md">
+                    <h4 class="font-bold text-orange-700 mb-2">Climatización HVAC</h4>
+                    <p class="text-xs text-slate-500">Mantenimiento de equipos de precisión para salas de servidores.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <h4 class="font-bold text-orange-700 mb-2">Energía & Respaldo</h4>
+                    <p class="text-xs text-slate-500">UPS y Grupos Electrógenos con mantenimiento preventivo.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <h4 class="font-bold text-orange-700 mb-2">Electricidad & Pozo a Tierra</h4>
+                    <p class="text-xs text-slate-500">Tableros industriales y protocolos certificados por Ing. Eléctrico.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <h4 class="font-bold text-orange-700 mb-2">Cableado Estructurado</h4>
+                    <p class="text-xs text-slate-500">Fibra óptica y ordenamiento profesional de racks.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <h4 class="font-bold text-orange-700 mb-2">CCTV & Vigilancia</h4>
+                    <p class="text-xs text-slate-500">Cámaras IP de alta resolución y monitoreo remoto.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <h4 class="font-bold text-orange-700 mb-2">Sistemas Contra Incendio</h4>
+                    <p class="text-xs text-slate-500">Detección y extinción por agentes limpios para servidores.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <h4 class="font-bold text-orange-700 mb-2">Control de Acceso</h4>
+                    <p class="text-xs text-slate-500">Biometría física y cerraduras electromagnéticas.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <h4 class="font-bold text-orange-700 mb-2">Gestión RAEE</h4>
+                    <p class="text-xs text-slate-500">Disposición final certificada de residuos tecnológicos.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm bg-orange-50/30">
+                    <h4 class="font-bold text-orange-700 mb-2">Facility Management</h4>
+                    <p class="text-xs text-slate-500">Mantenimiento preventivo integral bajo un solo contrato.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="py-20 px-6 navy-bg text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">Solicite una visita técnica en Lima</h2>
+            <p class="mb-10 text-slate-300 italic text-sm">Nuestro equipo de ingeniería evaluará sus necesidades para brindar la solución más eficiente.</p>
+            <div class="bg-white text-slate-900 p-8 rounded-3xl shadow-2xl">
+                <form action="#" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                    <div class="flex flex-col"><label class="text-xs font-bold mb-2">Nombre</label><input type="text" class="border p-3 rounded-lg bg-slate-50"></div>
+                    <div class="flex flex-col"><label class="text-xs font-bold mb-2">Empresa</label><input type="text" class="border p-3 rounded-lg bg-slate-50"></div>
+                    <div class="flex flex-col md:col-span-2"><label class="text-xs font-bold mb-2">Servicio de interés</label>
+                        <select class="border p-3 rounded-lg bg-slate-50">
+                            <option>División Digital</option>
+                            <option>Seguridad & Compliance</option>
+                            <option>Infraestructura Crítica</option>
+                        </select>
+                    </div>
+                    <button class="md:col-span-2 navy-bg text-white font-bold py-4 rounded-xl hover:opacity-90 mt-4 transition-all uppercase tracking-widest text-sm">Enviar Solicitud</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 px-6 border-t border-slate-100 bg-slate-50">
-        <div class="max-w-7xl mx-auto flex flex-col md:row justify-between items-center text-slate-500 text-sm">
-            <div class="flex items-center mb-4 md:mb-0">
-                <span class="font-black navy-text mr-2">ECLOSS SAC</span> | &copy; 2026 Todos los derechos reservados.
-            </div>
-            <div class="flex space-x-6">
-                <a href="#" class="hover:text-blue-600">LinkedIn</a>
-                <a href="#" class="hover:text-blue-600">Políticas de Privacidad</a>
-            </div>
-        </div>
+    <footer class="py-10 text-center text-slate-400 text-xs border-t border-slate-100 bg-white">
+        <p>ECLOSS SAC - RUC: [Tu RUC aquí] - Lima, Perú 2026</p>
     </footer>
 
-    <script>
-        lucide.createIcons();
-    </script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>
