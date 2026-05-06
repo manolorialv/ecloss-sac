@@ -3,73 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECLOSS SAC | Consultoría e Infraestructura TI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .navy-border { border-color: #002147; }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .navy-bg { background-color: #002147; }
         .navy-text { color: #002147; }
+        .navy-border { border-color: #002147; }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-slate-50 text-slate-900">
 
-    <section class="py-20 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">Nuestras Divisiones</h2>
-            <p class="text-gray-500 max-w-2xl mx-auto text-lg">Soluciones integrales diseñadas para garantizar la continuidad operativa y la evolución tecnológica en el mercado peruano.</p>
+    <!-- Navegación -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="text-2xl font-black tracking-tighter navy-text">
+                ECLOSS<span class="text-blue-600">.</span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-widest text-slate-600">
+                <a href="#inicio" class="hover:text-blue-600 transition-colors">Inicio</a>
+                <a href="#divisiones" class="hover:text-blue-600 transition-colors">Divisiones</a>
+                <a href="#contacto" class="hover:text-blue-600 transition-colors">Contacto</a>
+            </div>
+            <a href="#contacto" class="navy-bg text-white px-6 py-2 rounded-full text-sm font-bold hover:opacity-90 transition-all">
+                COTIZAR
+            </a>
         </div>
+    </nav>
 
-        <!-- Grid de Divisiones -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <!-- División 1: Digital -->
-            <div class="bg-white p-10 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col h-full">
-                <div class="mb-6 inline-flex items-center justify-center w-14 h-14 bg-blue-50 text-blue-600 rounded-lg">
-                    <i data-lucide="cpu" class="w-8 h-8"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">División 01: Digital</h3>
-                <p class="text-gray-600 leading-relaxed mb-6 flex-grow">
-                    Sistemas y Transformación. Modernización de sistemas legacy, implementación de IA Generativa y estrategias Cloud & FinOps.
+    <!-- Hero Section -->
+    <section id="inicio" class="relative py-24 px-6 overflow-hidden bg-white">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase mb-6">
+                    Lanzamiento Mayo 2026 • Lima, Perú
+                </span>
+                <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+                    Soluciones de <span class="navy-text">Infraestructura</span> y Transformación Digital.
+                </h1>
+                <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                    En <b>ECLOSS SAC</b> integramos tecnología de vanguardia con cumplimiento legal y soporte físico crítico para asegurar que su empresa nunca se detenga.
                 </p>
-                <a href="#" class="inline-flex items-center font-semibold text-blue-600 hover:text-blue-700">
-                    Saber más <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
-                </a>
-            </div>
-
-            <!-- División 2: Seguridad & Cumplimiento (Destacada) -->
-            <div class="bg-white p-10 rounded-xl shadow-sm hover:shadow-lg transition-all border-2 navy-border flex flex-col h-full transform md:-translate-y-2">
-                <div class="mb-6 inline-flex items-center justify-center w-14 h-14 bg-gray-900 text-white rounded-lg">
-                    <i data-lucide="shield-check" class="w-8 h-8"></i>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#divisiones" class="navy-bg text-white px-8 py-4 rounded-lg font-bold text-center hover:shadow-lg transition-all">
+                        Explorar Servicios
+                    </a>
+                    <a href="#" class="border border-slate-300 px-8 py-4 rounded-lg font-bold text-center hover:bg-slate-50 transition-all">
+                        Brochure PDF
+                    </a>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">División 02: Seguridad</h3>
-                <p class="text-gray-600 leading-relaxed mb-6 flex-grow">
-                    Ciberseguridad avanzada y cumplimiento legal (LPDP). Blindamos sus activos digitales y aseguramos la interoperabilidad estatal.
-                </p>
-                <a href="#" class="inline-flex items-center font-semibold navy-text hover:opacity-80">
-                    Saber más <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
-                </a>
             </div>
-
-            <!-- División 3: Infraestructura -->
-            <div class="bg-white p-10 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col h-full">
-                <div class="mb-6 inline-flex items-center justify-center w-14 h-14 bg-orange-50 text-orange-600 rounded-lg">
-                    <i data-lucide="server" class="w-8 h-8"></i>
+            <div class="relative">
+                <div class="aspect-square bg-slate-100 rounded-3xl flex items-center justify-center border border-slate-200 shadow-inner">
+                    <!-- Placeholder para imagen o gráfico -->
+                    <i data-lucide="blocks" class="w-32 h-32 text-slate-300"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">División 03: Infraestructura</h3>
-                <p class="text-gray-600 leading-relaxed mb-6 flex-grow">
-                    Servicios Generales TI. Climatización de precisión, energía crítica (UPS), cableado estructurado y seguridad electrónica.
-                </p>
-                <a href="#" class="inline-flex items-center font-semibold text-orange-600 hover:text-orange-700">
-                    Saber más <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
-                </a>
             </div>
-
         </div>
     </section>
 
+    <!-- Sección de Divisiones -->
+    <section id="divisiones" class="py-24 px-6 bg-slate-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold mb-4">Nuestras Unidades de Negocio</h2>
+                <div class="h-1 w-20 bg-blue-600"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Digital -->
+                <div class="group bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:border-blue-400 transition-all">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="code-2"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">División Digital</h3>
+                    <ul class="text-slate-600 space-y-3 text-sm">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-blue-500"></i> Modernización Legacy</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-blue-500"></i> IA & Automatización</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-blue-500"></i> Cloud & FinOps</li>
+                    </ul>
+                </div>
+
+                <!-- Seguridad (Destacada) -->
+                <div class="group bg-white p-8 rounded-2xl shadow-md border-2 navy-border relative transform md:-translate-y-4">
+                    <div class="absolute -top-4 right-8 bg-blue-600 text-white text-[10px] px-3 py-1 rounded-full font-bold">CRÍTICO</div>
+                    <div class="w-12 h-12 navy-bg text-white rounded-lg flex items-center justify-center mb-6">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Seguridad & Compliance</h3>
+                    <ul class="text-slate-600 space-y-3 text-sm">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-blue-800"></i> Ciberseguridad / Pentesting</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-blue-800"></i> Protección de Datos (LPDP)</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-blue-800"></i> Interoperabilidad (PIDE)</li>
+                    </ul>
+                </div>
+
+                <!-- Infraestructura -->
+                <div class="group bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:border-blue-400 transition-all">
+                    <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="hard-hat"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Infraestructura Crítica</h3>
+                    <ul class="text-slate-600 space-y-3 text-sm">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-orange-500"></i> Climatización HVAC</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-orange-500"></i> Energía & UPS</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-orange-500"></i> CCTV & Incendios</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Simple -->
+    <footer id="contacto" class="py-12 bg-slate-900 text-white px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center opacity-80">
+            <p>&copy; 2026 Grupo ECLOSS SAC. Lima, Perú.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <span>LinkedIn</span>
+                <span>ventas@ecloss.pe</span>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Inicializar Iconos Lucide
         lucide.createIcons();
     </script>
 </body>
