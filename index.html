@@ -3,213 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECLOSS SAC | Consultoría Digital, Seguridad & Infraestructura Crítica</title>
-    <meta name="description" content="Líderes en transformación digital, ciberseguridad y servicios generales TI en Lima, Perú.">
+    <title>ECLOSS SAC | Infraestructura Crítica & Transformación Digital</title>
+    <meta name="description" content="Consultoría técnica especializada en Lima: Ciberseguridad, IA, Cloud e Infraestructura TI.">
     
-    <!-- Frameworks & Fonts -->
+    <!-- Senior Stack: Tailwind + Lucide Icons + Jakarta Sans Font -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --navy: #002147;
-            --accent: #3b82f6;
+            --navy-deep: #001529;
+            --navy-corporate: #002147;
+            --accent-blue: #3b82f6;
         }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
-        .hero-gradient { background: radial-gradient(circle at top right, #f8fafc 0%, #ffffff 100%); }
-        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,33,71,0.08); }
-        .division-tag { letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.7rem; font-weight: 800; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #ffffff;
+            color: #1e293b;
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .hero-mesh {
+            background-color: #ffffff;
+            background-image: radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.05) 0, transparent 50%), 
+                              radial-gradient(at 50% 0%, rgba(0, 33, 71, 0.03) 0, transparent 50%);
+        }
+        .bento-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .bento-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(0, 33, 71, 0.1);
+            border-color: var(--accent-blue);
+        }
+        .division-label {
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            font-weight: 800;
+        }
     </style>
 </head>
-<body class="bg-white text-slate-900 overflow-x-hidden">
+<body class="antialiased">
 
-    <!-- Header Senior UI -->
-    <nav class="fixed w-full z-50 glass-nav border-b border-slate-100">
+    <!-- NAV: Estilo Minimalista Senior -->
+    <nav class="fixed w-full z-50 glass-header border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-[#002147] rounded-lg flex items-center justify-center">
-                    <div class="w-3 h-3 bg-blue-400 rotate-45"></div>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-[#002147] rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/20">
+                    <div class="w-2 h-2 bg-blue-400 animate-pulse"></div>
                 </div>
-                <span class="text-2xl font-extrabold tracking-tighter text-[#002147]">ECLOSS</span>
+                <span class="text-2xl font-extrabold tracking-tighter text-[#002147]">ECLOSS<span class="text-blue-600 italic">.</span></span>
             </div>
             
-            <div class="hidden md:flex items-center gap-10 text-sm font-semibold text-slate-600">
+            <div class="hidden lg:flex items-center gap-10 text-[13px] font-bold uppercase tracking-widest text-slate-500">
                 <a href="#digital" class="hover:text-blue-600 transition-colors">Digital</a>
                 <a href="#seguridad" class="hover:text-blue-600 transition-colors">Seguridad</a>
                 <a href="#infraestructura" class="hover:text-blue-600 transition-colors">Infraestructura</a>
-                <a href="#contacto" class="bg-[#002147] text-white px-6 py-2.5 rounded-full hover:shadow-lg hover:opacity-90 transition-all">Cotizar Proyecto</a>
+                <a href="#contacto" class="bg-[#002147] text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-all shadow-md">Iniciar Proyecto</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section (Nivel Senior) -->
-    <section class="relative pt-40 pb-24 hero-gradient overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-            <div class="z-10">
-                <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1 rounded-full mb-6 border border-blue-100">
-                    <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span></span>
-                    <span class="text-xs font-bold uppercase tracking-widest">Apertura Mayo 2026</span>
+    <!-- HERO: Enfoque en Autoridad y Valor -->
+    <section class="relative pt-48 pb-32 hero-mesh overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 z-10">
+                <div class="inline-flex items-center gap-2 bg-slate-100 px-3 py-1 rounded-full mb-8 border border-slate-200">
+                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Corporación TI • Lima 2026</span>
                 </div>
-                <h1 class="text-6xl lg:text-7xl font-extrabold text-[#002147] leading-[1.1] mb-8 tracking-tight">
-                    Arquitectura de <span class="text-blue-600">Continuidad</span> Empresarial.
+                <h1 class="text-6xl lg:text-8xl font-[800] text-[#002147] leading-[0.95] mb-8 tracking-tighter">
+                    Donde la técnica <br><span class="text-blue-600">se vuelve certeza.</span>
                 </h1>
-                <p class="text-xl text-slate-500 leading-relaxed mb-10 max-w-xl">
-                    Integramos transformación digital, ciberdefensa avanzada e infraestructura física crítica para las empresas más exigentes del Perú.
+                <p class="text-xl text-slate-500 leading-relaxed mb-10 max-w-xl font-medium">
+                    ECLOSS SAC provee la arquitectura necesaria para la continuidad de negocios críticos, integrando ciberseguridad avanzada con infraestructura TI de precisión.
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="#contacto" class="bg-[#002147] text-white px-10 py-5 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all flex items-center gap-3">
-                        Agendar Consultoría <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    <a href="#contacto" class="bg-[#002147] text-white px-10 py-5 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all flex items-center gap-4">
+                        Consultoría Senior <i data-lucide="chevron-right" class="w-5 h-5"></i>
                     </a>
                 </div>
             </div>
-            <div class="relative hidden lg:block">
-                <div class="w-full aspect-square bg-slate-50 rounded-[4rem] border border-slate-100 flex items-center justify-center relative shadow-inner">
-                    <i data-lucide="shield-check" class="w-48 h-48 text-slate-100 absolute"></i>
-                    <div class="grid grid-cols-2 gap-4 p-12 w-full">
-                        <div class="bg-white p-8 rounded-3xl shadow-xl"><i data-lucide="database" class="text-blue-600 mb-4"></i><p class="text-xs font-bold uppercase tracking-widest text-slate-400">Cloud Data</p></div>
-                        <div class="bg-white p-8 rounded-3xl shadow-xl mt-8"><i data-lucide="activity" class="text-emerald-500 mb-4"></i><p class="text-xs font-bold uppercase tracking-widest text-slate-400">SOC 24/7</p></div>
-                        <div class="bg-white p-8 rounded-3xl shadow-xl -mt-4"><i data-lucide="zap" class="text-orange-500 mb-4"></i><p class="text-xs font-bold uppercase tracking-widest text-slate-400">Energy</p></div>
-                        <div class="bg-white p-8 rounded-3xl shadow-xl mt-4"><i data-lucide="bot" class="text-indigo-600 mb-4"></i><p class="text-xs font-bold uppercase tracking-widest text-slate-400">Gen AI</p></div>
+            <div class="lg:col-span-5 relative hidden lg:block">
+                <div class="bg-slate-50 rounded-[3rem] p-8 border border-slate-100 shadow-inner relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                            <i data-lucide="shield" class="text-blue-600 mb-4 w-8 h-8"></i>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Security</p>
+                            <p class="text-sm font-bold mt-1">Pentesting SOC</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 mt-6">
+                            <i data-lucide="cpu" class="text-blue-400 mb-4 w-8 h-8"></i>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Intelligence</p>
+                            <p class="text-sm font-bold mt-1">Gen AI Agents</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 -mt-6">
+                            <i data-lucide="zap" class="text-orange-500 mb-4 w-8 h-8"></i>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Critical</p>
+                            <p class="text-sm font-bold mt-1">UPS & Energy</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                            <i data-lucide="cloud" class="text-indigo-500 mb-4 w-8 h-8"></i>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Scale</p>
+                            <p class="text-sm font-bold mt-1">Cloud FinOps</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Divisiones (Grilla de Servicios Senior) -->
+    <!-- SERVICIOS: Arquitectura Bento Grid -->
     <main class="max-w-7xl mx-auto px-6 py-32 space-y-40">
 
-        <!-- División 1: Digital -->
+        <!-- DIVISIÓN 01 -->
         <section id="digital">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-                <div class="max-w-2xl">
-                    <span class="division-tag text-blue-600">Unidad de Negocio 01</span>
-                    <h2 class="text-4xl font-extrabold text-[#002147] mt-2 mb-6 uppercase tracking-tighter italic">Sistemas & Transformación Digital</h2>
-                    <p class="text-slate-500 text-lg">Modernización de infraestructuras de software bajo estándares internacionales de escalabilidad.</p>
-                </div>
-                <div class="h-px bg-slate-100 flex-grow mx-8 hidden md:block"></div>
+            <div class="max-w-3xl mb-20">
+                <span class="division-label text-blue-600">Unidad Digital</span>
+                <h2 class="text-5xl font-black text-[#002147] mt-4 tracking-tighter italic uppercase">Transformación & IA</h2>
             </div>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="group bg-slate-50 p-10 rounded-[2.5rem] card-hover transition-all">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><i data-lucide="layers" class="text-blue-600"></i> Modernización Legacy</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">Refactorización de código antiguo hacia arquitecturas de <b>microservicios y contenedores (Docker/Kubernetes)</b> para eliminar la deuda técnica.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bento-card bg-white p-8 rounded-[2rem] flex flex-col">
+                    <i data-lucide="refresh-ccw" class="text-blue-600 mb-6 w-8 h-8"></i>
+                    <h3 class="font-bold text-lg mb-3">Modernización Legacy</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed italic">Refactorización de código y migración a Kubernetes para eliminar deuda técnica.</p>
                 </div>
-                <div class="group bg-slate-50 p-10 rounded-[2.5rem] card-hover transition-all">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><i data-lucide="brain-circuit" class="text-blue-600"></i> IA & Automatización Inteligente</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">Despliegue de bots RPA y <b>Agentes de IA Generativa</b> para optimización de procesos y análisis masivo de documentos.</p>
+                <div class="bento-card bg-white p-8 rounded-[2rem] flex flex-col">
+                    <i data-lucide="bot" class="text-blue-600 mb-6 w-8 h-8"></i>
+                    <h3 class="font-bold text-lg mb-3">IA Generativa</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed italic">Bots RPA y análisis inteligente de documentos masivos.</p>
                 </div>
-                <div class="group bg-slate-50 p-10 rounded-[2.5rem] card-hover transition-all">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><i data-lucide="cloud" class="text-blue-600"></i> Cloud Strategy & FinOps</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">Consultoría para migración híbrida y <b>auditoría de consumo en AWS/Azure</b> para reducir costos operativos mensuales.</p>
+                <div class="bento-card bg-white p-8 rounded-[2rem] flex flex-col">
+                    <i data-lucide="cloud-cog" class="text-blue-600 mb-6 w-8 h-8"></i>
+                    <h3 class="font-bold text-lg mb-3">Cloud FinOps</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed italic">Optimización de gastos mensuales en AWS y Azure.</p>
                 </div>
-                <div class="group bg-slate-50 p-10 rounded-[2.5rem] card-hover transition-all">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-3"><i data-lucide="bar-chart-3" class="text-blue-600"></i> Data & Engineering</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">Ingeniería de datos (ETL) y creación de <b>dashboards estratégicos</b> para la toma de decisiones basada en evidencia real.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- División 2: Seguridad & Compliance -->
-        <section id="seguridad" class="relative">
-            <div class="absolute -inset-x-6 py-32 bg-[#002147] -z-10"></div>
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 text-white">
-                <div class="max-w-2xl">
-                    <span class="division-tag text-blue-400">Unidad de Negocio 02</span>
-                    <h2 class="text-4xl font-extrabold mt-2 mb-6 uppercase tracking-tighter italic">Ciberseguridad & Compliance Legal</h2>
-                    <p class="text-slate-300 text-lg">Blindaje técnico y legal bajo la normativa peruana vigente.</p>
-                </div>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors">
-                    <i data-lucide="fingerprint" class="text-blue-400 mb-6 w-10 h-10"></i>
-                    <h4 class="text-white font-bold mb-4">Pentesting & SOC</h4>
-                    <p class="text-slate-400 text-xs leading-relaxed italic text-balance">Monitoreo preventivo y respuesta rápida ante Ransomware.</p>
-                </div>
-                <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors">
-                    <i data-lucide="lock" class="text-blue-400 mb-6 w-10 h-10"></i>
-                    <h4 class="text-white font-bold mb-4">LPDP (Ley 29733)</h4>
-                    <p class="text-slate-400 text-xs leading-relaxed italic text-balance">Adecuación legal para evitar multas de la ANPD y registro de bancos de datos.</p>
-                </div>
-                <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors">
-                    <i data-lucide="landmark" class="text-blue-400 mb-6 w-10 h-10"></i>
-                    <h4 class="text-white font-bold mb-4">Gobierno Digital</h4>
-                    <p class="text-slate-400 text-xs leading-relaxed italic text-balance">Interoperabilidad mediante APIs con PIDE, SUNAT y RENIEC.</p>
-                </div>
-                <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors">
-                    <i data-lucide="pen-tool" class="text-blue-400 mb-6 w-10 h-10"></i>
-                    <h4 class="text-white font-bold mb-4">Firma Digital</h4>
-                    <p class="text-slate-400 text-xs leading-relaxed italic text-balance">Implementación de firma certificada bajo la Ley 27269.</p>
+                <div class="bento-card bg-white p-8 rounded-[2rem] flex flex-col">
+                    <i data-lucide="database" class="text-blue-600 mb-6 w-8 h-8"></i>
+                    <h3 class="font-bold text-lg mb-3">Data Engineering</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed italic">ETL y Dashboards estratégicos para decisiones de alto nivel.</p>
                 </div>
             </div>
         </section>
 
-        <!-- División 3: Infraestructura Crítica -->
-        <section id="infraestructura" class="py-20">
-            <div class="mb-16">
-                <span class="division-tag text-orange-600">Unidad de Negocio 03</span>
-                <h2 class="text-4xl font-extrabold text-[#002147] mt-2 mb-6 uppercase tracking-tighter italic">Infraestructura Crítica & Facility</h2>
+        <!-- DIVISIÓN 02: El Contraste de Seguridad -->
+        <section id="seguridad" class="relative py-24 -mx-6 px-12 bg-[#001529] rounded-[4rem] text-white overflow-hidden">
+            <div class="relative z-10 grid lg:grid-cols-12 gap-16">
+                <div class="lg:col-span-4">
+                    <span class="division-label text-blue-400">Unidad Seguridad</span>
+                    <h2 class="text-5xl font-black mt-4 mb-8 tracking-tighter italic uppercase">Compliance & Defensiva</h2>
+                    <p class="text-slate-400 text-sm mb-12">Blindaje integral bajo normativa técnica y legal peruana.</p>
+                    <a href="#contacto" class="inline-flex items-center gap-3 text-sm font-bold border-b-2 border-blue-500 pb-2 hover:text-blue-400 transition-all">Ver protocolos de seguridad <i data-lucide="arrow-up-right" class="w-4 h-4"></i></a>
+                </div>
+                <div class="lg:col-span-8 grid md:grid-cols-2 gap-4 text-left">
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-3xl">
+                        <h4 class="font-bold text-lg mb-4 text-blue-400">Cyber SOC 24/7</h4>
+                        <p class="text-[11px] text-slate-400 leading-relaxed italic">Pentesting, monitoreo preventivo y respuesta ante Ransomware.</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-3xl">
+                        <h4 class="font-bold text-lg mb-4 text-blue-400">Protección LPDP</h4>
+                        <p class="text-[11px] text-slate-400 leading-relaxed italic">Adecuación a la Ley 29733 y blindaje ante multas de la ANPD.</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-3xl">
+                        <h4 class="font-bold text-lg mb-4 text-blue-400">Interoperabilidad PIDE</h4>
+                        <p class="text-[11px] text-slate-400 leading-relaxed italic">Integración vía APIs con SUNAT, RENIEC y Plataformas del Estado.</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-3xl">
+                        <h4 class="font-bold text-lg mb-4 text-blue-400">Firma Digital</h4>
+                        <p class="text-[11px] text-slate-400 leading-relaxed italic">Implementación de software con validez legal según Ley 27269.</p>
+                    </div>
+                </div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- El Senior sabe que menos es más: Grilla densa pero limpia -->
-                <div class="border border-slate-100 p-8 rounded-3xl hover:border-orange-500 transition-colors">
-                    <span class="text-orange-600 font-bold block mb-4">HVAC Precision</span>
-                    <h5 class="font-bold text-sm mb-2">Climatización de Precisión</h5>
-                    <p class="text-xs text-slate-500">Mantenimiento para salas de servidores y equipos de confort.</p>
+        </section>
+
+        <!-- DIVISIÓN 03 -->
+        <section id="infraestructura">
+            <div class="max-w-3xl mb-20 text-right ml-auto">
+                <span class="division-label text-orange-600">Unidad de Ingeniería</span>
+                <h2 class="text-5xl font-black text-[#002147] mt-4 tracking-tighter italic uppercase">Infraestructura Crítica</h2>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Ítem Senior: Títulos claros, descripciones concisas -->
+                <div class="p-8 border-b-2 border-slate-100 hover:border-orange-500 transition-all">
+                    <h5 class="font-black text-xs text-orange-600 uppercase mb-4 tracking-widest">01. Climatización</h5>
+                    <p class="font-bold text-lg leading-tight mb-2">HVAC Precisión</p>
+                    <p class="text-xs text-slate-500 italic">Mantenimiento de salas de servidores y equipos de confort.</p>
                 </div>
-                <div class="border border-slate-100 p-8 rounded-3xl hover:border-orange-500 transition-colors">
-                    <span class="text-orange-600 font-bold block mb-4">Critical Power</span>
-                    <h5 class="font-bold text-sm mb-2">Energía & Respaldo</h5>
-                    <p class="text-xs text-slate-500">UPS, Grupos Electrógenos y protocolos de Pozo a Tierra.</p>
+                <div class="p-8 border-b-2 border-slate-100 hover:border-orange-500 transition-all">
+                    <h5 class="font-black text-xs text-orange-600 uppercase mb-4 tracking-widest">02. Energía</h5>
+                    <p class="font-bold text-lg leading-tight mb-2">UPS & Backup</p>
+                    <p class="text-xs text-slate-500 italic">Energía ininterrumpida, grupos electrógeneos y pozos a tierra.</p>
                 </div>
-                <div class="border border-slate-100 p-8 rounded-3xl hover:border-orange-500 transition-colors">
-                    <span class="text-orange-600 font-bold block mb-4">Net & Security</span>
-                    <h5 class="font-bold text-sm mb-2">Redes & CCTV</h5>
-                    <p class="text-xs text-slate-500">Cableado estructurado, Fibra Óptica y Vigilancia IP.</p>
+                <div class="p-8 border-b-2 border-slate-100 hover:border-orange-500 transition-all">
+                    <h5 class="font-black text-xs text-orange-600 uppercase mb-4 tracking-widest">03. Conectividad</h5>
+                    <p class="font-bold text-lg leading-tight mb-2">Fibra & Redes</p>
+                    <p class="text-xs text-slate-500 italic">Tendido de fibra óptica y ordenamiento profesional de Racks.</p>
                 </div>
-                <div class="border border-slate-100 p-8 rounded-3xl hover:border-orange-500 transition-colors">
-                    <span class="text-orange-600 font-bold block mb-4">Fire & Access</span>
-                    <h5 class="font-bold text-sm mb-2">Detección & Biometría</h5>
-                    <p class="text-xs text-slate-500">Sistemas contra incendio (Agentes limpios) y Control de Acceso.</p>
+                <div class="p-8 border-b-2 border-slate-100 hover:border-orange-500 transition-all">
+                    <h5 class="font-black text-xs text-orange-600 uppercase mb-4 tracking-widest">04. Vigilancia</h5>
+                    <p class="font-bold text-lg leading-tight mb-2">CCTV IP</p>
+                    <p class="text-xs text-slate-500 italic">Cámaras de alta resolución y monitoreo remoto por software.</p>
                 </div>
-                <div class="border border-slate-100 p-8 rounded-3xl hover:border-orange-500 transition-colors">
-                    <span class="text-orange-600 font-bold block mb-4">RAEE Compliance</span>
-                    <h5 class="font-bold text-sm mb-2">Gestión de Residuos</h5>
-                    <p class="text-xs text-slate-500">Disposición final certificada de equipos tecnológicos obsoletos.</p>
+                <div class="p-8 border-b-2 border-slate-100 hover:border-orange-500 transition-all">
+                    <h5 class="font-black text-xs text-orange-600 uppercase mb-4 tracking-widest">05. Seguridad Física</h5>
+                    <p class="font-bold text-lg leading-tight mb-2">Accesos & Biometría</p>
+                    <p class="text-xs text-slate-500 italic">Lectoras de rostro, torniquetes y cerraduras electromagnéticas.</p>
                 </div>
-                <div class="bg-[#002147] p-8 rounded-3xl text-white">
-                    <span class="text-blue-400 font-bold block mb-4 italic">Contrato Integral</span>
-                    <h5 class="font-bold text-sm mb-2 uppercase">Facility Management</h5>
-                    <p class="text-xs text-slate-400">Gestión de mantenimiento general bajo un solo contrato unificado.</p>
+                <div class="p-8 border-b-2 border-slate-100 bg-[#002147] text-white rounded-2xl">
+                    <h5 class="font-black text-xs text-blue-400 uppercase mb-4 tracking-widest text-balance">Mantenimiento Integral</h5>
+                    <p class="font-bold text-lg leading-tight mb-2">Facility Management</p>
+                    <p class="text-xs text-slate-400 italic">Gestión unificada de electricidad, soporte y reparaciones.</p>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Footer Corporativo -->
-    <footer class="bg-slate-50 border-t border-slate-200 py-24 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+    <!-- CONTACTO: Conversión B2B -->
+    <section id="contacto" class="py-32 px-6 bg-slate-50">
+        <div class="max-w-5xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
             <div>
-                <p class="text-2xl font-black text-[#002147] mb-4">ECLOSS<span class="text-blue-600">.</span></p>
-                <p class="text-slate-500 text-sm max-w-xs">Grupo ECLOSS SAC. Consultoría integral para la era de la IA y la infraestructura crítica.</p>
+                <h2 class="text-5xl font-black text-[#002147] mb-8 tracking-tighter">Hablemos de su <br>próximo desafío.</h2>
+                <p class="text-slate-500 mb-12 font-medium">Nuestro equipo de ingeniería evaluará sus requerimientos técnicos para presentarle una propuesta ajustada a su realidad operativa.</p>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-6 p-6 bg-white rounded-2xl border border-slate-100 shadow-sm">
+                        <i data-lucide="mail" class="text-blue-600"></i>
+                        <div><p class="text-[10px] font-bold text-slate-400 uppercase">Consultas</p><p class="font-bold">ventas@ecloss.pe</p></div>
+                    </div>
+                </div>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
-                <div>
-                    <h6 class="font-bold text-xs uppercase tracking-widest text-slate-400 mb-6">Contacto</h6>
-                    <ul class="text-sm space-y-4 font-semibold">
-                        <li>ventas@ecloss.pe</li>
-                        <li>Lima, Perú</li>
-                    </ul>
-                </div>
-                <div>
-                    <h6 class="font-bold text-xs uppercase tracking-widest text-slate-400 mb-6">Legal</h6>
-                    <ul class="text-sm space-y-4 font-semibold text-slate-600">
-                        <li>Ley 29733</li>
-                        <li>Políticas RAEE</li>
-                    </ul>
-                </div>
+            <div class="bg-white p-10 rounded-[3rem] shadow-xl border border-slate-100">
+                <form action="#" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <input type="text" placeholder="Nombre" class="w-full bg-slate-50 border-none px-6 py-4 rounded-xl focus:ring-2 focus:ring-blue-600 transition-all text-sm">
+                        <input type="email" placeholder="Correo Corporativo" class="w-full bg-slate-50 border-none px-6 py-4 rounded-xl focus:ring-2 focus:ring-blue-600 transition-all text-sm">
+                    </div>
+                    <select class="w-full bg-slate-50 border-none px-6 py-4 rounded-xl text-slate-400 text-sm">
+                        <option>División Digital</option>
+                        <option>Seguridad & Compliance</option>
+                        <option>Infraestructura Crítica</option>
+                    </select>
+                    <textarea placeholder="Mensaje" rows="4" class="w-full bg-slate-50 border-none px-6 py-4 rounded-xl focus:ring-2 focus:ring-blue-600 transition-all text-sm"></textarea>
+                    <button class="w-full bg-[#002147] text-white py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-xs hover:bg-blue-600 shadow-lg shadow-blue-900/10 transition-all">Enviar Requerimiento</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-slate-100 bg-white">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-[#002147] rounded-md"></div>
+                <span class="text-lg font-black tracking-tighter text-[#002147]">ECLOSS</span>
+            </div>
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">&copy; 2026 Grupo ECLOSS SAC • Lima, Perú</p>
+            <div class="flex gap-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                <a href="#" class="hover:text-blue-600 transition-all">LinkedIn</a>
+                <a href="#" class="hover:text-blue-600 transition-all">Privacidad</a>
             </div>
         </div>
     </footer>
