@@ -3,261 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECLOSS SAC | Ingeniería, Ciberdefensa & Infraestructura</title>
+    <title>ECLOSS | Infrastructure & Cyber Defense Group</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #050505;
-            --accent: #0047FF;
-            --text-dim: #666;
+            --slate-950: #020617;
+            --ecloss-blue: #0ea5e9;
+            --ecloss-deep: #001A33;
         }
         body { 
-            background-color: var(--bg); 
-            color: #fff; 
-            font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
+            background-color: var(--slate-950); 
+            color: #f1f5f9; 
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.02em;
         }
-        .font-impact { font-family: 'Syne', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
         
-        /* Scanline Effect (Senior Aesthetic) */
-        body::before {
-            content: " ";
-            position: fixed; top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
-            background-size: 100% 4px, 3px 100%;
-            z-index: 1000; pointer-events: none;
+        /* Grilla de Ingeniería de fondo */
+        .bg-engineering {
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
-        .grid-blueprint {
-            background-image: radial-gradient(circle, #111 1px, transparent 1px);
-            background-size: 30px 30px;
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .service-card {
-            border: 1px solid #1a1a1a;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            background: rgba(10, 10, 10, 0.8);
+        .division-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 2px solid rgba(14, 165, 233, 0.1);
         }
 
-        .service-card:hover {
-            border-color: var(--accent);
-            background: #0a0a0a;
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px -10px rgba(0, 71, 255, 0.3);
+        .division-card:hover {
+            background: rgba(14, 165, 233, 0.03);
+            border-left: 2px solid var(--ecloss-blue);
         }
 
-        .division-header {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            transform: rotate(180deg);
+        .tag-status {
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
-        .btn-cta {
-            background: var(--accent);
-            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+        /* Botón Senior: Minimalista pero potente */
+        .btn-senior {
+            position: relative;
+            padding: 12px 24px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            background: white;
+            color: black;
             transition: 0.3s;
         }
-        .btn-cta:hover { transform: scale(1.05); filter: brightness(1.2); }
+        .btn-senior:hover {
+            background: var(--ecloss-blue);
+            color: white;
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.4);
+        }
     </style>
 </head>
-<body class="grid-blueprint">
+<body class="bg-engineering">
 
-    <!-- Navegación Técnica -->
-    <nav class="fixed w-full z-[100] border-b border-white/5 bg-black/80 backdrop-blur-md">
-        <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-blue-600 rounded-sm flex items-center justify-center">
-                    <i data-lucide="box" class="text-white w-5 h-5"></i>
+    <!-- Navegación de Control -->
+    <nav class="fixed w-full z-[100] border-b border-white/5 glass-panel">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-2 group cursor-pointer">
+                    <div class="w-2 h-8 bg-blue-500 group-hover:h-10 transition-all"></div>
+                    <span class="text-2xl font-extrabold tracking-tighter uppercase">ECLOSS<span class="text-blue-500">.</span></span>
                 </div>
-                <span class="font-impact text-xl tracking-tighter uppercase">ECLOSS<span class="text-blue-600">.</span></span>
+                <div class="hidden md:flex gap-6 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
+                    <a href="#div-1" class="hover:text-blue-400 transition-colors">Sistemas</a>
+                    <a href="#div-2" class="hover:text-blue-400 transition-colors">Seguridad</a>
+                    <a href="#div-3" class="hover:text-blue-400 transition-colors">Infraestructura</a>
+                </div>
             </div>
-            <div class="hidden lg:flex gap-8 text-[10px] font-bold uppercase tracking-[0.3em]">
-                <a href="#digital" class="hover:text-blue-500">01. Digital</a>
-                <a href="#compliance" class="hover:text-blue-500">02. Compliance</a>
-                <a href="#infra" class="hover:text-blue-500">03. Infraestructura</a>
-            </div>
-            <button class="btn-cta px-6 py-2 text-[10px] font-black uppercase tracking-widest text-white">Contact Master</button>
+            <button class="btn-senior">Iniciar Consulta Técnica</button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center px-6 pt-20">
-        <div class="max-w-[1400px] mx-auto w-full grid lg:grid-cols-12 gap-10">
+    <!-- Hero: Minimalismo de Alto Impacto -->
+    <section class="min-h-screen flex items-center pt-20 px-6">
+        <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-20">
             <div class="lg:col-span-8">
-                <h1 class="font-impact text-7xl lg:text-[120px] leading-[0.9] tracking-tighter mb-8">
-                    ENGINEERING <br> <span class="text-blue-600">RELIABILITY.</span>
+                <div class="mono text-blue-500 text-xs mb-6 flex items-center gap-2">
+                    <span class="inline-block w-2 h-2 bg-blue-500 animate-pulse"></span>
+                    SISTEMA DE INGENIERÍA OPERATIVO [PERÚ-2026]
+                </div>
+                <h1 class="text-6xl lg:text-[100px] font-extrabold leading-[0.85] tracking-tighter mb-10 text-white">
+                    PRECISIÓN <br> <span class="text-slate-600">EN SISTEMAS</span> <br> CRÍTICOS.
                 </h1>
-                <p class="text-gray-500 text-xl max-w-2xl font-light leading-relaxed">
-                    Despliegue de infraestructura crítica, defensa digital y modernización de sistemas para el sector corporativo e industrial en Perú.
+                <p class="text-xl text-slate-400 max-w-xl leading-relaxed font-light mb-12">
+                    ECLOSS SAC integra arquitectura digital avanzada y robustez física para garantizar la continuidad absoluta de su operación.
                 </p>
-            </div>
-            <div class="lg:col-span-4 flex flex-col justify-end gap-6 pb-12">
-                <div class="p-6 border border-white/10 bg-white/5 backdrop-blur-sm">
-                    <span class="text-blue-500 font-bold block mb-2 uppercase text-[10px] tracking-widest italic">Status: Online</span>
-                    <p class="text-xs text-gray-400">Soporte Técnico Especializado 24/7. Operaciones bajo normativas internacionales.</p>
+                <div class="flex gap-4">
+                    <div class="glass-panel p-4 px-8 border-l-4 border-l-blue-500">
+                        <span class="block text-2xl font-bold italic">99.9%</span>
+                        <span class="text-[9px] uppercase tracking-widest text-slate-500">Uptime Garantizado</span>
+                    </div>
+                    <div class="glass-panel p-4 px-8 border-l-4 border-l-slate-700">
+                        <span class="block text-2xl font-bold italic mono uppercase">Tier III</span>
+                        <span class="text-[9px] uppercase tracking-widest text-slate-500">Diseño Estándar</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- DIVISIÓN 1: DIGITAL -->
-    <section id="digital" class="py-24 border-t border-white/5 bg-black/40">
-        <div class="max-w-[1400px] mx-auto px-6">
-            <div class="flex gap-10">
-                <div class="hidden lg:block">
-                    <h2 class="division-header font-impact text-6xl text-white/10 uppercase">Digital Transformation</h2>
+    <section id="div-1" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20">
+                <span class="mono text-blue-500 text-xs uppercase tracking-widest">Unidad 01</span>
+                <h2 class="text-4xl font-extrabold mt-2 uppercase italic tracking-tight">Sistemas & Transformación Digital</h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Card 1 -->
+                <div class="division-card p-8 glass-panel">
+                    <i data-lucide="layers" class="text-blue-500 mb-6 w-6 h-6"></i>
+                    <h4 class="font-bold uppercase text-sm mb-4">Sistemas Legacy</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed italic">Refactorización de código y migración a microservicios (Docker/K8s).</p>
                 </div>
-                <div class="flex-1">
-                    <span class="text-blue-600 font-black text-xs tracking-[0.5em] uppercase mb-4 block">División 01</span>
-                    <h3 class="font-impact text-4xl mb-16 uppercase italic">Sistemas & Transformación</h3>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div class="service-card p-10">
-                            <span class="text-blue-600 font-bold text-xs">01.1</span>
-                            <h4 class="text-xl font-bold mt-4 mb-4 uppercase">Modernización Legacy</h4>
-                            <p class="text-gray-500 text-sm italic">Refactorización de código, migración de bases de datos hacia arquitecturas de microservicios y contenedores (Docker/K8s).</p>
-                        </div>
-                        <div class="service-card p-10">
-                            <span class="text-blue-600 font-bold text-xs">01.2</span>
-                            <h4 class="text-xl font-bold mt-4 mb-4 uppercase">IA & Automatización</h4>
-                            <p class="text-gray-500 text-sm italic">RPA para tareas repetitivas y Agentes de IA Generativa para atención al cliente o análisis documental masivo.</p>
-                        </div>
-                        <div class="service-card p-10">
-                            <span class="text-blue-600 font-bold text-xs">01.3</span>
-                            <h4 class="text-xl font-bold mt-4 mb-4 uppercase">Cloud & FinOps</h4>
-                            <p class="text-gray-500 text-sm italic">Migración a nubes híbridas y auditoría de consumo para reducción de gastos en AWS o Azure.</p>
-                        </div>
-                        <div class="service-card p-10">
-                            <span class="text-blue-600 font-bold text-xs">01.4</span>
-                            <h4 class="text-xl font-bold mt-4 mb-4 uppercase">Data & Analytics</h4>
-                            <p class="text-gray-500 text-sm italic">Ingeniería de datos (ETL) y Dashboards estratégicos en Power BI o Tableau.</p>
-                        </div>
+                <!-- Card 2 -->
+                <div class="division-card p-8 glass-panel">
+                    <i data-lucide="cpu" class="text-blue-500 mb-6 w-6 h-6"></i>
+                    <h4 class="font-bold uppercase text-sm mb-4">IA & Automatización</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed italic">RPA y Agentes de IA Generativa para análisis masivo de datos.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="division-card p-8 glass-panel">
+                    <i data-lucide="cloud-cog" class="text-blue-500 mb-6 w-6 h-6"></i>
+                    <h4 class="font-bold uppercase text-sm mb-4">Estrategia Cloud</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed italic">Consultoría FinOps para reducción de costos en AWS/Azure.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="division-card p-8 glass-panel">
+                    <i data-lucide="database" class="text-blue-500 mb-6 w-6 h-6"></i>
+                    <h4 class="font-bold uppercase text-sm mb-4">Data & Analytics</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed italic">Ingeniería de datos (ETL) y Dashboards en Power BI/Tableau.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIVISIÓN 2: SEGURIDAD -->
+    <section id="div-2" class="py-32 px-6 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 text-right">
+                <span class="mono text-blue-500 text-xs uppercase tracking-widest">Unidad 02</span>
+                <h2 class="text-4xl font-extrabold mt-2 uppercase italic tracking-tight">Seguridad & Cumplimiento</h2>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-6">
+                <div class="glass-panel p-10 flex gap-8 border-r-4 border-r-blue-500">
+                    <div class="text-blue-500"><i data-lucide="shield-check" class="w-10 h-10"></i></div>
+                    <div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tighter">Ciberseguridad Avanzada</h4>
+                        <p class="text-sm text-slate-400 italic mb-6">Pentesting, SOC 24/7 y planes de respuesta rápida contra Ransomware.</p>
+                        <div class="flex gap-2"><span class="tag-status bg-blue-500/20 text-blue-400">Nivel Bancario</span></div>
+                    </div>
+                </div>
+                <div class="glass-panel p-10 flex gap-8">
+                    <div class="text-slate-500"><i data-lucide="gavel" class="w-10 h-10"></i></div>
+                    <div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tighter">Protección de Datos (LPDP)</h4>
+                        <p class="text-sm text-slate-400 italic mb-6">Adecuación integral a la Ley 29733 y blindaje contra multas ANPD.</p>
+                        <div class="flex gap-2"><span class="tag-status bg-slate-800 text-slate-400">Legal Compliance</span></div>
+                    </div>
+                </div>
+                <div class="glass-panel p-10 flex gap-8">
+                    <div class="text-slate-500"><i data-lucide="network" class="w-10 h-10"></i></div>
+                    <div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tighter">Gobierno e Interoperabilidad</h4>
+                        <p class="text-sm text-slate-400 italic mb-6">Integración técnica con PIDE, SUNAT, RENIEC y SUNARP.</p>
+                    </div>
+                </div>
+                <div class="glass-panel p-10 flex gap-8">
+                    <div class="text-slate-500"><i data-lucide="pen-tool" class="w-10 h-10"></i></div>
+                    <div>
+                        <h4 class="text-xl font-bold uppercase mb-4 tracking-tighter">Firma Digital & Cero Papel</h4>
+                        <p class="text-sm text-slate-400 italic mb-6">Software certificado bajo la Ley 27269 con validez legal plena.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- DIVISIÓN 2: COMPLIANCE -->
-    <section id="compliance" class="py-24 border-t border-white/5">
-        <div class="max-w-[1400px] mx-auto px-6">
-            <div class="flex gap-10 flex-row-reverse">
-                <div class="hidden lg:block">
-                    <h2 class="division-header font-impact text-6xl text-white/10 uppercase">Security & Legal</h2>
+    <!-- DIVISIÓN 3: INFRAESTRUCTURA (9 SERVICIOS) -->
+    <section id="div-3" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                <div>
+                    <span class="mono text-blue-500 text-xs uppercase tracking-widest">Unidad 03</span>
+                    <h2 class="text-4xl font-extrabold mt-2 uppercase italic tracking-tight">Infraestructura Crítica</h2>
+                    <p class="text-slate-500 mt-4 font-bold uppercase text-[10px] tracking-[0.4em]">Soporte físico y Continuidad Operativa</p>
                 </div>
-                <div class="flex-1">
-                    <span class="text-blue-600 font-black text-xs tracking-[0.5em] uppercase mb-4 block">División 02</span>
-                    <h3 class="font-impact text-4xl mb-16 uppercase italic">Seguridad & Cumplimiento</h3>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div class="service-card p-10 border-l-4 border-l-blue-600">
-                            <h4 class="text-xl font-bold mb-4 uppercase tracking-tighter">Ciberseguridad Avanzada</h4>
-                            <ul class="text-[11px] text-gray-400 space-y-2 uppercase tracking-widest">
-                                <li>• Pentesting / Ethical Hacking</li>
-                                <li>• Monitoreo Preventivo SOC</li>
-                                <li>• Respuesta Ransomware</li>
-                            </ul>
-                        </div>
-                        <div class="service-card p-10">
-                            <h4 class="text-xl font-bold mb-4 uppercase tracking-tighter">Protección de Datos (LPDP)</h4>
-                            <p class="text-gray-500 text-sm italic">Adecuación técnica a la Ley 29733, registro ante la ANPD y blindaje legal.</p>
-                        </div>
-                        <div class="service-card p-10">
-                            <h4 class="text-xl font-bold mb-4 uppercase tracking-tighter">Gobierno Digital</h4>
-                            <p class="text-gray-500 text-sm italic">Integración vía APIs con PIDE, SUNAT, RENIEC y SUNARP.</p>
-                        </div>
-                        <div class="service-card p-10">
-                            <h4 class="text-xl font-bold mb-4 uppercase tracking-tighter">Firma Digital</h4>
-                            <p class="text-gray-500 text-sm italic">Software certificado con validez legal plena (Ley 27269).</p>
-                        </div>
-                    </div>
+                <div class="bg-blue-600 px-6 py-3 text-xs font-black uppercase tracking-widest text-white italic">
+                    Facility Management Integral
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-1">
+                <!-- S1 -->
+                <div class="p-10 glass-panel hover:bg-slate-800/40 transition-all border-b border-r">
+                    <span class="mono text-slate-700 block mb-4">#01</span>
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-4">Climatización (HVAC)</h5>
+                    <p class="text-[11px] text-slate-400 leading-loose uppercase">Equipos de precisión para salas de servidores y confort corporativo.</p>
+                </div>
+                <!-- S2 -->
+                <div class="p-10 glass-panel hover:bg-slate-800/40 transition-all border-b border-r">
+                    <span class="mono text-slate-700 block mb-4">#02</span>
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-4">Energía & UPS</h5>
+                    <p class="text-[11px] text-slate-400 leading-loose uppercase">Implementación de energía ininterrumpida y grupos electrógenos.</p>
+                </div>
+                <!-- S3 -->
+                <div class="p-10 glass-panel hover:bg-slate-800/40 transition-all border-b">
+                    <span class="mono text-slate-700 block mb-4">#03</span>
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-4">Electricidad Industrial</h5>
+                    <p class="text-[11px] text-slate-400 leading-loose uppercase">Tableros, cableado de potencia y Pozos a Tierra certificados.</p>
+                </div>
+                <!-- S4 -->
+                <div class="p-10 glass-panel hover:bg-slate-800/40 transition-all border-b border-r">
+                    <span class="mono text-slate-700 block mb-4">#04</span>
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-4">Redes de Datos</h5>
+                    <p class="text-[11px] text-slate-400 leading-loose uppercase">Fibra óptica y ordenamiento profesional de Racks y Gabinetes.</p>
+                </div>
+                <!-- S5 -->
+                <div class="p-10 glass-panel hover:bg-slate-800/40 transition-all border-b border-r">
+                    <span class="mono text-slate-700 block mb-4">#05</span>
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-4">Vigilancia (CCTV)</h5>
+                    <p class="text-[11px] text-slate-400 leading-loose uppercase">Cámaras IP, alarmas y monitoreo remoto por software especializado.</p>
+                </div>
+                <!-- S6 -->
+                <div class="p-10 glass-panel hover:bg-slate-800/40 transition-all border-b">
+                    <span class="mono text-slate-700 block mb-4">#06</span>
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-4">Sistemas Contra Incendio</h5>
+                    <p class="text-[11px] text-slate-400 leading-loose uppercase">Detección por sensores y agentes limpios específicos para IT.</p>
+                </div>
+                <!-- S7 -->
+                <div class="p-10 glass-panel hover:bg-slate-800/40 transition-all border-r">
+                    <span class="mono text-slate-700 block mb-4">#07</span>
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-4">Control de Accesos</h5>
+                    <p class="text-[11px] text-slate-400 leading-loose uppercase">Biometría física, facial y cerraduras electromagnéticas de alta seguridad.</p>
+                </div>
+                <!-- S8 -->
+                <div class="p-10 glass-panel hover:bg-slate-800/40 transition-all border-r">
+                    <span class="mono text-slate-700 block mb-4">#08</span>
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-4">Gestión RAEE</h5>
+                    <p class="text-[11px] text-slate-400 leading-loose uppercase">Disposición final certificada de residuos tecnológicos obsoletos.</p>
+                </div>
+                <!-- S9 -->
+                <div class="p-10 bg-blue-600/5 transition-all border-2 border-blue-500/50 flex flex-col justify-center">
+                    <h5 class="font-black text-sm uppercase tracking-[0.2em] mb-2 text-blue-400 underline decoration-blue-400/50">Servicios Generales</h5>
+                    <p class="text-[10px] text-slate-300 font-bold leading-relaxed uppercase">Mantenimiento preventivo integral de electricidad, soporte y cerrajería.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- DIVISIÓN 3: INFRAESTRUCTURA (GRID TÉCNICO) -->
-    <section id="infra" class="py-24 border-t border-white/5 bg-[#080808]">
-        <div class="max-w-[1400px] mx-auto px-6">
-            <div class="mb-16">
-                <span class="text-blue-600 font-black text-xs tracking-[0.5em] uppercase mb-4 block">División 03</span>
-                <h3 class="font-impact text-4xl uppercase italic">Infraestructura Crítica</h3>
-                <p class="text-gray-600 mt-4 uppercase text-[10px] tracking-[0.3em]">Continuidad Operativa / Servicios Generales TI</p>
+    <!-- Footer Corporativo -->
+    <footer class="py-20 border-t border-white/5 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+            <div class="flex items-center gap-4">
+                <span class="font-extrabold text-2xl uppercase tracking-tighter italic">ECLOSS<span class="text-blue-500">.</span></span>
+                <div class="h-8 w-px bg-slate-800 hidden md:block"></div>
+                <p class="text-[9px] text-slate-500 font-bold uppercase tracking-[0.5em]">RUC: 20XXXXXXXXX | LIMA, PERÚ</p>
             </div>
-
-            <div class="grid lg:grid-cols-3 gap-0 border border-white/5">
-                <!-- Bloque 1 -->
-                <div class="p-8 border-r border-b border-white/5 hover:bg-blue-600/5 transition-colors">
-                    <i data-lucide="thermometer-snowflake" class="text-blue-600 mb-6 w-6 h-6"></i>
-                    <h5 class="font-bold uppercase text-sm mb-4 tracking-widest">HVAC & Clima</h5>
-                    <p class="text-[11px] text-gray-500 leading-relaxed uppercase">Instalación y mantenimiento de precisión para salas de servidores y oficinas.</p>
-                </div>
-                <!-- Bloque 2 -->
-                <div class="p-8 border-r border-b border-white/5 hover:bg-blue-600/5 transition-colors">
-                    <i data-lucide="zap" class="text-blue-600 mb-6 w-6 h-6"></i>
-                    <h5 class="font-bold uppercase text-sm mb-4 tracking-widest">Energía Crítica</h5>
-                    <p class="text-[11px] text-gray-500 leading-relaxed uppercase">Sistemas UPS y Grupos Electrógenos de respaldo ininterrumpido.</p>
-                </div>
-                <!-- Bloque 3 -->
-                <div class="p-8 border-b border-white/5 hover:bg-blue-600/5 transition-colors">
-                    <i data-lucide="plug" class="text-blue-600 mb-6 w-6 h-6"></i>
-                    <h5 class="font-bold uppercase text-sm mb-4 tracking-widest">Electricidad Industrial</h5>
-                    <p class="text-[11px] text-gray-500 leading-relaxed uppercase">Tableros de potencia y Pozos a Tierra certificados por Ing. Eléctrico.</p>
-                </div>
-                <!-- Bloque 4 -->
-                <div class="p-8 border-r border-b border-white/5 hover:bg-blue-600/5 transition-colors">
-                    <i data-lucide="network" class="text-blue-600 mb-6 w-6 h-6"></i>
-                    <h5 class="font-bold uppercase text-sm mb-4 tracking-widest">Redes & Fibra</h5>
-                    <p class="text-[11px] text-gray-500 leading-relaxed uppercase">Cableado estructurado y ordenamiento profesional de Racks/Gabinetes.</p>
-                </div>
-                <!-- Bloque 5 -->
-                <div class="p-8 border-r border-b border-white/5 hover:bg-blue-600/5 transition-colors">
-                    <i data-lucide="video" class="text-blue-600 mb-6 w-6 h-6"></i>
-                    <h5 class="font-bold uppercase text-sm mb-4 tracking-widest">CCTV & Vigilancia</h5>
-                    <p class="text-[11px] text-gray-500 leading-relaxed uppercase">Cámaras IP de alta resolución y monitoreo remoto por software.</p>
-                </div>
-                <!-- Bloque 6 -->
-                <div class="p-8 border-b border-white/5 hover:bg-blue-600/5 transition-colors">
-                    <i data-lucide="flame-kindling" class="text-blue-600 mb-6 w-6 h-6"></i>
-                    <h5 class="font-bold uppercase text-sm mb-4 tracking-widest">Contra Incendio</h5>
-                    <p class="text-[11px] text-gray-500 leading-relaxed uppercase">Detección y extinción por agentes limpios para centros de cómputo.</p>
-                </div>
-                <!-- Bloque 7 -->
-                <div class="p-8 border-r border-white/5 hover:bg-blue-600/5 transition-colors">
-                    <i data-lucide="fingerprint" class="text-blue-600 mb-6 w-6 h-6"></i>
-                    <h5 class="font-bold uppercase text-sm mb-4 tracking-widest">Accesos Biométricos</h5>
-                    <p class="text-[11px] text-gray-500 leading-relaxed uppercase">Torniquetes, lectura de rostro y cerraduras electromagnéticas.</p>
-                </div>
-                <!-- Bloque 8 -->
-                <div class="p-8 border-r border-white/5 hover:bg-blue-600/5 transition-colors">
-                    <i data-lucide="recycle" class="text-blue-600 mb-6 w-6 h-6"></i>
-                    <h5 class="font-bold uppercase text-sm mb-4 tracking-widest">Gestión RAEE</h5>
-                    <p class="text-[11px] text-gray-500 leading-relaxed uppercase">Recolección y disposición final certificada de residuos tecnológicos.</p>
-                </div>
-                <!-- Bloque 9 (HIGHLIGHT) -->
-                <div class="p-8 bg-blue-600 text-white flex flex-col justify-between">
-                    <h5 class="font-black uppercase text-lg tracking-tighter">Facility <br> Management</h5>
-                    <p class="text-[10px] font-bold uppercase tracking-widest opacity-80 leading-relaxed mt-4">Gestión bajo un solo contrato: Mantenimiento integral, electricidad y soporte.</p>
-                    <i data-lucide="arrow-up-right" class="mt-4 self-end"></i>
-                </div>
+            <div class="flex gap-12 text-[10px] font-black uppercase tracking-widest text-slate-600">
+                <a href="#" class="hover:text-white transition-colors">Normativas ISO</a>
+                <a href="#" class="hover:text-white transition-colors">Legal Compliance</a>
+                <a href="#" class="hover:text-white transition-colors">Privacy</a>
             </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-12 border-t border-white/5 px-6">
-        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-            <div class="flex items-center gap-6">
-                <span class="font-impact text-xl tracking-tighter italic uppercase">ECLOSS<span class="text-blue-600">.</span></span>
-                <span class="text-[9px] text-gray-700 font-bold uppercase tracking-[0.5em]">RUC: 206XXXXXXXX</span>
-            </div>
-            <div class="text-[9px] text-gray-500 font-bold uppercase tracking-widest text-center">
-                © 2026 Engineering Services Group. All rights reserved.
-            </div>
-            <div class="flex gap-4">
-                <img src="https://img.freepik.com/vector-premium/libro-reclamaciones-peru-icono-vectorial_599062-10.jpg" class="w-12 grayscale opacity-20" alt="Libro Reclamaciones">
-            </div>
+            <img src="https://img.freepik.com/vector-premium/libro-reclamaciones-peru-icono-vectorial_599062-10.jpg" class="w-16 grayscale opacity-20 hover:opacity-50 transition-opacity" alt="Libro Reclamaciones">
         </div>
     </footer>
 
