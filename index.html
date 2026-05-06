@@ -1,242 +1,248 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ECLOSS SAC | Infraestructura Crítica & Ciberdefensa</title>
-  <meta name="description" content="Soluciones de alto nivel en Transformación Digital, Ciberseguridad e Infraestructura Crítica en Perú.">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-    
-    body { font-family: 'Inter', system-ui, sans-serif; }
-    .hero-bg {
-      background: linear-gradient(rgba(10, 25, 47, 0.92), rgba(10, 25, 47, 0.95)), 
-                  url('https://images.unsplash.com/photo-1558494949-ef0d38d3f9e3?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover;
-    }
-    .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(12px); }
-    .accent { color: #00f5ff; }
-    .service-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-    .service-card:hover { transform: translateY(-12px) scale(1.03); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECLOSS | High-End Engineering & Critical Infrastructure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-blue: #0052FF;
+            --brand-dark: #020408;
+            --brand-surface: #0a0c12;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--brand-dark); color: #f1f5f9; }
+        .font-nav { font-family: 'Space Grotesk', sans-serif; }
+        
+        /* Banner de Cookies Senior */
+        #cookie-consent {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(10, 12, 18, 0.98);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            z-index: 9999;
+            transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #cookie-consent.active { transform: translateY(0); }
+
+        /* Estilo MCM Tech: Limpio y Robusto */
+        .card-service {
+            background: var(--brand-surface);
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: all 0.4s ease;
+        }
+        .card-service:hover {
+            border-color: var(--brand-blue);
+            transform: translateY(-8px);
+            background: linear-gradient(180deg, var(--brand-surface) 0%, rgba(0,82,255,0.05) 100%);
+        }
+
+        .partner-logo { filter: grayscale(1) brightness(0.8); opacity: 0.5; transition: 0.4s; }
+        .partner-logo:hover { filter: grayscale(0) brightness(1.2); opacity: 1; }
+
+        .btn-mcm {
+            background: var(--brand-blue);
+            padding: 14px 32px;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-mcm:hover { box-shadow: 0 15px 30px rgba(0,82,255,0.3); transform: scale(1.02); }
+    </style>
 </head>
-<body class="bg-[#0a1829] text-slate-200 overflow-x-hidden">
+<body>
 
-  <!-- NAVBAR -->
-  <nav class="fixed top-0 w-full bg-[#0a1829]/95 backdrop-blur-lg z-50 border-b border-cyan-500/20">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-      <div class="text-2xl font-bold tracking-tighter">ECLOSS <span class="accent">SAC</span></div>
-      <div class="flex gap-8 text-sm font-medium">
-        <a href="#inicio" class="hover:text-cyan-400 transition">Inicio</a>
-        <a href="#divisiones" class="hover:text-cyan-400 transition">Divisiones</a>
-        <a href="#quienes-somos" class="hover:text-cyan-400 transition">Nosotros</a>
-        <a href="#noticias" class="hover:text-cyan-400 transition">Noticias</a>
-        <a href="#contacto" class="hover:text-cyan-400 transition">Contacto</a>
-      </div>
+    <!-- COOKIE SYSTEM -->
+    <div id="cookie-consent" class="p-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-sm text-slate-400 max-w-2xl">
+                <p><strong class="text-white uppercase tracking-widest text-xs">Aviso de Privacidad:</strong> Utilizamos cookies técnicas y de análisis para optimizar su experiencia de navegación bajo los lineamientos de la Ley 29733 (LPDP). Al continuar, acepta nuestra política de gestión de datos.</p>
+            </div>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="btn-mcm">Aceptar y Continuar</button>
+            </div>
+        </div>
     </div>
-  </nav>
 
-  <!-- HERO -->
-  <section id="inicio" class="hero-bg min-h-screen flex items-center pt-20">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <h1 class="text-6xl md:text-7xl font-bold leading-tight mb-6">
-        Ingeniería de <span class="accent">Sistemas Críticos</span>
-      </h1>
-      <p class="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto mb-10">
-        Disponibilidad absoluta • Seguridad de nivel bancario • Cumplimiento normativo total
-      </p>
-      <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})" 
-              class="bg-cyan-400 hover:bg-cyan-300 text-black font-semibold px-10 py-4 rounded-full text-lg transition-all duration-300">
-        Iniciar Proyecto
-      </button>
-    </div>
-  </section>
-
-  <!-- DIVISIONES -->
-  <section id="divisiones" class="py-24 bg-[#0a1829]">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-5xl font-bold text-center mb-16">Nuestras Divisiones</h2>
-
-      <!-- División 1 -->
-      <div class="mb-20">
-        <div class="bg-gradient-to-r from-cyan-500/10 to-transparent p-8 rounded-3xl border border-cyan-500/30 mb-10">
-          <h3 class="text-3xl font-bold accent mb-2">División 1: Digital</h3>
-          <p class="text-xl">Sistemas & Transformación Digital</p>
+    <!-- NAVBAR CORPORATIVA -->
+    <nav class="fixed w-full z-[100] bg-black/80 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-1.5 h-8 bg-blue-600"></div>
+                <span class="font-nav text-2xl font-bold tracking-tighter uppercase">ECLOSS<span class="text-blue-600">.</span></span>
+            </div>
+            <div class="hidden lg:flex items-center gap-12 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">
+                <a href="#digital" class="hover:text-blue-500">Digital</a>
+                <a href="#seguridad" class="hover:text-blue-500">Compliance</a>
+                <a href="#infra" class="hover:text-blue-500">Infraestructura</a>
+                <a href="#contacto" class="btn-mcm text-white">Contactar</a>
+            </div>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">Modernización de Sistemas Legacy</h4>
-            <p class="text-slate-400 text-sm">Refactorización a microservicios, Docker y Kubernetes. Migración segura de bases de datos obsoletas.</p>
-          </div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">IA & Automatización Inteligente</h4>
-            <p class="text-slate-400 text-sm">Bots RPA y Agentes de IA Generativa para atención al cliente y análisis masivo de documentos.</p>
-          </div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">Estrategia de Nube & FinOps</h4>
-            <p class="text-slate-400 text-sm">Migración a nubes híbridas y optimización de costos en AWS y Azure.</p>
-          </div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">Data & Analytics</h4>
-            <p class="text-slate-400 text-sm">Ingeniería de datos (ETL) y dashboards estratégicos en Power BI y Tableau.</p>
-          </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="pt-52 pb-32 px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
+            <div>
+                <h1 class="text-7xl lg:text-8xl font-extrabold leading-[0.85] tracking-tighter mb-10">
+                    INGENIERÍA <br> DE <span class="text-blue-600 italic">ALTO NIVEL.</span>
+                </h1>
+                <p class="text-xl text-slate-400 leading-relaxed max-w-lg">
+                    Líderes en infraestructura crítica y ciberdefensa. Garantizamos la resiliencia operativa mediante estándares de calidad internacional.
+                </p>
+            </div>
+            <div class="flex items-end justify-end gap-10">
+                <div class="text-right">
+                    <span class="block text-4xl font-bold text-blue-600 italic">ISO/IEC</span>
+                    <span class="text-[10px] uppercase font-black text-slate-500 tracking-[0.5em]">27001 Certified</span>
+                </div>
+                <div class="text-right">
+                    <span class="block text-4xl font-bold text-blue-600 italic">ANSI/TIA</span>
+                    <span class="text-[10px] uppercase font-black text-slate-500 tracking-[0.5em]">942 Compliance</span>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- División 2 -->
-      <div class="mb-20">
-        <div class="bg-gradient-to-r from-purple-500/10 to-transparent p-8 rounded-3xl border border-purple-500/30 mb-10">
-          <h3 class="text-3xl font-bold text-purple-400 mb-2">División 2: Seguridad & Cumplimiento</h3>
-          <p class="text-xl">Compliance y Ciberdefensa</p>
+    <!-- BENEFICIOS & CALIDAD (ESTILO MCM) -->
+    <section class="py-32 bg-white text-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="text-5xl font-extrabold tracking-tighter uppercase mb-8">Beneficios de implementar con <span class="text-blue-600">Estándares de Calidad.</span></h2>
+                    <p class="text-slate-500 mb-12 leading-relaxed italic">Nuestra metodología se basa en la excelencia técnica para reducir riesgos y maximizar el ROI tecnológico de nuestros clientes.</p>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <i data-lucide="check-circle" class="text-blue-600"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest">Disponibilidad 24/7</h4>
+                        <p class="text-[11px] text-slate-400 leading-relaxed uppercase">Reducción de caídas sistémicas mediante infraestructura Tier III.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <i data-lucide="shield-check" class="text-blue-600"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest">Blindaje Legal</h4>
+                        <p class="text-[11px] text-slate-400 leading-relaxed uppercase">Cumplimiento estricto de la Ley 29733 para evitar multas de la ANPD.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <i data-lucide="settings" class="text-blue-600"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest">Optimización Cloud</h4>
+                        <p class="text-[11px] text-slate-400 leading-relaxed uppercase">Control de gasto mensual mediante frameworks FinOps certificados.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <i data-lucide="award" class="text-blue-600"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest">Calidad Global</h4>
+                        <p class="text-[11px] text-slate-400 leading-relaxed uppercase">Uso exclusivo de componentes de partners tecnológicos líderes.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">Ciberseguridad Avanzada</h4>
-            <p class="text-slate-400 text-sm">Pentesting, SOC 24/7 y respuesta a incidentes (Ransomware).</p>
-          </div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">Protección de Datos (LPDP)</h4>
-            <p class="text-slate-400 text-sm">Adecuación Ley 29733, registro de bancos de datos y blindaje ANPD.</p>
-          </div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">Gobierno Digital e Interoperabilidad</h4>
-            <p class="text-slate-400 text-sm">Integración con PIDE, SUNAT, RENIEC y SUNARP vía APIs.</p>
-          </div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">Firma Digital y Cero Papel</h4>
-            <p class="text-slate-400 text-sm">Implementación con validez legal según Ley 27269.</p>
-          </div>
+    </section>
+
+    <!-- PORTAFOLIO DE SERVICIOS (LINKS A OTRAS WEBS) -->
+    <section id="servicios" class="py-32 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-4xl font-extrabold uppercase italic tracking-tighter mb-20">Unidades Especializadas</h3>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Digital -->
+                <div class="card-service p-10 flex flex-col justify-between min-h-[400px]">
+                    <div>
+                        <span class="text-blue-600 font-black text-[10px] tracking-widest mb-6 block uppercase">División Digital</span>
+                        <h4 class="text-2xl font-bold uppercase mb-8 leading-tight">Modernización & IA Inteligente</h4>
+                        <ul class="text-[10px] text-slate-500 space-y-4 font-bold uppercase tracking-widest">
+                            <li>• Sistemas Legacy</li>
+                            <li>• Automatización RPA</li>
+                            <li>• Cloud FinOps</li>
+                        </ul>
+                    </div>
+                    <a href="servicios/digital.html" class="flex items-center gap-4 text-xs font-black uppercase tracking-widest hover:text-blue-600 transition-colors">
+                        Explorar Detalles <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Seguridad -->
+                <div class="card-service p-10 flex flex-col justify-between min-h-[400px]">
+                    <div>
+                        <span class="text-blue-600 font-black text-[10px] tracking-widest mb-6 block uppercase">División Compliance</span>
+                        <h4 class="text-2xl font-bold uppercase mb-8 leading-tight">Seguridad Avanzada & Legal</h4>
+                        <ul class="text-[10px] text-slate-500 space-y-4 font-bold uppercase tracking-widest">
+                            <li>• Pentesting & SOC</li>
+                            <li>• Ley 29733 (LPDP)</li>
+                            <li>• Firma Digital</li>
+                        </ul>
+                    </div>
+                    <a href="servicios/seguridad.html" class="flex items-center gap-4 text-xs font-black uppercase tracking-widest hover:text-blue-600 transition-colors">
+                        Explorar Detalles <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Infraestructura -->
+                <div class="card-service p-10 flex flex-col justify-between min-h-[400px]">
+                    <div>
+                        <span class="text-blue-600 font-black text-[10px] tracking-widest mb-6 block uppercase">División Infraestructura</span>
+                        <h4 class="text-2xl font-bold uppercase mb-8 leading-tight">Servicios Críticos TI</h4>
+                        <ul class="text-[10px] text-slate-500 space-y-4 font-bold uppercase tracking-widest">
+                            <li>• HVAC Precisión</li>
+                            <li>• Energía Ininterrumpida</li>
+                            <li>• Facility Management</li>
+                        </ul>
+                    </div>
+                    <a href="servicios/infraestructura.html" class="flex items-center gap-4 text-xs font-black uppercase tracking-widest hover:text-blue-600 transition-colors">
+                        Explorar Detalles <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- División 3 -->
-      <div>
-        <div class="bg-gradient-to-r from-emerald-500/10 to-transparent p-8 rounded-3xl border border-emerald-500/30 mb-10">
-          <h3 class="text-3xl font-bold text-emerald-400 mb-2">División 3: Infraestructura Crítica</h3>
-          <p class="text-xl">Facility Management & Soporte Físico</p>
+    <!-- SOCIOS TECNOLÓGICOS (ESTILO MCM) -->
+    <section id="partners" class="py-24 border-y border-white/5 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <h5 class="text-center text-[10px] font-black uppercase tracking-[0.5em] text-slate-600 mb-16">Alianzas de Calidad Global</h5>
+            <div class="flex flex-wrap justify-center gap-20 items-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Schneider_Electric_2007.svg/1280px-Schneider_Electric_2007.svg.png" class="h-10 partner-logo" alt="Schneider">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/IBM_logo.svg/1200px-IBM_logo.svg.png" class="h-8 partner-logo" alt="IBM">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/1200px-Cisco_logo_blue_2016.svg.png" class="h-10 partner-logo" alt="Cisco">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Amazon_Web_Services_Logo.svg/1024px-Amazon_Web_Services_Logo.svg.png" class="h-8 partner-logo" alt="AWS">
+            </div>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Climatización de Precisión (HVAC)</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Energía Crítica (UPS + Grupos Electrógenos)</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Electricidad Industrial y Pozos a Tierra</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Cableado Estructurado y Fibra Óptica</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Seguridad Electrónica y CCTV</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Sistemas Contra Incendio</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Control de Accesos y Biometría</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Gestión de Residuos Tecnológicos (RAEE)</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Mantenimiento Preventivo Integral</div>
+    </section>
+
+    <!-- FOOTER CORPORATIVO -->
+    <footer class="py-20 px-6 border-t border-white/5 bg-black">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+            <div class="flex items-center gap-4">
+                <span class="font-nav text-xl font-bold uppercase">ECLOSS<span class="text-blue-600">.</span></span>
+                <span class="text-[9px] text-slate-600 font-bold tracking-[0.4em]">RUC: 206XXXXXXXX | PERÚ 2026</span>
+            </div>
+            <img src="https://img.freepik.com/vector-premium/libro-reclamaciones-peru-icono-vectorial_599062-10.jpg" class="h-12 grayscale opacity-20" alt="Reclamaciones">
         </div>
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <!-- QUIÉNES SOMOS -->
-  <section id="quienes-somos" class="py-24 bg-[#05101f]">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-5xl font-bold mb-10">Quiénes Somos</h2>
-      <p class="text-lg leading-relaxed text-slate-300">
-        ECLOSS SAC es una empresa especializada en soluciones integrales de <strong>infraestructura crítica, ciberseguridad y transformación digital</strong>. 
-        Contamos con más de 12 años de experiencia protegiendo y modernizando los sistemas más sensibles de empresas y entidades públicas en Perú.
-      </p>
-    </div>
-  </section>
+    <script>
+        lucide.createIcons();
 
-  <!-- NOTICIAS -->
-  <section id="noticias" class="py-24">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-5xl font-bold text-center mb-16">Últimas Noticias</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="glass p-8 rounded-3xl">
-          <span class="text-cyan-400 text-sm">Abril 2026</span>
-          <h4 class="text-xl font-semibold mt-4">SOC 24/7 implementado en importante banco peruano</h4>
-        </div>
-        <div class="glass p-8 rounded-3xl">
-          <span class="text-cyan-400 text-sm">Marzo 2026</span>
-          <h4 class="text-xl font-semibold mt-4">Certificación Tier III completada en Data Center principal</h4>
-        </div>
-        <div class="glass p-8 rounded-3xl">
-          <span class="text-cyan-400 text-sm">Febrero 2026</span>
-          <h4 class="text-xl font-semibold mt-4">Alianza estratégica con líder mundial en IA Generativa</h4>
-        </div>
-      </div>
-    </div>
-  </section>
+        // Control de Cookies (Senior Practice)
+        window.onload = function() {
+            setTimeout(() => {
+                if (!localStorage.getItem('cookies-accepted')) {
+                    document.getElementById('cookie-consent').classList.add('active');
+                }
+            }, 1000);
+        }
 
-  <!-- CONTACTO -->
-  <section id="contacto" class="py-24 bg-[#0a1829]">
-    <div class="max-w-3xl mx-auto px-6">
-      <h2 class="text-5xl font-bold text-center mb-12">Contáctenos</h2>
-      <form id="contactForm" class="space-y-6" onsubmit="handleSubmit(event)">
-        <div class="grid md:grid-cols-2 gap-6">
-          <input type="text" placeholder="Nombre / Empresa" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
-          <input type="email" placeholder="Correo electrónico" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
-        </div>
-        <input type="tel" placeholder="Teléfono / WhatsApp" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
-        <textarea placeholder="Cuéntenos sobre su proyecto o necesidad técnica..." rows="6" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400"></textarea>
-        <button type="submit" class="w-full bg-gradient-to-r from-cyan-400 to-emerald-400 text-black font-bold py-5 rounded-2xl text-lg hover:scale-105 transition">
-          Enviar Mensaje
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="bg-black py-16 border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
-      <div>
-        <h3 class="text-2xl font-bold mb-4">ECLOSS SAC</h3>
-        <p class="text-slate-400">Ingeniería de Sistemas Críticos</p>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4">Servicios</h4>
-        <p class="text-sm text-slate-400 space-y-2">Transformación Digital<br>Ciberseguridad<br>Infraestructura Crítica</p>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4">Legal</h4>
-        <p class="text-sm text-slate-400 space-y-2">Política de Privacidad<br>Política de Cookies<br>Términos y Condiciones</p>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4">Contacto</h4>
-        <p class="text-sm text-slate-400">+51 987 654 321<br>contacto@ecloss.pe<br>Lima, Perú</p>
-      </div>
-    </div>
-    <div class="text-center text-sm text-slate-500 mt-16">
-      © 2026 ECLOSS SAC - Todos los derechos reservados
-    </div>
-  </footer>
-
-  <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/51987654321?text=Hola%20ECLOSS,%20deseo%20información%20sobre%20sus%20servicios" 
-     target="_blank"
-     class="fixed bottom-8 right-8 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center text-4xl shadow-2xl hover:scale-110 transition z-50">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-
-  <script>
-    // GSAP Animations
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.from("nav", { y: -100, duration: 1, ease: "power3.out" });
-
-    document.querySelectorAll('.service-card').forEach((card, i) => {
-      gsap.from(card, {
-        scrollTrigger: card,
-        opacity: 0,
-        y: 60,
-        duration: 0.8,
-        delay: i * 0.1
-      });
-    });
-
-    function handleSubmit(e) {
-      e.preventDefault();
-      alert("✅ Mensaje enviado correctamente. Nos pondremos en contacto pronto.");
-      e.target.reset();
-    }
-  </script>
+        function acceptCookies() {
+            localStorage.setItem('cookies-accepted', 'true');
+            document.getElementById('cookie-consent').classList.remove('active');
+        }
+    </script>
 </body>
 </html>
