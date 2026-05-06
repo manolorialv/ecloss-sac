@@ -1,238 +1,72 @@
-<!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECLOSS SAC | Consultoría en Infraestructura & Ciberseguridad</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Reemplaza el Hero y añade el Trust Bar debajo -->
+<section class="relative pt-48 pb-20 overflow-hidden bg-slate-50">
+    <!-- ... (Contenido del Hero anterior) ... -->
+</section>
 
-    <style>
-        :root {
-            --primary: #002147;
-            --accent: #2563eb;
-            --slate-soft: #f8fafc;
-        }
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #ffffff;
-            color: #0f172a;
-        }
-        .nav-glass {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .service-card {
-            background: #ffffff;
-            border: 1px solid #f1f5f9;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .service-card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px -15px rgba(0, 33, 71, 0.08);
-            transform: translateY(-4px);
-        }
-        .btn-more {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--accent);
-            margin-top: 1.5rem;
-            transition: gap 0.3s;
-        }
-        .btn-more:hover { gap: 0.8rem; }
-        .hero-pattern {
-            background-color: #ffffff;
-            background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
-            background-size: 24px 24px;
-        }
-    </style>
-</head>
-<body class="antialiased">
-
-    <!-- Header Senior -->
-    <nav class="fixed w-full z-50 nav-glass">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-[#002147] rounded-xl flex items-center justify-center">
-                    <div class="w-3 h-3 bg-blue-400 rotate-45"></div>
-                </div>
-                <span class="text-2xl font-extrabold tracking-tighter text-[#002147] uppercase">ECLOSS</span>
-            </div>
-            
-            <div class="hidden lg:flex items-center gap-10 text-[12px] font-bold uppercase tracking-widest text-slate-500">
-                <a href="#digital" class="hover:text-blue-600">Digital</a>
-                <a href="#seguridad" class="hover:text-blue-600">Seguridad</a>
-                <a href="#infraestructura" class="hover:text-blue-600">Infraestructura</a>
-                <a href="#contacto" class="bg-[#002147] text-white px-8 py-3 rounded-lg hover:shadow-lg transition-all">Cotizar Proyecto</a>
-            </div>
+<!-- SECCIÓN SENIOR: Trust Bar (Logos de tecnologías) -->
+<div class="py-12 bg-white border-y border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
+        <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] text-center mb-8">Especialistas en Tecnologías Globales</p>
+        <div class="flex flex-wrap justify-center items-center gap-12 opacity-40 grayscale">
+            <span class="font-bold text-2xl">CISCO</span>
+            <span class="font-bold text-2xl">FORTINET</span>
+            <span class="font-bold text-2xl">AWS</span>
+            <span class="font-bold text-2xl">SCHNEIDER</span>
+            <span class="font-bold text-2xl">MICROSOFT</span>
         </div>
-    </nav>
+    </div>
+</div>
 
-    <!-- Hero Section -->
-    <section class="relative pt-48 pb-32 hero-pattern">
-        <div class="max-w-7xl mx-auto px-6 text-center lg:text-left grid lg:grid-cols-2 gap-12 items-center">
+<!-- Reemplaza el Footer por este con Libro de Reclamaciones -->
+<footer class="bg-white pt-20 pb-10 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-8 h-8 bg-[#002147] rounded-lg flex items-center justify-center">
+                        <div class="w-2 h-2 bg-blue-400 rotate-45"></div>
+                    </div>
+                    <span class="text-xl font-extrabold tracking-tighter text-[#002147]">ECLOSS</span>
+                </div>
+                <p class="text-sm text-slate-500 max-w-sm">Consultoría boutique especializada en la convergencia de infraestructura física y ciberseguridad avanzada para el mercado peruano.</p>
+            </div>
             <div>
-                <h1 class="text-6xl lg:text-7xl font-[800] text-[#002147] leading-[1.05] mb-8 tracking-tighter">
-                    Ingeniería de <br><span class="text-blue-600">Continuidad.</span>
-                </h1>
-                <p class="text-xl text-slate-500 leading-relaxed mb-10 max-w-xl">
-                    Proveemos soluciones de infraestructura crítica, ciberdefensa y transformación digital para el sector corporativo peruano.
-                </p>
-                <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-                    <a href="#contacto" class="bg-[#002147] text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-blue-700 transition-all">Agendar Consultoría</a>
-                    <a href="#digital" class="border border-slate-200 px-10 py-5 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all">Nuestras Unidades</a>
-                </div>
+                <h5 class="font-bold text-[#002147] mb-6 uppercase text-xs tracking-widest">Legal</h5>
+                <ul class="text-sm text-slate-500 space-y-4">
+                    <li><a href="#" class="hover:text-blue-600">Política de Privacidad</a></li>
+                    <li><a href="#" class="hover:text-blue-600">Términos de Servicio</a></li>
+                    <li><a href="#" class="hover:text-blue-600 italic">Ley 29733 (LPDP)</a></li>
+                </ul>
             </div>
-            <div class="hidden lg:block">
-                <div class="relative p-8 bg-white border border-slate-100 rounded-[3rem] shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" alt="Cybersecurity" class="rounded-[2rem]">
-                </div>
+            <div>
+                <h5 class="font-bold text-[#002147] mb-6 uppercase text-xs tracking-widest">Atención</h5>
+                <a href="#" class="inline-block">
+                    <img src="https://img.freepik.com/vector-premium/libro-reclamaciones-peru-icono-vectorial_599062-10.jpg" alt="Libro de Reclamaciones" class="w-24 border border-slate-200 rounded-lg shadow-sm">
+                </a>
             </div>
         </div>
-    </section>
-
-    <!-- Unidades de Negocio -->
-    <main class="max-w-7xl mx-auto px-6 py-24 space-y-32">
-
-        <!-- DIVISIÓN 01: DIGITAL -->
-        <section id="digital">
-            <div class="mb-16">
-                <span class="text-blue-600 font-black text-xs uppercase tracking-[0.3em]">Division 01</span>
-                <h2 class="text-4xl font-extrabold text-[#002147] mt-2 italic uppercase">Sistemas & Transformación Digital</h2>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="service-card p-10 rounded-3xl">
-                    <i data-lucide="refresh-ccw" class="text-blue-600 mb-6 w-8 h-8"></i>
-                    <h3 class="text-xl font-bold mb-3">Modernización Legacy</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">Migración de sistemas obsoletos hacia arquitecturas de microservicios y Kubernetes.</p>
-                    <a href="#contacto" class="btn-more">Saber más <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
-                </div>
-                <div class="service-card p-10 rounded-3xl">
-                    <i data-lucide="bot" class="text-blue-600 mb-6 w-8 h-8"></i>
-                    <h3 class="text-xl font-bold mb-3">Inteligencia Artificial</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">Despliegue de agentes GenAI y automatización de procesos operativos (RPA).</p>
-                    <a href="#contacto" class="btn-more">Saber más <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
-                </div>
-                <div class="service-card p-10 rounded-3xl">
-                    <i data-lucide="cloud" class="text-blue-600 mb-6 w-8 h-8"></i>
-                    <h3 class="text-xl font-bold mb-3">Cloud Engineering</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">Optimización de infraestructura en la nube bajo estándares de FinOps y ahorro de costos.</p>
-                    <a href="#contacto" class="btn-more">Saber más <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
-                </div>
-            </div>
-        </section>
-
-        <!-- DIVISIÓN 02: SEGURIDAD -->
-        <section id="seguridad" class="bg-slate-50 -mx-6 px-6 py-24 rounded-[4rem]">
-            <div class="max-w-7xl mx-auto">
-                <div class="mb-16 text-center">
-                    <span class="text-blue-600 font-black text-xs uppercase tracking-[0.3em]">Division 02</span>
-                    <h2 class="text-4xl font-extrabold text-[#002147] mt-2 italic uppercase">Ciberseguridad & Legal Compliance</h2>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all">
-                        <i data-lucide="shield" class="text-blue-600 mb-4 w-6 h-6"></i>
-                        <h4 class="font-bold text-slate-900 mb-2">SOC Preventivo</h4>
-                        <p class="text-xs text-slate-500">Monitoreo 24/7 y respuesta activa ante incidentes.</p>
-                        <a href="#contacto" class="btn-more">Saber más</a>
-                    </div>
-                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all">
-                        <i data-lucide="lock" class="text-blue-600 mb-4 w-6 h-6"></i>
-                        <h4 class="font-bold text-slate-900 mb-2">Ley 29733 (LPDP)</h4>
-                        <p class="text-xs text-slate-500">Adecuación legal y técnica de protección de datos.</p>
-                        <a href="#contacto" class="btn-more">Saber más</a>
-                    </div>
-                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all">
-                        <i data-lucide="key" class="text-blue-600 mb-4 w-6 h-6"></i>
-                        <h4 class="font-bold text-slate-900 mb-2">Firma Digital</h4>
-                        <p class="text-xs text-slate-500">Implementación certificada bajo ley 27269.</p>
-                        <a href="#contacto" class="btn-more">Saber más</a>
-                    </div>
-                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all">
-                        <i data-lucide="network" class="text-blue-600 mb-4 w-6 h-6"></i>
-                        <h4 class="font-bold text-slate-900 mb-2">Interoperabilidad</h4>
-                        <p class="text-xs text-slate-500">Conexión API con entidades del estado (PIDE).</p>
-                        <a href="#contacto" class="btn-more">Saber más</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- DIVISIÓN 03: INFRAESTRUCTURA -->
-        <section id="infraestructura">
-            <div class="mb-16">
-                <span class="text-orange-600 font-black text-xs uppercase tracking-[0.3em]">Division 03</span>
-                <h2 class="text-4xl font-extrabold text-[#002147] mt-2 italic uppercase">Infraestructura Crítica & Facility</h2>
-            </div>
-            <div class="grid grid-cols-2 lg:grid-cols-3 gap-px bg-slate-100 border border-slate-100 rounded-3xl overflow-hidden">
-                <div class="bg-white p-10 hover:bg-slate-50 transition-all">
-                    <h4 class="font-extrabold text-[#002147] mb-2 uppercase tracking-tighter">Climatización</h4>
-                    <p class="text-xs text-slate-500 italic">HVAC de precisión para salas de servidores.</p>
-                    <a href="#contacto" class="btn-more">Saber más</a>
-                </div>
-                <div class="bg-white p-10 hover:bg-slate-50 transition-all">
-                    <h4 class="font-extrabold text-[#002147] mb-2 uppercase tracking-tighter">Energía Crítica</h4>
-                    <p class="text-xs text-slate-500 italic">Sistemas UPS, Grupos Electrógenos y Pozos a Tierra.</p>
-                    <a href="#contacto" class="btn-more">Saber más</a>
-                </div>
-                <div class="bg-white p-10 hover:bg-slate-50 transition-all">
-                    <h4 class="font-extrabold text-[#002147] mb-2 uppercase tracking-tighter">Networking</h4>
-                    <p class="text-xs text-slate-500 italic">Fibra óptica, cableado estructurado y CCTV IP.</p>
-                    <a href="#contacto" class="btn-more">Saber más</a>
-                </div>
-                <div class="bg-white p-10 hover:bg-slate-50 transition-all">
-                    <h4 class="font-extrabold text-[#002147] mb-2 uppercase tracking-tighter">Seguridad Física</h4>
-                    <p class="text-xs text-slate-500 italic">Detección contra incendios y control de accesos.</p>
-                    <a href="#contacto" class="btn-more">Saber más</a>
-                </div>
-                <div class="bg-white p-10 hover:bg-slate-50 transition-all">
-                    <h4 class="font-extrabold text-[#002147] mb-2 uppercase tracking-tighter">Gestión RAEE</h4>
-                    <p class="text-xs text-slate-500 italic">Manejo certificado de residuos tecnológicos.</p>
-                    <a href="#contacto" class="btn-more">Saber más</a>
-                </div>
-                <div class="bg-[#002147] p-10 text-white">
-                    <h4 class="font-extrabold mb-2 uppercase tracking-tighter">Soporte Integral</h4>
-                    <p class="text-xs text-slate-400 italic">Contratos de mantenimiento preventivo 24/7.</p>
-                    <a href="#contacto" class="text-blue-400 btn-more">Saber más</a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Contacto -->
-    <section id="contacto" class="bg-[#002147] py-32 px-6">
-        <div class="max-w-5xl mx-auto text-center text-white">
-            <h2 class="text-5xl font-black mb-8 tracking-tighter">Hablemos de su infraestructura.</h2>
-            <p class="text-blue-200 mb-12 text-lg">Inicie hoy la transformación hacia una operación segura y escalable.</p>
-            <div class="flex flex-wrap justify-center gap-6">
-                <a href="mailto:ventas@ecloss.pe" class="bg-white text-[#002147] px-10 py-5 rounded-xl font-bold hover:bg-blue-50 transition-all">ventas@ecloss.pe</a>
-                <a href="#" class="border border-white/20 px-10 py-5 rounded-xl font-bold hover:bg-white/5 transition-all italic">Lima, Perú</a>
+        <div class="border-t border-slate-100 pt-10 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">© 2026 GRUPO ECLOSS SAC | RUC: 20XXXXXXXXX</p>
+            <div class="flex gap-6">
+                <a href="#" class="text-slate-400 hover:text-blue-600"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-600"><i data-lucide="instagram" class="w-5 h-5"></i></a>
             </div>
         </div>
-    </section>
+    </div>
+</footer>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-slate-400">
-            <div class="flex items-center gap-2">
-                <div class="w-6 h-6 bg-[#002147] rounded"></div>
-                <span class="font-bold text-[#002147]">ECLOSS</span>
-            </div>
-            <p class="text-[10px] uppercase tracking-widest font-bold">© 2026 Grupo ECLOSS SAC • All Rights Reserved</p>
-        </div>
-    </footer>
-
-    <script>
-        lucide.createIcons();
-    </script>
-</body>
-</html>
+<!-- Script para Micro-animaciones (Añadir antes del final del body) -->
+<script src="https://unpkg.com/scrollreveal"></script>
+<script>
+    ScrollReveal().reveal('.card-senior', { 
+        delay: 200, 
+        distance: '20px',
+        origin: 'bottom',
+        interval: 100 
+    });
+    ScrollReveal().reveal('h1, h2', { 
+        delay: 100,
+        distance: '30px',
+        origin: 'left'
+    });
+</script>
