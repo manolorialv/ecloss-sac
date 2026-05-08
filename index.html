@@ -1,242 +1,1126 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ECLOSS SAC | Infraestructura Crítica & Ciberdefensa</title>
-  <meta name="description" content="Soluciones de alto nivel en Transformación Digital, Ciberseguridad e Infraestructura Crítica en Perú.">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-    
-    body { font-family: 'Inter', system-ui, sans-serif; }
-    .hero-bg {
-      background: linear-gradient(rgba(10, 25, 47, 0.92), rgba(10, 25, 47, 0.95)), 
-                  url('https://images.unsplash.com/photo-1558494949-ef0d38d3f9e3?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover;
-    }
-    .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(12px); }
-    .accent { color: #00f5ff; }
-    .service-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-    .service-card:hover { transform: translateY(-12px) scale(1.03); }
-  </style>
-</head>
-<body class="bg-[#0a1829] text-slate-200 overflow-x-hidden">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ECLOSS SAC — Ingeniería de Sistemas Críticos. Transformación Digital, Ciberseguridad e Infraestructura Crítica para empresas y entidades públicas en Perú.">
+<title>ECLOSS SAC | Ingeniería de Sistemas Críticos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050810;
+    --bg2: #080d18;
+    --surface: #0d1525;
+    --surface2: #111c30;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --accent: #00c2ff;
+    --accent2: #0073e6;
+    --accent3: #00ffc2;
+    --gold: #f0b23a;
+    --red: #ff3e3e;
+    --text: #e8edf5;
+    --text2: #8a9bb8;
+    --text3: #55657e;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+    --glow: 0 0 40px rgba(0,194,255,0.15);
+    --glow2: 0 0 80px rgba(0,194,255,0.08);
+  }
 
-  <!-- NAVBAR -->
-  <nav class="fixed top-0 w-full bg-[#0a1829]/95 backdrop-blur-lg z-50 border-b border-cyan-500/20">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-      <div class="text-2xl font-bold tracking-tighter">ECLOSS <span class="accent">SAC</span></div>
-      <div class="flex gap-8 text-sm font-medium">
-        <a href="#inicio" class="hover:text-cyan-400 transition">Inicio</a>
-        <a href="#divisiones" class="hover:text-cyan-400 transition">Divisiones</a>
-        <a href="#quienes-somos" class="hover:text-cyan-400 transition">Nosotros</a>
-        <a href="#noticias" class="hover:text-cyan-400 transition">Noticias</a>
-        <a href="#contacto" class="hover:text-cyan-400 transition">Contacto</a>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: var(–font-body);
+font-size: 16px;
+line-height: 1.6;
+overflow-x: hidden;
+}
+
+/* ── NOISE OVERLAY ── */
+body::before {
+content: ‘’;
+position: fixed; inset: 0;
+background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.04’/%3E%3C/svg%3E”);
+pointer-events: none; z-index: 9999; opacity: .4;
+}
+
+/* ── NAV ── */
+nav {
+position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+display: flex; align-items: center; justify-content: space-between;
+padding: 0 48px;
+height: 72px;
+background: rgba(5,8,16,0.85);
+backdrop-filter: blur(20px);
+border-bottom: 1px solid var(–border);
+transition: all .3s;
+}
+
+.nav-logo {
+display: flex; align-items: center; gap: 12px;
+text-decoration: none;
+}
+.nav-logo-mark {
+width: 38px; height: 38px;
+background: linear-gradient(135deg, var(–accent2), var(–accent));
+border-radius: 8px;
+display: flex; align-items: center; justify-content: center;
+font-family: var(–font-display); font-weight: 800; font-size: 14px;
+color: #fff; letter-spacing: -0.5px;
+box-shadow: 0 0 20px rgba(0,115,230,0.4);
+}
+.nav-logo-text {
+font-family: var(–font-display); font-weight: 700; font-size: 18px;
+color: var(–text); letter-spacing: 2px;
+}
+.nav-logo-text span { color: var(–accent); }
+
+.nav-links {
+display: flex; align-items: center; gap: 36px;
+list-style: none;
+}
+.nav-links a {
+font-family: var(–font-mono); font-size: 12px; letter-spacing: 1.5px;
+text-transform: uppercase; color: var(–text2); text-decoration: none;
+transition: color .2s;
+}
+.nav-links a:hover { color: var(–accent); }
+
+.nav-cta {
+background: transparent;
+border: 1px solid var(–accent);
+color: var(–accent) !important;
+padding: 8px 20px; border-radius: 4px;
+transition: all .2s !important;
+}
+.nav-cta:hover { background: var(–accent) !important; color: var(–bg) !important; }
+
+/* ── HERO ── */
+#inicio {
+min-height: 100vh;
+display: flex; flex-direction: column; justify-content: center;
+padding: 120px 48px 80px;
+position: relative; overflow: hidden;
+}
+
+.hero-bg {
+position: absolute; inset: 0; z-index: 0;
+background:
+radial-gradient(ellipse 80% 60% at 60% 40%, rgba(0,115,230,0.08) 0%, transparent 60%),
+radial-gradient(ellipse 50% 50% at 10% 80%, rgba(0,194,255,0.05) 0%, transparent 50%),
+linear-gradient(180deg, var(–bg) 0%, var(–bg2) 100%);
+}
+
+.hero-grid {
+position: absolute; inset: 0; z-index: 0;
+background-image:
+linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+background-size: 60px 60px;
+mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 0%, transparent 100%);
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 1200px; }
+
+.hero-eyebrow {
+display: inline-flex; align-items: center; gap: 10px;
+font-family: var(–font-mono); font-size: 11px; letter-spacing: 3px;
+text-transform: uppercase; color: var(–accent);
+margin-bottom: 28px;
+}
+.hero-eyebrow::before {
+content: ‘’; width: 32px; height: 1px; background: var(–accent);
+}
+
+.hero-title {
+font-family: var(–font-display); font-weight: 800;
+font-size: clamp(48px, 7vw, 96px); line-height: 1.0;
+letter-spacing: -2px; margin-bottom: 32px;
+}
+.hero-title .line { display: block; overflow: hidden; }
+.hero-title .highlight {
+background: linear-gradient(90deg, var(–accent), var(–accent3));
+-webkit-background-clip: text; -webkit-text-fill-color: transparent;
+background-clip: text;
+}
+.hero-title .dim { color: var(–text3); }
+
+.hero-desc {
+font-size: 18px; font-weight: 300; color: var(–text2);
+max-width: 560px; line-height: 1.8; margin-bottom: 48px;
+}
+
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.btn-primary {
+display: inline-flex; align-items: center; gap: 10px;
+background: linear-gradient(135deg, var(–accent2), var(–accent));
+color: #fff; font-family: var(–font-display); font-weight: 700;
+font-size: 14px; letter-spacing: 1px; text-transform: uppercase;
+padding: 16px 32px; border-radius: 6px; text-decoration: none;
+box-shadow: 0 8px 32px rgba(0,115,230,0.35);
+transition: all .3s; border: none; cursor: pointer;
+}
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 12px 48px rgba(0,115,230,0.5);
+}
+
+.btn-ghost {
+display: inline-flex; align-items: center; gap: 10px;
+background: transparent; border: 1px solid var(–border2);
+color: var(–text); font-family: var(–font-display); font-weight: 600;
+font-size: 14px; letter-spacing: 1px; text-transform: uppercase;
+padding: 16px 32px; border-radius: 6px; text-decoration: none;
+transition: all .3s; cursor: pointer;
+}
+.btn-ghost:hover { border-color: var(–accent); color: var(–accent); }
+
+.hero-stats {
+display: flex; gap: 56px; margin-top: 80px;
+padding-top: 48px; border-top: 1px solid var(–border);
+}
+.stat-item {}
+.stat-num {
+font-family: var(–font-display); font-weight: 800;
+font-size: 40px; line-height: 1;
+background: linear-gradient(90deg, var(–text), var(–text2));
+-webkit-background-clip: text; -webkit-text-fill-color: transparent;
+background-clip: text;
+}
+.stat-num span { color: var(–accent); -webkit-text-fill-color: var(–accent); }
+.stat-label {
+font-family: var(–font-mono); font-size: 11px; letter-spacing: 2px;
+text-transform: uppercase; color: var(–text3); margin-top: 6px;
+}
+
+/* ── SECTION COMMON ── */
+section { padding: 120px 48px; }
+
+.section-tag {
+display: inline-flex; align-items: center; gap: 8px;
+font-family: var(–font-mono); font-size: 11px; letter-spacing: 3px;
+text-transform: uppercase; color: var(–accent);
+margin-bottom: 20px;
+}
+.section-tag::before {
+content: ‘//’; color: var(–text3);
+}
+
+.section-title {
+font-family: var(–font-display); font-weight: 800;
+font-size: clamp(32px, 4vw, 54px); line-height: 1.1; letter-spacing: -1px;
+margin-bottom: 16px;
+}
+
+.section-sub {
+font-size: 17px; font-weight: 300; color: var(–text2);
+max-width: 580px; line-height: 1.8; margin-bottom: 64px;
+}
+
+/* ── DIVISIONES ── */
+#divisiones {
+background: var(–bg2);
+position: relative; overflow: hidden;
+}
+
+#divisiones::before {
+content: ‘’;
+position: absolute; top: -200px; right: -200px;
+width: 600px; height: 600px;
+background: radial-gradient(circle, rgba(0,194,255,0.04) 0%, transparent 70%);
+pointer-events: none;
+}
+
+.div-header { max-width: 1200px; margin: 0 auto 80px; }
+
+.divisions-grid {
+max-width: 1200px; margin: 0 auto;
+display: grid; gap: 2px;
+}
+
+.division-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 16px;
+overflow: hidden;
+transition: border-color .3s;
+}
+.division-card:hover { border-color: var(–border2); }
+
+.div-card-header {
+display: flex; align-items: center; gap: 20px;
+padding: 36px 40px;
+cursor: pointer;
+transition: background .2s;
+}
+.div-card-header:hover { background: rgba(255,255,255,0.02); }
+
+.div-number {
+font-family: var(–font-mono); font-size: 11px; letter-spacing: 2px;
+color: var(–text3); min-width: 28px;
+}
+
+.div-icon {
+width: 52px; height: 52px; border-radius: 12px;
+display: flex; align-items: center; justify-content: center;
+font-size: 22px; flex-shrink: 0;
+}
+.div-icon.blue { background: rgba(0,115,230,0.15); border: 1px solid rgba(0,115,230,0.25); }
+.div-icon.cyan { background: rgba(0,194,255,0.10); border: 1px solid rgba(0,194,255,0.2); }
+.div-icon.amber { background: rgba(240,178,58,0.10); border: 1px solid rgba(240,178,58,0.2); }
+
+.div-info { flex: 1; }
+.div-name {
+font-family: var(–font-display); font-weight: 700;
+font-size: 20px; margin-bottom: 4px;
+}
+.div-tagline { font-size: 14px; color: var(–text2); }
+
+.div-toggle {
+width: 32px; height: 32px; border-radius: 50%;
+border: 1px solid var(–border2);
+display: flex; align-items: center; justify-content: center;
+color: var(–text2); font-size: 18px; transition: all .3s;
+}
+.division-card.open .div-toggle { transform: rotate(45deg); color: var(–accent); border-color: var(–accent); }
+
+.div-body {
+display: none; padding: 0 40px 40px;
+}
+.division-card.open .div-body { display: block; }
+
+.services-grid {
+display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 16px; margin-top: 8px;
+}
+
+.service-item {
+background: var(–surface2);
+border: 1px solid var(–border);
+border-radius: 10px; padding: 24px;
+transition: all .25s;
+}
+.service-item:hover {
+border-color: rgba(0,194,255,0.2);
+transform: translateY(-2px);
+box-shadow: var(–glow);
+}
+
+.service-icon {
+width: 36px; height: 36px; border-radius: 8px;
+background: rgba(0,194,255,0.08);
+display: flex; align-items: center; justify-content: center;
+font-size: 16px; margin-bottom: 14px;
+}
+
+.service-name {
+font-family: var(–font-display); font-weight: 600;
+font-size: 15px; margin-bottom: 8px; color: var(–text);
+}
+
+.service-desc { font-size: 13px; color: var(–text2); line-height: 1.6; }
+
+/* ── QUIÉNES SOMOS ── */
+#quienes-somos { background: var(–bg); }
+
+.about-inner {
+max-width: 1200px; margin: 0 auto;
+display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+
+.about-visual {
+position: relative;
+}
+.about-card-main {
+background: var(–surface);
+border: 1px solid var(–border2);
+border-radius: 20px; padding: 40px;
+position: relative; overflow: hidden;
+}
+.about-card-main::before {
+content: ‘’;
+position: absolute; top: 0; left: 0; right: 0; height: 3px;
+background: linear-gradient(90deg, var(–accent2), var(–accent), var(–accent3));
+}
+
+.about-metric {
+display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px;
+}
+.metric-box {
+background: var(–bg);
+border: 1px solid var(–border);
+border-radius: 12px; padding: 20px;
+text-align: center;
+}
+.metric-val {
+font-family: var(–font-display); font-weight: 800; font-size: 36px;
+color: var(–accent); line-height: 1;
+}
+.metric-lbl {
+font-family: var(–font-mono); font-size: 10px;
+letter-spacing: 1.5px; text-transform: uppercase;
+color: var(–text3); margin-top: 8px;
+}
+
+.about-badge {
+display: inline-flex; align-items: center; gap: 8px;
+background: rgba(0,255,194,0.08); border: 1px solid rgba(0,255,194,0.2);
+border-radius: 100px; padding: 6px 16px;
+font-family: var(–font-mono); font-size: 11px; color: var(–accent3);
+margin-bottom: 24px;
+}
+.about-badge::before { content: ‘●’; font-size: 8px; }
+
+.about-text h2 {
+font-family: var(–font-display); font-weight: 800;
+font-size: clamp(28px, 3vw, 44px); letter-spacing: -1px;
+line-height: 1.15; margin-bottom: 24px;
+}
+.about-text h2 em {
+font-style: normal;
+background: linear-gradient(90deg, var(–accent), var(–accent3));
+-webkit-background-clip: text; -webkit-text-fill-color: transparent;
+background-clip: text;
+}
+
+.about-text p {
+font-size: 16px; color: var(–text2); line-height: 1.8; margin-bottom: 20px;
+}
+
+.about-pillars {
+display: flex; flex-direction: column; gap: 12px; margin-top: 36px;
+}
+.pillar {
+display: flex; align-items: center; gap: 14px;
+background: var(–surface);
+border: 1px solid var(–border); border-radius: 10px;
+padding: 14px 18px;
+}
+.pillar-dot {
+width: 8px; height: 8px; border-radius: 50%;
+background: var(–accent); flex-shrink: 0;
+}
+.pillar-dot.g { background: var(–accent3); }
+.pillar-dot.a { background: var(–gold); }
+.pillar-text { font-size: 14px; font-weight: 500; }
+.pillar-sub { font-size: 12px; color: var(–text3); margin-top: 2px; }
+
+/* ── NOTICIAS ── */
+#noticias {
+background: var(–bg2);
+position: relative; overflow: hidden;
+}
+
+.news-inner { max-width: 1200px; margin: 0 auto; }
+
+.news-grid {
+display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+
+.news-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 16px; padding: 32px;
+transition: all .3s; position: relative; overflow: hidden;
+}
+.news-card:hover {
+border-color: rgba(0,194,255,0.25);
+transform: translateY(-4px);
+box-shadow: var(–glow);
+}
+.news-card::after {
+content: ‘’;
+position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+background: linear-gradient(90deg, var(–accent2), var(–accent));
+opacity: 0; transition: opacity .3s;
+}
+.news-card:hover::after { opacity: 1; }
+
+.news-date {
+font-family: var(–font-mono); font-size: 11px; letter-spacing: 2px;
+color: var(–text3); text-transform: uppercase; margin-bottom: 16px;
+}
+.news-tag {
+display: inline-block;
+background: rgba(0,194,255,0.08); border: 1px solid rgba(0,194,255,0.15);
+border-radius: 4px; padding: 3px 10px;
+font-family: var(–font-mono); font-size: 10px; color: var(–accent);
+letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px;
+}
+.news-title {
+font-family: var(–font-display); font-weight: 700;
+font-size: 18px; line-height: 1.4; margin-bottom: 12px;
+}
+.news-excerpt { font-size: 14px; color: var(–text2); line-height: 1.7; }
+
+/* ── CONTACT ── */
+#contacto { background: var(–bg); }
+
+.contact-inner {
+max-width: 1200px; margin: 0 auto;
+display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px;
+}
+
+.contact-info {}
+.contact-info p { font-size: 16px; color: var(–text2); line-height: 1.8; margin-bottom: 40px; }
+
+.contact-details { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+.contact-item {
+display: flex; align-items: center; gap: 16px;
+background: var(–surface);
+border: 1px solid var(–border); border-radius: 10px;
+padding: 16px 20px;
+}
+.contact-item-icon {
+width: 40px; height: 40px; border-radius: 8px;
+background: rgba(0,194,255,0.08);
+display: flex; align-items: center; justify-content: center;
+font-size: 18px; flex-shrink: 0;
+}
+.contact-item-text { font-size: 14px; color: var(–text2); }
+.contact-item-text strong { display: block; font-size: 13px; color: var(–text3); font-weight: 400; font-family: var(–font-mono); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
+
+.wa-btn {
+display: inline-flex; align-items: center; gap: 12px;
+background: linear-gradient(135deg, #25D366, #128C7E);
+color: #fff; font-family: var(–font-display); font-weight: 700;
+font-size: 14px; padding: 14px 28px; border-radius: 8px;
+text-decoration: none; box-shadow: 0 8px 24px rgba(37,211,102,0.3);
+transition: all .3s;
+}
+.wa-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(37,211,102,0.45); }
+
+.contact-form {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 20px; padding: 48px;
+position: relative; overflow: hidden;
+}
+.contact-form::before {
+content: ‘’;
+position: absolute; top: 0; left: 0; right: 0; height: 2px;
+background: linear-gradient(90deg, var(–accent2), var(–accent), var(–accent3));
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.form-group { margin-bottom: 20px; }
+.form-group label {
+display: block; font-family: var(–font-mono); font-size: 11px;
+letter-spacing: 1.5px; text-transform: uppercase; color: var(–text3);
+margin-bottom: 8px;
+}
+.form-group input, .form-group select, .form-group textarea {
+width: 100%;
+background: var(–bg);
+border: 1px solid var(–border2);
+border-radius: 8px; padding: 14px 16px;
+color: var(–text); font-family: var(–font-body); font-size: 15px;
+outline: none; transition: border-color .2s;
+-webkit-appearance: none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+border-color: var(–accent);
+box-shadow: 0 0 0 3px rgba(0,194,255,0.08);
+}
+.form-group textarea { resize: vertical; min-height: 110px; }
+.form-group select { cursor: pointer; }
+.form-group select option { background: var(–surface); }
+
+/* ── FOOTER ── */
+footer {
+background: var(–bg);
+border-top: 1px solid var(–border);
+padding: 64px 48px 40px;
+}
+
+.footer-inner {
+max-width: 1200px; margin: 0 auto;
+}
+
+.footer-top {
+display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+gap: 48px; margin-bottom: 64px;
+}
+
+.footer-brand p {
+font-size: 14px; color: var(–text2); line-height: 1.8;
+margin: 16px 0 24px; max-width: 280px;
+}
+
+.footer-col h4 {
+font-family: var(–font-mono); font-size: 11px; letter-spacing: 2px;
+text-transform: uppercase; color: var(–text3); margin-bottom: 20px;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 10px; }
+.footer-col a {
+font-size: 14px; color: var(–text2); text-decoration: none;
+transition: color .2s;
+}
+.footer-col a:hover { color: var(–accent); }
+
+.footer-bottom {
+padding-top: 32px; border-top: 1px solid var(–border);
+display: flex; align-items: center; justify-content: space-between;
+}
+.footer-bottom p {
+font-size: 13px; color: var(–text3); font-family: var(–font-mono);
+}
+.footer-badges { display: flex; gap: 12px; }
+.f-badge {
+font-family: var(–font-mono); font-size: 10px; letter-spacing: 1px;
+color: var(–text3); border: 1px solid var(–border);
+border-radius: 4px; padding: 4px 10px;
+}
+
+/* ── FLOATING WA ── */
+.wa-float {
+position: fixed; bottom: 32px; right: 32px; z-index: 800;
+width: 56px; height: 56px; border-radius: 50%;
+background: linear-gradient(135deg, #25D366, #128C7E);
+display: flex; align-items: center; justify-content: center;
+box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+text-decoration: none; font-size: 26px;
+transition: all .3s;
+}
+.wa-float:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(37,211,102,0.5); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(32px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes pulse {
+0%,100% { opacity: 1; } 50% { opacity: .5; }
+}
+
+.hero-eyebrow { animation: fadeIn .8s ease both; }
+.hero-title   { animation: fadeUp .9s .1s ease both; }
+.hero-desc    { animation: fadeUp .9s .25s ease both; }
+.hero-actions { animation: fadeUp .9s .35s ease both; }
+.hero-stats   { animation: fadeUp .9s .5s ease both; }
+
+.reveal {
+opacity: 0; transform: translateY(24px);
+transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+nav { padding: 0 24px; }
+.nav-links { display: none; }
+section { padding: 80px 24px; }
+#inicio { padding: 100px 24px 60px; }
+.hero-stats { gap: 32px; flex-wrap: wrap; }
+.about-inner { grid-template-columns: 1fr; }
+.contact-inner { grid-template-columns: 1fr; }
+.news-grid { grid-template-columns: 1fr; }
+.footer-top { grid-template-columns: 1fr 1fr; }
+.form-row { grid-template-columns: 1fr; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav id="nav">
+  <a href="#inicio" class="nav-logo">
+    <div class="nav-logo-mark">EC</div>
+    <span class="nav-logo-text">ECLOSS<span>.</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#divisiones">Divisiones</a></li>
+    <li><a href="#quienes-somos">Nosotros</a></li>
+    <li><a href="#noticias">Noticias</a></li>
+    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+
+<section id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Lima, Perú &nbsp;·&nbsp; Fundada 2014</div>
+    <h1 class="hero-title">
+      <span class="line">Ingeniería de</span>
+      <span class="line"><span class="highlight">Sistemas Críticos</span></span>
+      <span class="line dim">para el Perú.</span>
+    </h1>
+    <p class="hero-desc">
+      Protegemos y modernizamos la infraestructura más sensible del país. 
+      Transformación digital, ciberdefensa y facility management integrados 
+      bajo un solo proveedor de confianza.
+    </p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn-primary">
+        <span>Iniciar Proyecto</span>
+        <span>→</span>
+      </a>
+      <a href="#divisiones" class="btn-ghost">
+        <span>Ver Divisiones</span>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">12<span>+</span></div>
+        <div class="stat-label">Años de experiencia</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Divisiones especializadas</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">200<span>+</span></div>
+        <div class="stat-label">Proyectos entregados</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">24<span>/7</span></div>
+        <div class="stat-label">SOC operativo</div>
       </div>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <!-- HERO -->
-  <section id="inicio" class="hero-bg min-h-screen flex items-center pt-20">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <h1 class="text-6xl md:text-7xl font-bold leading-tight mb-6">
-        Ingeniería de <span class="accent">Sistemas Críticos</span>
-      </h1>
-      <p class="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto mb-10">
-        Disponibilidad absoluta • Seguridad de nivel bancario • Cumplimiento normativo total
-      </p>
-      <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})" 
-              class="bg-cyan-400 hover:bg-cyan-300 text-black font-semibold px-10 py-4 rounded-full text-lg transition-all duration-300">
-        Iniciar Proyecto
+<!-- DIVISIONES -->
+
+<section id="divisiones">
+  <div class="div-header reveal">
+    <div class="section-tag">Divisiones</div>
+    <h2 class="section-title">Tres ejes.<br>Un solo aliado estratégico.</h2>
+    <p class="section-sub">Nuestras divisiones trabajan de forma integrada para brindar soluciones completas. Cada una con especialistas de alto nivel y procesos certificados.</p>
+  </div>
+
+  <div class="divisions-grid">
+
+
+<!-- División 1 -->
+<div class="division-card open reveal">
+  <div class="div-card-header" onclick="toggleDiv(this)">
+    <span class="div-number">01</span>
+    <div class="div-icon blue">💻</div>
+    <div class="div-info">
+      <div class="div-name">División Digital</div>
+      <div class="div-tagline">Sistemas & Transformación Digital</div>
+    </div>
+    <div class="div-toggle">+</div>
+  </div>
+  <div class="div-body">
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-icon">⚙️</div>
+        <div class="service-name">Modernización de Sistemas Legacy</div>
+        <div class="service-desc">Refactorización a microservicios con Docker y Kubernetes. Migración segura de bases de datos y aplicaciones obsoletas hacia arquitecturas modernas y escalables.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🤖</div>
+        <div class="service-name">IA & Automatización Inteligente</div>
+        <div class="service-desc">Bots RPA y agentes de IA Generativa para atención al cliente, análisis masivo de documentos y automatización de flujos de trabajo críticos.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">☁️</div>
+        <div class="service-name">Estrategia de Nube & FinOps</div>
+        <div class="service-desc">Migración a nubes híbridas (AWS / Azure) con optimización de costos continua. Arquitecturas resilientes diseñadas para alta disponibilidad.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">📊</div>
+        <div class="service-name">Data & Analytics</div>
+        <div class="service-desc">Ingeniería de datos (ETL/ELT) y dashboards ejecutivos en Power BI y Tableau. Inteligencia de negocio accionable desde sus propios datos.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- División 2 -->
+<div class="division-card reveal">
+  <div class="div-card-header" onclick="toggleDiv(this)">
+    <span class="div-number">02</span>
+    <div class="div-icon cyan">🛡️</div>
+    <div class="div-info">
+      <div class="div-name">División Seguridad & Cumplimiento</div>
+      <div class="div-tagline">Ciberdefensa y Gobierno Digital</div>
+    </div>
+    <div class="div-toggle">+</div>
+  </div>
+  <div class="div-body">
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-icon">🔐</div>
+        <div class="service-name">Ciberseguridad Avanzada</div>
+        <div class="service-desc">Pentesting ofensivo, SOC 24/7 con analistas certificados y respuesta a incidentes críticos como ransomware. Protección proactiva y reactiva.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">⚖️</div>
+        <div class="service-name">Protección de Datos (LPDP)</div>
+        <div class="service-desc">Adecuación a la Ley 29733, registro de bancos de datos ante ANPD y blindaje legal ante auditorías. Cumplimiento normativo garantizado.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🔗</div>
+        <div class="service-name">Gobierno Digital e Interoperabilidad</div>
+        <div class="service-desc">Integración con PIDE, SUNAT, RENIEC y SUNARP mediante APIs estandarizadas. Digitalización de procesos con respaldo legal.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">✍️</div>
+        <div class="service-name">Firma Digital y Cero Papel</div>
+        <div class="service-desc">Implementación de firma electrónica con plena validez legal bajo la Ley 27269. Transforme sus procesos documentales con seguridad jurídica.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- División 3 -->
+<div class="division-card reveal">
+  <div class="div-card-header" onclick="toggleDiv(this)">
+    <span class="div-number">03</span>
+    <div class="div-icon amber">🏗️</div>
+    <div class="div-info">
+      <div class="div-name">División Infraestructura Crítica</div>
+      <div class="div-tagline">Facility Management & Soporte Físico</div>
+    </div>
+    <div class="div-toggle">+</div>
+  </div>
+  <div class="div-body">
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-icon">❄️</div>
+        <div class="service-name">Climatización de Precisión (HVAC)</div>
+        <div class="service-desc">Diseño, instalación y mantenimiento de sistemas HVAC para salas de servidores y data centers con control de temperatura y humedad certificado.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">⚡</div>
+        <div class="service-name">Energía Crítica</div>
+        <div class="service-desc">Soluciones UPS y grupos electrógenos con autonomía garantizada. Diseño de sistemas eléctricos de alta continuidad para operaciones ininterrumpidas.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🔌</div>
+        <div class="service-name">Electricidad Industrial & Pozos a Tierra</div>
+        <div class="service-desc">Instalaciones eléctricas industriales y sistemas de puesta a tierra conforme a la normativa peruana. Seguridad eléctrica certificada.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🌐</div>
+        <div class="service-name">Cableado Estructurado & Fibra Óptica</div>
+        <div class="service-desc">Infraestructura de red de alto rendimiento para entornos empresariales y data centers. Certificación de canales y enlaces garantizada.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">📷</div>
+        <div class="service-name">Seguridad Electrónica & CCTV</div>
+        <div class="service-desc">Sistemas de videovigilancia IP de alta definición, control de accesos biométrico y alarmas integradas con monitoreo centralizado.</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🔥</div>
+        <div class="service-name">Sistemas Contra Incendio & RAEE</div>
+        <div class="service-desc">Detección temprana, supresión de incendios para entornos tecnológicos y gestión certificada de residuos electrónicos (RAEE).</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+</section>
+
+<!-- QUIÉNES SOMOS -->
+
+<section id="quienes-somos">
+  <div class="about-inner">
+    <div class="about-visual reveal">
+      <div class="about-card-main">
+        <div class="about-badge">Empresa peruana certificada</div>
+        <div style="font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1.3;margin-bottom:8px;">
+          Más de una década protegiendo la infraestructura crítica del Perú
+        </div>
+        <div style="font-size:14px;color:var(--text2);line-height:1.7;">
+          Desde Lima, gestionamos proyectos de alta complejidad para los sectores más exigentes: banca, gobierno, salud, minería y telecomunicaciones.
+        </div>
+        <div class="about-metric">
+          <div class="metric-box">
+            <div class="metric-val">12+</div>
+            <div class="metric-lbl">Años en el mercado</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">99.9%</div>
+            <div class="metric-lbl">SLA de disponibilidad</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">Tier III</div>
+            <div class="metric-lbl">Certificación DC</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">ISO</div>
+            <div class="metric-lbl">27001 · 9001</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<div class="about-text reveal">
+  <div class="section-tag">Quiénes Somos</div>
+  <h2>Una empresa que se mide por la <em>continuidad</em> de sus clientes.</h2>
+  <p>
+    ECLOSS SAC nació en Lima con una convicción clara: las empresas peruanas merecen soluciones tecnológicas de nivel mundial, ejecutadas con conocimiento local y responsabilidad legal peruana.
+  </p>
+  <p>
+    Combinamos ingeniería de alto nivel con cumplimiento normativo estricto. Nuestro equipo incluye arquitectos de sistemas, ethical hackers certificados, ingenieros eléctricos y especialistas en normativa peruana.
+  </p>
+  <div class="about-pillars">
+    <div class="pillar">
+      <div class="pillar-dot"></div>
+      <div>
+        <div class="pillar-text">Disponibilidad Absoluta</div>
+        <div class="pillar-sub">Operamos bajo SLA 99.9% con monitoreo continuo</div>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-dot g"></div>
+      <div>
+        <div class="pillar-text">Seguridad de Nivel Bancario</div>
+        <div class="pillar-sub">Protocolos alineados a SWIFT, PCI-DSS y NIST CSF</div>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-dot a"></div>
+      <div>
+        <div class="pillar-text">Cumplimiento Normativo Total</div>
+        <div class="pillar-sub">Ley 29733, Ley 27269, normativa SBS y PCM</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+</section>
+
+<!-- NOTICIAS -->
+
+<section id="noticias">
+  <div class="news-inner">
+    <div style="max-width:600px;margin-bottom:64px;" class="reveal">
+      <div class="section-tag">Noticias</div>
+      <h2 class="section-title">Lo que está pasando en ECLOSS</h2>
+      <p class="section-sub" style="margin-bottom:0;">Actualizaciones, hitos y alianzas que marcan el rumbo de la industria.</p>
+    </div>
+    <div class="news-grid">
+      <div class="news-card reveal">
+        <div class="news-date">Abril 2026</div>
+        <div class="news-tag">Ciberseguridad</div>
+        <div class="news-title">SOC 24/7 implementado en importante banco peruano</div>
+        <div class="news-excerpt">Nuestro Centro de Operaciones de Seguridad comenzó operaciones ininterrumpidas protegiendo los activos digitales de una de las principales entidades financieras del país, con analistas especializados y tecnología SIEM de última generación.</div>
+      </div>
+      <div class="news-card reveal">
+        <div class="news-date">Marzo 2026</div>
+        <div class="news-tag">Infraestructura</div>
+        <div class="news-title">Certificación Tier III completada en Data Center principal</div>
+        <div class="news-excerpt">Alcanzamos la certificación Tier III del Uptime Institute en nuestro data center gestionado, garantizando 99.982% de disponibilidad anual y redundancia concurrente en todos los sistemas eléctricos y de enfriamiento.</div>
+      </div>
+      <div class="news-card reveal">
+        <div class="news-date">Febrero 2026</div>
+        <div class="news-tag">Alianza</div>
+        <div class="news-title">Alianza estratégica con líder mundial en IA Generativa</div>
+        <div class="news-excerpt">Formalizamos una alianza con uno de los principales proveedores globales de plataformas de IA Generativa, permitiéndonos ofrecer soluciones de automatización inteligente y análisis de documentos de clase mundial para el mercado peruano.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+
+<section id="contacto">
+  <div class="contact-inner">
+    <div class="contact-info reveal">
+      <div class="section-tag">Contacto</div>
+      <h2 class="section-title">Hablemos de su proyecto</h2>
+      <p>Cuéntenos sus retos tecnológicos. Nuestro equipo de ingenieros responderá en menos de 24 horas con una evaluación inicial sin costo.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div class="contact-item-text">
+            <strong>Teléfono</strong>
+            +51 987 654 321
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div class="contact-item-text">
+            <strong>Correo</strong>
+            contacto@ecloss.pe
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div class="contact-item-text">
+            <strong>Ubicación</strong>
+            Lima, Perú
+          </div>
+        </div>
+      </div>
+      <a href="https://wa.me/51987654321?text=Hola%20ECLOSS,%20deseo%20información%20sobre%20sus%20servicios" target="_blank" class="wa-btn">
+        <span>💬</span>
+        <span>Escribir por WhatsApp</span>
+      </a>
+    </div>
+    <div class="contact-form reveal">
+      <h3 style="font-family:var(--font-display);font-weight:700;font-size:22px;margin-bottom:28px;">Solicitar evaluación gratuita</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="Su nombre completo">
+        </div>
+        <div class="form-group">
+          <label>Empresa</label>
+          <input type="text" placeholder="Razón social">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Correo</label>
+          <input type="email" placeholder="correo@empresa.pe">
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" placeholder="+51 9XX XXX XXX">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>División de interés</label>
+        <select>
+          <option value="">Seleccione una división</option>
+          <option>División Digital — Transformación Digital</option>
+          <option>División Seguridad — Ciberdefensa y Compliance</option>
+          <option>División Infraestructura Crítica — Facility Management</option>
+          <option>Solución integral (dos o más divisiones)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Describa su necesidad</label>
+        <textarea placeholder="Cuéntenos su proyecto, reto técnico o requerimiento. Mientras más detalle, más precisa será nuestra propuesta."></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;justify-content:center;" onclick="handleSubmit(this)">
+        <span>Enviar Solicitud</span>
+        <span>→</span>
       </button>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- DIVISIONES -->
-  <section id="divisiones" class="py-24 bg-[#0a1829]">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-5xl font-bold text-center mb-16">Nuestras Divisiones</h2>
+<!-- FOOTER -->
 
-      <!-- División 1 -->
-      <div class="mb-20">
-        <div class="bg-gradient-to-r from-cyan-500/10 to-transparent p-8 rounded-3xl border border-cyan-500/30 mb-10">
-          <h3 class="text-3xl font-bold accent mb-2">División 1: Digital</h3>
-          <p class="text-xl">Sistemas & Transformación Digital</p>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">Modernización de Sistemas Legacy</h4>
-            <p class="text-slate-400 text-sm">Refactorización a microservicios, Docker y Kubernetes. Migración segura de bases de datos obsoletas.</p>
-          </div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">IA & Automatización Inteligente</h4>
-            <p class="text-slate-400 text-sm">Bots RPA y Agentes de IA Generativa para atención al cliente y análisis masivo de documentos.</p>
-          </div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">Estrategia de Nube & FinOps</h4>
-            <p class="text-slate-400 text-sm">Migración a nubes híbridas y optimización de costos en AWS y Azure.</p>
-          </div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">Data & Analytics</h4>
-            <p class="text-slate-400 text-sm">Ingeniería de datos (ETL) y dashboards estratégicos en Power BI y Tableau.</p>
-          </div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#inicio" class="nav-logo" style="margin-bottom:0;">
+          <div class="nav-logo-mark">EC</div>
+          <span class="nav-logo-text">ECLOSS<span>.</span></span>
+        </a>
+        <p>Ingeniería de sistemas críticos para empresas y entidades públicas del Perú. Más de 12 años construyendo infraestructuras que no pueden fallar.</p>
+        <div style="display:flex;gap:10px;">
+          <a href="https://wa.me/51987654321" target="_blank" style="width:36px;height:36px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:16px;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">💬</a>
+          <a href="mailto:contacto@ecloss.pe" style="width:36px;height:36px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:16px;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">✉️</a>
         </div>
       </div>
-
-      <!-- División 2 -->
-      <div class="mb-20">
-        <div class="bg-gradient-to-r from-purple-500/10 to-transparent p-8 rounded-3xl border border-purple-500/30 mb-10">
-          <h3 class="text-3xl font-bold text-purple-400 mb-2">División 2: Seguridad & Cumplimiento</h3>
-          <p class="text-xl">Compliance y Ciberdefensa</p>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">Ciberseguridad Avanzada</h4>
-            <p class="text-slate-400 text-sm">Pentesting, SOC 24/7 y respuesta a incidentes (Ransomware).</p>
-          </div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">Protección de Datos (LPDP)</h4>
-            <p class="text-slate-400 text-sm">Adecuación Ley 29733, registro de bancos de datos y blindaje ANPD.</p>
-          </div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">Gobierno Digital e Interoperabilidad</h4>
-            <p class="text-slate-400 text-sm">Integración con PIDE, SUNAT, RENIEC y SUNARP vía APIs.</p>
-          </div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">
-            <h4 class="font-semibold text-lg mb-4">Firma Digital y Cero Papel</h4>
-            <p class="text-slate-400 text-sm">Implementación con validez legal según Ley 27269.</p>
-          </div>
-        </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#divisiones">Transformación Digital</a></li>
+          <li><a href="#divisiones">Ciberseguridad</a></li>
+          <li><a href="#divisiones">Infraestructura Crítica</a></li>
+          <li><a href="#divisiones">IA & Automatización</a></li>
+          <li><a href="#divisiones">SOC 24/7</a></li>
+        </ul>
       </div>
-
-      <!-- División 3 -->
-      <div>
-        <div class="bg-gradient-to-r from-emerald-500/10 to-transparent p-8 rounded-3xl border border-emerald-500/30 mb-10">
-          <h3 class="text-3xl font-bold text-emerald-400 mb-2">División 3: Infraestructura Crítica</h3>
-          <p class="text-xl">Facility Management & Soporte Físico</p>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Climatización de Precisión (HVAC)</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Energía Crítica (UPS + Grupos Electrógenos)</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Electricidad Industrial y Pozos a Tierra</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Cableado Estructurado y Fibra Óptica</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Seguridad Electrónica y CCTV</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Sistemas Contra Incendio</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Control de Accesos y Biometría</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Gestión de Residuos Tecnológicos (RAEE)</div>
-          <div class="service-card glass p-8 rounded-2xl border border-white/10">Mantenimiento Preventivo Integral</div>
-        </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#quienes-somos">Quiénes Somos</a></li>
+          <li><a href="#noticias">Noticias</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Política de Cookies</a></li>
+          <li><a href="#">Términos y Condiciones</a></li>
+          <li><a href="#">Ley 29733 LPDP</a></li>
+        </ul>
       </div>
     </div>
-  </section>
-
-  <!-- QUIÉNES SOMOS -->
-  <section id="quienes-somos" class="py-24 bg-[#05101f]">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-5xl font-bold mb-10">Quiénes Somos</h2>
-      <p class="text-lg leading-relaxed text-slate-300">
-        ECLOSS SAC es una empresa especializada en soluciones integrales de <strong>infraestructura crítica, ciberseguridad y transformación digital</strong>. 
-        Contamos con más de 12 años de experiencia protegiendo y modernizando los sistemas más sensibles de empresas y entidades públicas en Perú.
-      </p>
-    </div>
-  </section>
-
-  <!-- NOTICIAS -->
-  <section id="noticias" class="py-24">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-5xl font-bold text-center mb-16">Últimas Noticias</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="glass p-8 rounded-3xl">
-          <span class="text-cyan-400 text-sm">Abril 2026</span>
-          <h4 class="text-xl font-semibold mt-4">SOC 24/7 implementado en importante banco peruano</h4>
-        </div>
-        <div class="glass p-8 rounded-3xl">
-          <span class="text-cyan-400 text-sm">Marzo 2026</span>
-          <h4 class="text-xl font-semibold mt-4">Certificación Tier III completada en Data Center principal</h4>
-        </div>
-        <div class="glass p-8 rounded-3xl">
-          <span class="text-cyan-400 text-sm">Febrero 2026</span>
-          <h4 class="text-xl font-semibold mt-4">Alianza estratégica con líder mundial en IA Generativa</h4>
-        </div>
+    <div class="footer-bottom">
+      <p>© 2026 ECLOSS SAC — RUC disponible a solicitud — Lima, Perú</p>
+      <div class="footer-badges">
+        <span class="f-badge">ISO 27001</span>
+        <span class="f-badge">TIER III</span>
+        <span class="f-badge">SOC 24/7</span>
       </div>
     </div>
-  </section>
+  </div>
+</footer>
 
-  <!-- CONTACTO -->
-  <section id="contacto" class="py-24 bg-[#0a1829]">
-    <div class="max-w-3xl mx-auto px-6">
-      <h2 class="text-5xl font-bold text-center mb-12">Contáctenos</h2>
-      <form id="contactForm" class="space-y-6" onsubmit="handleSubmit(event)">
-        <div class="grid md:grid-cols-2 gap-6">
-          <input type="text" placeholder="Nombre / Empresa" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
-          <input type="email" placeholder="Correo electrónico" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
-        </div>
-        <input type="tel" placeholder="Teléfono / WhatsApp" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
-        <textarea placeholder="Cuéntenos sobre su proyecto o necesidad técnica..." rows="6" required class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400"></textarea>
-        <button type="submit" class="w-full bg-gradient-to-r from-cyan-400 to-emerald-400 text-black font-bold py-5 rounded-2xl text-lg hover:scale-105 transition">
-          Enviar Mensaje
-        </button>
-      </form>
-    </div>
-  </section>
+<!-- FLOATING WHATSAPP -->
 
-  <!-- FOOTER -->
-  <footer class="bg-black py-16 border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
-      <div>
-        <h3 class="text-2xl font-bold mb-4">ECLOSS SAC</h3>
-        <p class="text-slate-400">Ingeniería de Sistemas Críticos</p>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4">Servicios</h4>
-        <p class="text-sm text-slate-400 space-y-2">Transformación Digital<br>Ciberseguridad<br>Infraestructura Crítica</p>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4">Legal</h4>
-        <p class="text-sm text-slate-400 space-y-2">Política de Privacidad<br>Política de Cookies<br>Términos y Condiciones</p>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4">Contacto</h4>
-        <p class="text-sm text-slate-400">+51 987 654 321<br>contacto@ecloss.pe<br>Lima, Perú</p>
-      </div>
-    </div>
-    <div class="text-center text-sm text-slate-500 mt-16">
-      © 2026 ECLOSS SAC - Todos los derechos reservados
-    </div>
-  </footer>
+<a href="https://wa.me/51987654321?text=Hola%20ECLOSS,%20deseo%20información%20sobre%20sus%20servicios" target="_blank" class="wa-float" title="Chatea con nosotros">💬</a>
 
-  <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/51987654321?text=Hola%20ECLOSS,%20deseo%20información%20sobre%20sus%20servicios" 
-     target="_blank"
-     class="fixed bottom-8 right-8 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center text-4xl shadow-2xl hover:scale-110 transition z-50">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+<script>
+  // Accordion divisions
+  function toggleDiv(header) {
+    const card = header.closest('.division-card');
+    card.classList.toggle('open');
+  }
 
-  <script>
-    // GSAP Animations
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.from("nav", { y: -100, duration: 1, ease: "power3.out" });
-
-    document.querySelectorAll('.service-card').forEach((card, i) => {
-      gsap.from(card, {
-        scrollTrigger: card,
-        opacity: 0,
-        y: 60,
-        duration: 0.8,
-        delay: i * 0.1
-      });
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
     });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    function handleSubmit(e) {
-      e.preventDefault();
-      alert("✅ Mensaje enviado correctamente. Nos pondremos en contacto pronto.");
-      e.target.reset();
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4 * 0.08) + 's';
+    observer.observe(el);
+  });
+
+  // Nav shrink on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('nav');
+    if (window.scrollY > 60) {
+      nav.style.height = '60px';
+      nav.style.background = 'rgba(5,8,16,0.97)';
+    } else {
+      nav.style.height = '72px';
+      nav.style.background = 'rgba(5,8,16,0.85)';
     }
-  </script>
+  });
+
+  // Form submit feedback
+  function handleSubmit(btn) {
+    btn.innerHTML = '<span>✓ Enviado — Le contactaremos pronto</span>';
+    btn.style.background = 'linear-gradient(135deg,#0d9e6e,#0dcf9c)';
+    btn.disabled = true;
+  }
+</script>
+
 </body>
 </html>
