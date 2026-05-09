@@ -1,602 +1,1860 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECLOSS SAC | Ingeniería de Sistemas Críticos</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-deep: #0A0F14;
-            --bg-card: #131A21;
-            --text-primary: #E5E9F0;
-            --text-secondary: #8F9BB3;
-            --accent-cyan: #00E5FF;
-            --accent-glow: rgba(0, 229, 255, 0.15);
-            --border-subtle: rgba(255, 255, 255, 0.06);
-            --gradient-hero: radial-gradient(ellipse at 50% 0%, #0A1A2B 0%, #0A0F14 70%);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECLOSS SAC | Ingeniería de Sistemas Críticos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #050A0F;
+  --bg2: #080E15;
+  --surface: #0C1520;
+  --surface2: #111D2B;
+  --border: rgba(0,180,255,0.12);
+  --accent: #00B4FF;
+  --accent2: #00FFB3;
+  --accent3: #FF6B35;
+  --text: #E8F4FF;
+  --text2: #8AACCC;
+  --text3: #4A6A8A;
+  --gold: #F0C040;
+  --danger: #FF3B5C;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            background-color: var(--bg-deep);
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+html { scroll-behavior: smooth; }
 
-        /* Tipografía */
-        h1, h2, h3, .display-font {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
+body {
+background: var(–bg);
+color: var(–text);
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 16px;
+overflow-x: hidden;
+cursor: default;
+}
 
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(–bg); }
+::-webkit-scrollbar-thumb { background: var(–accent); border-radius: 2px; }
 
-        /* Partículas de fondo */
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.4;
-        }
+/* ANIMATED BACKGROUND GRID */
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image:
+linear-gradient(rgba(0,180,255,0.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,180,255,0.03) 1px, transparent 1px);
+background-size: 60px 60px;
+pointer-events: none;
+z-index: 0;
+animation: gridMove 20s linear infinite;
+}
+@keyframes gridMove {
+0% { background-position: 0 0; }
+100% { background-position: 60px 60px; }
+}
 
-        /* Navegación */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            background: rgba(10, 15, 20, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-subtle);
-            transition: all 0.3s ease;
-        }
+/* NOISE OVERLAY */
+body::after {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.04’/%3E%3C/svg%3E”);
+pointer-events: none;
+z-index: 0;
+opacity: 0.4;
+}
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
+/* NAV */
+nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 1000;
+padding: 0 40px;
+height: 72px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+background: rgba(5,10,15,0.85);
+backdrop-filter: blur(20px);
+border-bottom: 1px solid var(–border);
+transition: all 0.3s;
+}
+nav.scrolled {
+height: 60px;
+background: rgba(5,10,15,0.97);
+}
+.nav-logo {
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 28px;
+font-weight: 700;
+letter-spacing: 4px;
+color: var(–text);
+text-decoration: none;
+position: relative;
+}
+.nav-logo span { color: var(–accent); }
+.nav-logo::after {
+content: ‘▮’;
+color: var(–accent);
+font-size: 14px;
+margin-left: 2px;
+animation: blink 1s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-        .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1.8rem;
-            color: white;
-            text-decoration: none;
-            letter-spacing: 2px;
-        }
-        .logo span {
-            color: var(--accent-cyan);
-            font-weight: 400;
-        }
+.nav-links {
+display: flex;
+align-items: center;
+gap: 8px;
+list-style: none;
+}
+.nav-links a {
+color: var(–text2);
+text-decoration: none;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+letter-spacing: 2px;
+text-transform: uppercase;
+padding: 8px 14px;
+border: 1px solid transparent;
+border-radius: 3px;
+transition: all 0.3s;
+position: relative;
+}
+.nav-links a:hover {
+color: var(–accent);
+border-color: var(–border);
+background: rgba(0,180,255,0.05);
+}
+.nav-links a.active { color: var(–accent); border-color: rgba(0,180,255,0.3); }
 
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-            transition: color 0.2s;
-            position: relative;
-        }
-        .nav-links a:hover {
-            color: white;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent-cyan);
-            transition: width 0.3s ease;
-        }
-        .nav-links a:hover::after {
-            width: 100%;
-        }
+.nav-cta {
+background: var(–accent) !important;
+color: var(–bg) !important;
+font-weight: 600;
+border: none !important;
+}
+.nav-cta:hover {
+background: var(–accent2) !important;
+transform: translateY(-1px);
+box-shadow: 0 6px 20px rgba(0,180,255,0.4);
+}
 
-        .btn-contact {
-            background: transparent;
-            border: 1px solid var(--accent-cyan);
-            color: var(--accent-cyan);
-            padding: 0.7rem 1.8rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-        .btn-contact:hover {
-            background: var(--accent-cyan);
-            color: #0A0F14;
-            box-shadow: 0 0 25px var(--accent-glow);
-        }
+/* HAMBURGER */
+.hamburger {
+display: none;
+flex-direction: column;
+gap: 5px;
+cursor: pointer;
+padding: 8px;
+z-index: 1001;
+}
+.hamburger span {
+display: block;
+width: 26px;
+height: 2px;
+background: var(–accent);
+transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-        /* Hero Section */
-        .hero {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding-top: 80px;
-            background: var(--gradient-hero);
-        }
-        .hero-content {
-            max-width: 900px;
-        }
-        .hero-badge {
-            display: inline-block;
-            background: rgba(0, 229, 255, 0.1);
-            border: 1px solid rgba(0, 229, 255, 0.3);
-            color: var(--accent-cyan);
-            padding: 0.4rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(5px);
-        }
-        .hero h1 {
-            font-size: 4.5rem;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(180deg, #FFFFFF 0%, #A0B0C0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            max-width: 650px;
-            margin: 0 auto 3rem;
-            font-weight: 300;
-        }
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            margin-top: 3rem;
-        }
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: white;
-        }
-        .stat-item p {
-            font-size: 0.85rem;
-            margin: 0;
-            color: var(--text-secondary);
-        }
+.mobile-menu {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(5,10,15,0.98);
+backdrop-filter: blur(20px);
+z-index: 999;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 32px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 36px;
+font-weight: 700;
+color: var(–text2);
+text-decoration: none;
+letter-spacing: 4px;
+transition: color 0.3s;
+}
+.mobile-menu a:hover { color: var(–accent); }
 
-        /* Secciones generales */
-        section {
-            position: relative;
-            z-index: 1;
-            padding: 8rem 0;
-        }
-        .section-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: white;
-        }
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 650px;
-            margin-bottom: 4rem;
-            font-weight: 300;
-        }
+/* HERO */
+#inicio {
+min-height: 100vh;
+display: flex;
+align-items: center;
+position: relative;
+overflow: hidden;
+padding: 120px 40px 80px;
+}
 
-        /* Tarjetas de divisiones */
-        .divisions-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        .division-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 2.5rem 2rem;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: default;
-            position: relative;
-            overflow: hidden;
-        }
-        .division-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent-cyan);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent-cyan) inset;
-        }
-        .division-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .division-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
-        }
-        .division-tag {
-            display: inline-block;
-            background: rgba(0, 229, 255, 0.1);
-            color: var(--accent-cyan);
-            padding: 0.25rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-        }
-        .service-list {
-            list-style: none;
-            margin-top: 1.5rem;
-        }
-        .service-list li {
-            padding: 0.7rem 0;
-            border-bottom: 1px solid var(--border-subtle);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .service-list li::before {
-            content: "→";
-            color: var(--accent-cyan);
-            font-weight: bold;
-        }
+.hero-glow {
+position: absolute;
+width: 700px;
+height: 700px;
+background: radial-gradient(circle, rgba(0,180,255,0.08) 0%, transparent 70%);
+top: 50%;
+right: -100px;
+transform: translateY(-50%);
+pointer-events: none;
+}
+.hero-glow2 {
+position: absolute;
+width: 400px;
+height: 400px;
+background: radial-gradient(circle, rgba(0,255,179,0.05) 0%, transparent 70%);
+bottom: 0;
+left: 100px;
+pointer-events: none;
+}
 
-        /* Quiénes Somos */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            align-items: center;
-        }
-        .about-text p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-size: 1.05rem;
-        }
-        .trust-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        .badge {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            padding: 1rem 1.8rem;
-            border-radius: 8px;
-            text-align: center;
-        }
-        .badge strong {
-            display: block;
-            font-size: 1.4rem;
-            color: white;
-        }
-        .badge span {
-            font-size: 0.8rem;
-            color: var(--accent-cyan);
-        }
+.hero-content {
+position: relative;
+z-index: 1;
+max-width: 900px;
+}
 
-        /* Sección de Confianza */
-        .trust-strip {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            padding: 3rem 2rem;
-            margin-top: 3rem;
-        }
-        .trust-item h4 {
-            color: white;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-        .trust-item p {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
+.hero-badge {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+background: rgba(0,180,255,0.08);
+border: 1px solid var(–border);
+border-radius: 100px;
+padding: 6px 16px;
+margin-bottom: 32px;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+letter-spacing: 2px;
+color: var(–accent);
+animation: fadeDown 0.8s ease both;
+}
+.hero-badge::before {
+content: ‘’;
+width: 6px;
+height: 6px;
+background: var(–accent2);
+border-radius: 50%;
+animation: pulse 2s infinite;
+}
+@keyframes pulse {
+0%,100%{box-shadow:0 0 0 0 rgba(0,255,179,0.4)}
+50%{box-shadow:0 0 0 6px rgba(0,255,179,0)}
+}
 
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border-subtle);
-            padding: 3rem 0;
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
+h1 {
+font-family: ‘Rajdhani’, sans-serif;
+font-size: clamp(52px, 8vw, 100px);
+font-weight: 700;
+line-height: 0.9;
+letter-spacing: -2px;
+color: var(–text);
+animation: fadeUp 1s ease 0.2s both;
+}
+h1 em {
+font-style: normal;
+color: transparent;
+-webkit-text-stroke: 1px rgba(0,180,255,0.5);
+}
+h1 .accent-word { color: var(–accent); }
 
-        /* Glitch effect */
-        .glitch-hover {
-            position: relative;
-            transition: color 0.2s;
-        }
-        .glitch-hover:hover {
-            color: var(--accent-cyan);
-            animation: glitch 0.4s ease-in-out;
-        }
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 1px); }
-            40% { transform: translate(2px, -1px); }
-            60% { transform: translate(-1px, -1px); }
-            80% { transform: translate(1px, 1px); }
-            100% { transform: translate(0); }
-        }
+.hero-sub {
+font-size: 20px;
+color: var(–text2);
+max-width: 600px;
+line-height: 1.6;
+margin: 28px 0 48px;
+font-weight: 400;
+animation: fadeUp 1s ease 0.4s both;
+}
 
-        @media (max-width: 900px) {
-            .divisions-grid, .about-grid, .trust-strip {
-                grid-template-columns: 1fr;
-            }
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-        }
-    </style>
+.hero-ctas {
+display: flex;
+gap: 16px;
+flex-wrap: wrap;
+animation: fadeUp 1s ease 0.6s both;
+}
+
+.btn-primary {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+background: var(–accent);
+color: var(–bg);
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 13px;
+font-weight: 500;
+letter-spacing: 1px;
+padding: 16px 32px;
+border-radius: 4px;
+text-decoration: none;
+border: none;
+cursor: pointer;
+transition: all 0.3s;
+position: relative;
+overflow: hidden;
+}
+.btn-primary::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+transform: translateX(-100%);
+transition: transform 0.5s;
+}
+.btn-primary:hover::before { transform: translateX(100%); }
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 10px 30px rgba(0,180,255,0.4);
+background: var(–accent2);
+}
+
+.btn-secondary {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+background: transparent;
+color: var(–text2);
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 13px;
+letter-spacing: 1px;
+padding: 16px 32px;
+border-radius: 4px;
+text-decoration: none;
+border: 1px solid var(–border);
+cursor: pointer;
+transition: all 0.3s;
+}
+.btn-secondary:hover {
+color: var(–accent);
+border-color: rgba(0,180,255,0.4);
+background: rgba(0,180,255,0.05);
+transform: translateY(-2px);
+}
+
+/* STATS STRIP */
+.stats-strip {
+position: relative;
+z-index: 1;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 0;
+border: 1px solid var(–border);
+border-radius: 8px;
+overflow: hidden;
+margin-top: 80px;
+animation: fadeUp 1s ease 0.8s both;
+}
+.stat-item {
+padding: 28px 32px;
+border-right: 1px solid var(–border);
+position: relative;
+overflow: hidden;
+}
+.stat-item:last-child { border-right: none; }
+.stat-item::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, rgba(0,180,255,0.03), transparent);
+opacity: 0;
+transition: opacity 0.3s;
+}
+.stat-item:hover::before { opacity: 1; }
+.stat-num {
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 48px;
+font-weight: 700;
+color: var(–accent);
+line-height: 1;
+}
+.stat-label {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+color: var(–text3);
+letter-spacing: 2px;
+margin-top: 6px;
+text-transform: uppercase;
+}
+
+/* SECTION SHARED */
+section {
+position: relative;
+z-index: 1;
+padding: 120px 40px;
+}
+.section-label {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+letter-spacing: 4px;
+color: var(–accent);
+text-transform: uppercase;
+margin-bottom: 16px;
+display: flex;
+align-items: center;
+gap: 12px;
+}
+.section-label::before {
+content: ‘’;
+width: 32px;
+height: 1px;
+background: var(–accent);
+}
+h2 {
+font-family: ‘Rajdhani’, sans-serif;
+font-size: clamp(38px, 5vw, 64px);
+font-weight: 700;
+line-height: 1;
+letter-spacing: -1px;
+margin-bottom: 20px;
+}
+.section-sub {
+font-size: 18px;
+color: var(–text2);
+max-width: 600px;
+line-height: 1.7;
+margin-bottom: 64px;
+}
+
+/* SERVICES */
+#servicios { background: var(–bg2); }
+.services-header {
+text-align: center;
+margin-bottom: 80px;
+}
+.services-header .section-label {
+justify-content: center;
+}
+.services-header .section-label::before { display: none; }
+
+.services-tabs {
+display: flex;
+justify-content: center;
+gap: 0;
+margin-bottom: 56px;
+border: 1px solid var(–border);
+border-radius: 6px;
+overflow: hidden;
+max-width: 700px;
+margin-left: auto;
+margin-right: auto;
+}
+.tab-btn {
+flex: 1;
+padding: 14px 20px;
+background: transparent;
+border: none;
+color: var(–text3);
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+cursor: pointer;
+transition: all 0.3s;
+border-right: 1px solid var(–border);
+}
+.tab-btn:last-child { border-right: none; }
+.tab-btn.active, .tab-btn:hover {
+background: rgba(0,180,255,0.08);
+color: var(–accent);
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: grid; }
+.tab-panel { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+
+.service-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 8px;
+padding: 36px 32px;
+position: relative;
+overflow: hidden;
+transition: all 0.4s;
+cursor: default;
+}
+.service-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0;
+width: 100%;
+height: 2px;
+background: linear-gradient(90deg, var(–accent), var(–accent2));
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 0.4s;
+}
+.service-card:hover {
+transform: translateY(-6px);
+border-color: rgba(0,180,255,0.3);
+box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(0,180,255,0.05);
+}
+.service-card:hover::before { transform: scaleX(1); }
+
+.card-icon {
+width: 52px;
+height: 52px;
+background: rgba(0,180,255,0.08);
+border: 1px solid var(–border);
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 22px;
+margin-bottom: 24px;
+transition: all 0.3s;
+}
+.service-card:hover .card-icon {
+background: rgba(0,180,255,0.15);
+border-color: rgba(0,180,255,0.4);
+transform: scale(1.1);
+}
+
+.card-tag {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 3px;
+color: var(–accent);
+text-transform: uppercase;
+margin-bottom: 12px;
+}
+.card-title {
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 26px;
+font-weight: 700;
+color: var(–text);
+margin-bottom: 12px;
+}
+.card-desc {
+font-size: 15px;
+color: var(–text2);
+line-height: 1.7;
+}
+
+/* ABOUT */
+#quienes-somos {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 80px;
+align-items: center;
+}
+
+.about-visual {
+position: relative;
+}
+.about-box {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 12px;
+padding: 40px;
+position: relative;
+overflow: hidden;
+}
+.about-box::before {
+content: ‘’;
+position: absolute;
+top: -50%;
+right: -50%;
+width: 200%;
+height: 200%;
+background: conic-gradient(from 0deg, transparent 300deg, rgba(0,180,255,0.05) 360deg);
+animation: rotate 20s linear infinite;
+}
+@keyframes rotate { 100%{transform:rotate(360deg)} }
+
+.terminal {
+background: var(–bg);
+border: 1px solid var(–border);
+border-radius: 8px;
+overflow: hidden;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 12px;
+}
+.terminal-bar {
+display: flex;
+align-items: center;
+gap: 6px;
+padding: 10px 16px;
+border-bottom: 1px solid var(–border);
+background: var(–surface2);
+}
+.terminal-dot {
+width: 10px;
+height: 10px;
+border-radius: 50%;
+}
+.terminal-body {
+padding: 20px 20px;
+line-height: 2;
+color: var(–text2);
+}
+.terminal-body .cmd { color: var(–accent2); }
+.terminal-body .out { color: var(–text2); padding-left: 16px; }
+.terminal-body .accent { color: var(–accent); }
+.terminal-body .warn { color: var(–gold); }
+
+.about-text { position: relative; z-index: 1; }
+.about-text h2 { color: var(–text); }
+.about-text p {
+font-size: 17px;
+color: var(–text2);
+line-height: 1.8;
+margin-bottom: 20px;
+}
+
+.certifications {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 12px;
+margin-top: 40px;
+}
+.cert-badge {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 6px;
+padding: 16px 12px;
+text-align: center;
+transition: all 0.3s;
+}
+.cert-badge:hover {
+border-color: var(–gold);
+background: rgba(240,192,64,0.05);
+}
+.cert-badge .cert-name {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 13px;
+font-weight: 500;
+color: var(–gold);
+display: block;
+}
+.cert-badge .cert-status {
+font-size: 11px;
+color: var(–text3);
+margin-top: 4px;
+font-family: ‘IBM Plex Mono’, monospace;
+}
+
+/* ALLIANCES */
+#alianzas {
+background: var(–bg2);
+text-align: center;
+}
+.alliance-intro {
+max-width: 600px;
+margin: 0 auto 64px;
+}
+
+.alliance-grid {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+justify-content: center;
+margin-bottom: 60px;
+}
+.alliance-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 8px;
+padding: 28px 36px;
+min-width: 180px;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 12px;
+transition: all 0.3s;
+cursor: default;
+}
+.alliance-card:hover {
+border-color: rgba(0,180,255,0.4);
+transform: translateY(-4px);
+box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+}
+.alliance-logo {
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 26px;
+font-weight: 700;
+letter-spacing: 2px;
+}
+.alliance-logo.ms { color: #00A1F1; }
+.alliance-logo.aws { color: #FF9900; }
+.alliance-logo.cisco { color: #049fd9; }
+.alliance-logo.iso { color: var(–accent2); }
+.alliance-logo.google { color: #EA4335; }
+.alliance-label {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 2px;
+color: var(–text3);
+text-transform: uppercase;
+}
+
+/* PROCESSES */
+#procesos {
+overflow: hidden;
+}
+.process-timeline {
+position: relative;
+padding-left: 60px;
+}
+.process-timeline::before {
+content: ‘’;
+position: absolute;
+left: 20px;
+top: 0;
+bottom: 0;
+width: 2px;
+background: linear-gradient(to bottom, var(–accent), var(–accent2), transparent);
+}
+.process-step {
+position: relative;
+margin-bottom: 60px;
+opacity: 0;
+transform: translateX(-20px);
+transition: all 0.6s ease;
+}
+.process-step.visible {
+opacity: 1;
+transform: translateX(0);
+}
+.process-num {
+position: absolute;
+left: -52px;
+top: 0;
+width: 36px;
+height: 36px;
+background: var(–accent);
+color: var(–bg);
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 13px;
+font-weight: 500;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 50%;
+box-shadow: 0 0 20px rgba(0,180,255,0.4);
+}
+.process-content {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 8px;
+padding: 28px 32px;
+max-width: 700px;
+transition: all 0.3s;
+}
+.process-content:hover {
+border-color: rgba(0,180,255,0.3);
+transform: translateX(8px);
+}
+.process-title {
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 24px;
+font-weight: 700;
+color: var(–text);
+margin-bottom: 10px;
+}
+.process-desc {
+font-size: 15px;
+color: var(–text2);
+line-height: 1.7;
+}
+
+/* CONTACT */
+#contacto {
+background: var(–bg2);
+}
+.contact-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 60px;
+align-items: start;
+}
+.contact-info h2 { color: var(–text); }
+.contact-info p {
+font-size: 17px;
+color: var(–text2);
+line-height: 1.8;
+margin-bottom: 36px;
+}
+
+.contact-details {
+display: flex;
+flex-direction: column;
+gap: 20px;
+margin-bottom: 40px;
+}
+.contact-item {
+display: flex;
+align-items: center;
+gap: 16px;
+padding: 16px 20px;
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 6px;
+transition: all 0.3s;
+}
+.contact-item:hover {
+border-color: rgba(0,180,255,0.3);
+transform: translateX(4px);
+}
+.contact-icon {
+width: 40px;
+height: 40px;
+background: rgba(0,180,255,0.08);
+border-radius: 6px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 18px;
+flex-shrink: 0;
+}
+.contact-item-label {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 2px;
+color: var(–text3);
+text-transform: uppercase;
+}
+.contact-item-val {
+font-size: 15px;
+color: var(–text);
+margin-top: 2px;
+font-weight: 500;
+}
+
+/* FORM */
+.contact-form {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 12px;
+padding: 40px;
+}
+.form-title {
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 28px;
+font-weight: 700;
+color: var(–text);
+margin-bottom: 32px;
+}
+.form-group {
+margin-bottom: 20px;
+}
+.form-label {
+display: block;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+letter-spacing: 2px;
+color: var(–text3);
+text-transform: uppercase;
+margin-bottom: 8px;
+}
+.form-input, .form-select, .form-textarea {
+width: 100%;
+background: var(–bg);
+border: 1px solid var(–border);
+border-radius: 6px;
+color: var(–text);
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 16px;
+padding: 12px 16px;
+outline: none;
+transition: border-color 0.3s;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+border-color: var(–accent);
+box-shadow: 0 0 0 3px rgba(0,180,255,0.08);
+}
+.form-select option { background: var(–surface); }
+.form-textarea { resize: vertical; min-height: 120px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.form-submit {
+width: 100%;
+padding: 16px;
+background: var(–accent);
+color: var(–bg);
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 13px;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+transition: all 0.3s;
+margin-top: 8px;
+position: relative;
+overflow: hidden;
+}
+.form-submit::after {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+transform: translateX(-100%);
+transition: transform 0.5s;
+}
+.form-submit:hover::after { transform: translateX(100%); }
+.form-submit:hover {
+background: var(–accent2);
+transform: translateY(-2px);
+box-shadow: 0 10px 30px rgba(0,180,255,0.4);
+}
+
+.form-success {
+display: none;
+text-align: center;
+padding: 40px 20px;
+}
+.form-success .success-icon { font-size: 48px; margin-bottom: 16px; }
+.form-success h3 {
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 28px;
+color: var(–accent2);
+margin-bottom: 8px;
+}
+.form-success p { color: var(–text2); }
+
+/* FOOTER */
+footer {
+background: var(–bg);
+border-top: 1px solid var(–border);
+padding: 60px 40px 40px;
+position: relative;
+z-index: 1;
+}
+.footer-grid {
+display: grid;
+grid-template-columns: 2fr 1fr 1fr 1fr;
+gap: 40px;
+margin-bottom: 48px;
+}
+.footer-brand h3 {
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 28px;
+font-weight: 700;
+letter-spacing: 4px;
+color: var(–text);
+margin-bottom: 12px;
+}
+.footer-brand h3 span { color: var(–accent); }
+.footer-brand p {
+font-size: 14px;
+color: var(–text3);
+line-height: 1.7;
+max-width: 280px;
+}
+.footer-col h4 {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+letter-spacing: 3px;
+color: var(–text3);
+text-transform: uppercase;
+margin-bottom: 20px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a {
+color: var(–text2);
+text-decoration: none;
+font-size: 14px;
+transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: var(–accent); }
+.footer-bottom {
+border-top: 1px solid var(–border);
+padding-top: 28px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 16px;
+}
+.footer-bottom p {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+color: var(–text3);
+letter-spacing: 1px;
+}
+.footer-bottom a { color: var(–accent); text-decoration: none; }
+.footer-credit {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+color: var(–text3);
+}
+.footer-credit span { color: var(–accent2); }
+
+/* WHATSAPP BUTTON */
+.whatsapp-btn {
+position: fixed;
+bottom: 30px;
+right: 30px;
+z-index: 900;
+width: 60px;
+height: 60px;
+background: #25D366;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+transition: all 0.3s;
+text-decoration: none;
+animation: waBounce 3s infinite;
+}
+.whatsapp-btn:hover {
+transform: scale(1.1);
+box-shadow: 0 10px 36px rgba(37,211,102,0.6);
+animation: none;
+}
+@keyframes waBounce {
+0%,100%{transform:scale(1)}
+50%{transform:scale(1.05)}
+}
+.whatsapp-btn svg { width: 32px; height: 32px; fill: white; }
+.wa-tooltip {
+position: absolute;
+right: 70px;
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 6px;
+padding: 8px 14px;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 12px;
+color: var(–text);
+white-space: nowrap;
+opacity: 0;
+transform: translateX(10px);
+transition: all 0.3s;
+pointer-events: none;
+}
+.whatsapp-btn:hover .wa-tooltip {
+opacity: 1;
+transform: translateX(0);
+}
+
+/* COOKIE BANNER */
+.cookie-banner {
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 9999;
+background: rgba(8,14,21,0.97);
+backdrop-filter: blur(20px);
+border-top: 1px solid var(–border);
+padding: 20px 40px;
+display: flex;
+align-items: center;
+gap: 24px;
+flex-wrap: wrap;
+transform: translateY(100%);
+animation: cookieSlide 0.6s ease 2s forwards;
+}
+@keyframes cookieSlide { to{transform:translateY(0)} }
+.cookie-banner p {
+flex: 1;
+font-size: 13px;
+color: var(–text2);
+min-width: 280px;
+}
+.cookie-banner p a { color: var(–accent); }
+.cookie-btns { display: flex; gap: 12px; }
+.btn-cookie-accept {
+background: var(–accent);
+color: var(–bg);
+border: none;
+border-radius: 4px;
+padding: 10px 24px;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+letter-spacing: 1px;
+cursor: pointer;
+transition: all 0.2s;
+font-weight: 600;
+}
+.btn-cookie-accept:hover { background: var(–accent2); }
+.btn-cookie-reject {
+background: transparent;
+color: var(–text3);
+border: 1px solid var(–border);
+border-radius: 4px;
+padding: 10px 20px;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+cursor: pointer;
+transition: all 0.2s;
+}
+.btn-cookie-reject:hover { color: var(–text2); border-color: rgba(255,255,255,0.2); }
+
+/* PARTICLES */
+.particles {
+position: absolute;
+inset: 0;
+overflow: hidden;
+pointer-events: none;
+}
+.particle {
+position: absolute;
+width: 2px;
+height: 2px;
+background: var(–accent);
+border-radius: 50%;
+opacity: 0;
+animation: float var(–dur) var(–delay) infinite ease-in-out;
+}
+@keyframes float {
+0%{opacity:0;transform:translateY(0) scale(0)}
+20%{opacity:0.6}
+80%{opacity:0.6}
+100%{opacity:0;transform:translateY(-120px) scale(1)}
+}
+
+/* DIVIDER */
+.divider {
+width: 100%;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(–border), transparent);
+margin: 0;
+}
+
+/* SCROLL REVEAL */
+.reveal {
+opacity: 0;
+transform: translateY(30px);
+transition: all 0.7s ease;
+}
+.reveal.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+from{opacity:0;transform:translateY(24px)}
+to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeDown {
+from{opacity:0;transform:translateY(-14px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* MARQUEE */
+.marquee-wrap {
+overflow: hidden;
+border-top: 1px solid var(–border);
+border-bottom: 1px solid var(–border);
+padding: 16px 0;
+background: var(–surface2);
+position: relative;
+z-index: 1;
+}
+.marquee-track {
+display: flex;
+gap: 60px;
+animation: marquee 30s linear infinite;
+width: max-content;
+}
+.marquee-item {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 12px;
+letter-spacing: 3px;
+color: var(–text3);
+text-transform: uppercase;
+white-space: nowrap;
+display: flex;
+align-items: center;
+gap: 16px;
+}
+.marquee-item::before {
+content: ‘◆’;
+color: var(–accent);
+font-size: 8px;
+}
+@keyframes marquee {
+0%{transform:translateX(0)}
+100%{transform:translateX(-50%)}
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+nav { padding: 0 20px; }
+.nav-links { display: none; }
+.hamburger { display: flex; }
+#inicio { padding: 100px 20px 60px; }
+section { padding: 80px 20px; }
+.stats-strip { grid-template-columns: 1fr; }
+.stat-item { border-right: none; border-bottom: 1px solid var(–border); }
+#quienes-somos { grid-template-columns: 1fr; gap: 40px; }
+.contact-grid { grid-template-columns: 1fr; }
+.footer-grid { grid-template-columns: 1fr 1fr; }
+.certifications { grid-template-columns: 1fr; }
+.form-row { grid-template-columns: 1fr; }
+.cookie-banner { padding: 16px 20px; }
+}
+@media(max-width:600px){
+h1 { font-size: 42px; }
+.footer-grid { grid-template-columns: 1fr; }
+.hero-ctas { flex-direction: column; }
+.btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+}
+</style>
+
 </head>
 <body>
-    <canvas id="particles-canvas"></canvas>
 
-    <nav>
-        <div class="container nav-container">
-            <a href="#" class="logo">ECLOSS<span>.</span></a>
-            <ul class="nav-links">
-                <li><a href="#digital">Digital</a></li>
-                <li><a href="#seguridad">Seguridad</a></li>
-                <li><a href="#infraestructura">Infraestructura</a></li>
-                <li><a href="#somos">Somos</a></li>
-            </ul>
-            <a href="#contacto" class="btn-contact">Contacto</a>
+<!-- NAV -->
+
+<nav id="mainNav">
+  <a href="#inicio" class="nav-logo">ECL<span>O</span>SS</a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#quienes-somos">Quiénes Somos</a></li>
+    <li><a href="#alianzas">Alianzas</a></li>
+    <li><a href="#procesos">Procesos</a></li>
+    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#servicios" onclick="closeMobile()">SERVICIOS</a>
+  <a href="#quienes-somos" onclick="closeMobile()">QUIÉNES SOMOS</a>
+  <a href="#alianzas" onclick="closeMobile()">ALIANZAS</a>
+  <a href="#procesos" onclick="closeMobile()">PROCESOS</a>
+  <a href="#contacto" onclick="closeMobile()">CONTACTO</a>
+</div>
+
+<!-- HERO -->
+
+<section id="inicio">
+  <div class="particles" id="particles"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">LIMA, PERÚ · EST. 2026 · OPERACIONAL 24/7</div>
+    <h1>
+      INGENIERÍA<br>
+      <em>CRÍTICA</em><br>
+      <span class="accent-word">SIN FALLAS.</span>
+    </h1>
+    <p class="hero-sub">
+      Protegemos, modernizamos y sostenemos la infraestructura digital y física de bancos, hospitales y el Estado peruano. Cuando el sistema no puede fallar, llaman a ECLOSS.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contacto" class="btn-primary">▶ Evaluación Gratuita</a>
+      <a href="#servicios" class="btn-secondary">↓ Ver Servicios</a>
+    </div>
+    <div class="stats-strip">
+      <div class="stat-item">
+        <div class="stat-num">99.9%</div>
+        <div class="stat-label">SLA de Disponibilidad</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">SOC Operativo</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">&lt;4H</div>
+        <div class="stat-label">Tiempo de Respuesta</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marqueeTrack">
+    <span class="marquee-item">Sistemas Críticos</span>
+    <span class="marquee-item">Ciberseguridad</span>
+    <span class="marquee-item">Infraestructura Tier III</span>
+    <span class="marquee-item">Automatización IA</span>
+    <span class="marquee-item">Cumplimiento Normativo</span>
+    <span class="marquee-item">Cloud Híbrido</span>
+    <span class="marquee-item">SOC 24/7</span>
+    <span class="marquee-item">Firma Digital</span>
+    <span class="marquee-item">Pentesting</span>
+    <span class="marquee-item">Sistemas Críticos</span>
+    <span class="marquee-item">Ciberseguridad</span>
+    <span class="marquee-item">Infraestructura Tier III</span>
+    <span class="marquee-item">Automatización IA</span>
+    <span class="marquee-item">Cumplimiento Normativo</span>
+    <span class="marquee-item">Cloud Híbrido</span>
+    <span class="marquee-item">SOC 24/7</span>
+    <span class="marquee-item">Firma Digital</span>
+    <span class="marquee-item">Pentesting</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+
+<section id="servicios">
+  <div class="services-header reveal">
+    <div class="section-label">Servicios</div>
+    <h2>Una solución integral.<br>Sin intermediarios.</h2>
+    <p class="section-sub" style="margin:16px auto 40px;text-align:center;">
+      Tres áreas de especialización que trabajan como una sola unidad para proteger su operación de principio a fin.
+    </p>
+  </div>
+  <div class="services-tabs reveal">
+    <button class="tab-btn active" onclick="showTab('digital', this)">Digital &amp; Cloud</button>
+    <button class="tab-btn" onclick="showTab('seguridad', this)">Seguridad</button>
+    <button class="tab-btn" onclick="showTab('infra', this)">Infraestructura</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-digital">
+    <div class="service-card reveal">
+      <div class="card-icon">⚙️</div>
+      <div class="card-tag">Legacy Rescue</div>
+      <div class="card-title">Modernización de Sistemas</div>
+      <div class="card-desc">Refactorizamos sistemas heredados críticos hacia microservicios con Docker y Kubernetes sin interrumpir su operación. Su núcleo de negocio preparado para la próxima década.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="card-icon">🤖</div>
+      <div class="card-tag">Inteligencia Artificial</div>
+      <div class="card-title">Automatización Inteligente</div>
+      <div class="card-desc">Agentes de IA entrenados sobre sus documentos y flujos de trabajo, con validación humana integrada. Eficiencia real, sin riesgo operativo.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="card-icon">☁️</div>
+      <div class="card-tag">FinOps & Nube</div>
+      <div class="card-title">Arquitectura Cloud Híbrida</div>
+      <div class="card-desc">Diseño e implementación de arquitecturas AWS/Azure con control de costos en tiempo real. Escalabilidad sin sorpresas en su facturación.</div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-seguridad">
+    <div class="service-card reveal">
+      <div class="card-icon">🔐</div>
+      <div class="card-tag">Ciberdefensa</div>
+      <div class="card-title">SOC &amp; Pentesting</div>
+      <div class="card-desc">Centro de Operaciones de Seguridad activo 24/7 con analistas certificados. Simulamos ataques reales antes de que los atacantes lo hagan. Protección proactiva, no reactiva.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="card-icon">⚖️</div>
+      <div class="card-tag">Normativa Peruana</div>
+      <div class="card-title">Cumplimiento Legal &amp; LPDP</div>
+      <div class="card-desc">Adecuación completa a Ley 29733, PIDE, SUNAT y normativa SBS. Blindaje legal total ante auditorías de la ANPD y entidades reguladoras.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="card-icon">✍️</div>
+      <div class="card-tag">Transformación Documental</div>
+      <div class="card-title">Firma Digital &amp; Cero Papel</div>
+      <div class="card-desc">Implementamos validez legal plena bajo Ley 27269. Transformamos su flujo documental con máxima seguridad jurídica y eficiencia operativa.</div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-infra">
+    <div class="service-card reveal">
+      <div class="card-icon">❄️</div>
+      <div class="card-tag">Control Ambiental</div>
+      <div class="card-title">HVAC de Precisión</div>
+      <div class="card-desc">Diseño, instalación y mantenimiento de sistemas de control climático certificados para salas de servidores. Temperatura y humedad óptimas garantizadas.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="card-icon">⚡</div>
+      <div class="card-tag">Energía Crítica</div>
+      <div class="card-title">Respaldo Eléctrico</div>
+      <div class="card-desc">Dimensionamiento e instalación de UPS y grupos electrógenos con autonomía garantizada. Su operación nunca se detiene por un corte de energía.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="card-icon">🔌</div>
+      <div class="card-tag">Conectividad</div>
+      <div class="card-title">Pozos a Tierra &amp; Fibra</div>
+      <div class="card-desc">Infraestructura de red de alto rendimiento y seguridad eléctrica conforme a normativa peruana. Conectividad confiable desde la capa física.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+
+<section id="quienes-somos">
+  <div class="about-visual reveal">
+    <div class="about-box">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="terminal-dot" style="background:#FF5F57"></div>
+          <div class="terminal-dot" style="background:#FEBC2E"></div>
+          <div class="terminal-dot" style="background:#28C840"></div>
+          <span style="font-family:'IBM Plex Mono';font-size:11px;color:var(--text3);margin-left:8px;">ecloss-sac ~ terminal</span>
         </div>
-    </nav>
-
-    <section class="hero">
-        <div class="hero-content container">
-            <div class="hero-badge">LIMA, PERÚ · FUNDADA 2026</div>
-            <h1>La ingeniería silenciosa que sostiene lo crítico.</h1>
-            <p>No hacemos software de moda. Diseñamos, protegemos y mantenemos la infraestructura digital y física de la que dependen bancos, hospitales y el Estado peruano.</p>
-            <div class="hero-stats">
-                <div class="stat-item"><h3>3</h3><p>Divisiones especializadas</p></div>
-                <div class="stat-item"><h3>99.9%</h3><p>SLA de disponibilidad</p></div>
-                <div class="stat-item"><h3>24/7</h3><p>SOC operativo</p></div>
-            </div>
+        <div class="terminal-body">
+          <div class="cmd">$ whoami</div>
+          <div class="out accent">ECLOSS SAC · Lima, Perú</div>
+          <div class="cmd">$ cat about.txt</div>
+          <div class="out">Fundada por ingenieros de banca y sector</div>
+          <div class="out">público con décadas de experiencia real.</div>
+          <div class="cmd">$ cat values.txt</div>
+          <div class="out warn">→ Ingeniería antes que ventas.</div>
+          <div class="out warn">→ Contexto local, estándares globales.</div>
+          <div class="out warn">→ SLA 99.9% no es una promesa, es un contrato.</div>
+          <div class="cmd">$ status --check</div>
+          <div class="out accent">✓ SOC ONLINE · ✓ SISTEMAS NOMINALES</div>
+          <div class="cmd" style="display:inline-flex;align-items:center;gap:6px;">$&nbsp;<span style="background:var(--accent);width:8px;height:14px;display:inline-block;animation:blink 1s infinite;border-radius:1px"></span></div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+  <div class="about-text reveal">
+    <div class="section-label">Quiénes Somos</div>
+    <h2>No somos<br>una startup<br><span style="color:var(--accent)">genérica.</span></h2>
+    <p>
+      ECLOSS SAC nace en Lima en 2026 de un equipo que trabajó durante años en la banca peruana y el sector público. Conocemos de primera mano las brechas reales de la infraestructura crítica del país.
+    </p>
+    <p>
+      Somos una <strong style="color:var(--text)">consultora boutique de ingeniería de sistemas críticos</strong>. Aplicamos estándares internacionales sin perder el contexto local. Nuestro éxito se mide en la continuidad operativa de nuestros clientes, no en el número de propuestas enviadas.
+    </p>
+    <p>
+      Nuestra obsesión es simple: <strong style="color:var(--accent2)">que usted nunca tenga que llamarnos por una emergencia.</strong>
+    </p>
+    <div class="certifications">
+      <div class="cert-badge">
+        <span class="cert-name">ISO 27001</span>
+        <span class="cert-status">En Proceso</span>
+      </div>
+      <div class="cert-badge">
+        <span class="cert-name">Tier III</span>
+        <span class="cert-status">Diseño Certificado</span>
+      </div>
+      <div class="cert-badge">
+        <span class="cert-name">PCI-DSS</span>
+        <span class="cert-status">Alineado</span>
+      </div>
+      <div class="cert-badge">
+        <span class="cert-name">NIST CSF</span>
+        <span class="cert-status">Implementado</span>
+      </div>
+      <div class="cert-badge">
+        <span class="cert-name">Ley 29733</span>
+        <span class="cert-status">Cumplimiento Total</span>
+      </div>
+      <div class="cert-badge">
+        <span class="cert-name">SWIFT</span>
+        <span class="cert-status">Alineado</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="digital">
-        <div class="container">
-            <h2 class="section-title">División Digital</h2>
-            <p class="section-subtitle">No modernizamos por modernizar. Rescatamos sistemas legacy que son el corazón de su operación y los preparamos para la próxima década.</p>
-            <div class="divisions-grid">
-                <div class="division-card">
-                    <div class="division-icon">⚙️</div>
-                    <span class="division-tag">CORE</span>
-                    <h3>Rescate Legacy</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Refactorización a microservicios con Docker/K8s sin detener su negocio.</p>
-                </div>
-                <div class="division-card">
-                    <div class="division-icon">🤖</div>
-                    <span class="division-tag">IA</span>
-                    <h3>Automatización Inteligente</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Agentes de IA que aprenden de sus documentos y flujos, con validación humana.</p>
-                </div>
-                <div class="division-card">
-                    <div class="division-icon">☁️</div>
-                    <span class="division-tag">CLOUD</span>
-                    <h3>FinOps & Nube</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Arquitectura híbrida AWS/Azure con control de coste en tiempo real.</p>
-                </div>
-            </div>
+<div class="divider"></div>
+
+<!-- ALLIANCES -->
+
+<section id="alianzas">
+  <div class="alliance-intro reveal">
+    <div class="section-label" style="justify-content:center;"><span style="display:none"></span>Alianzas Estratégicas</div>
+    <h2>Respaldados por<br>los <span style="color:var(--accent)">líderes globales.</span></h2>
+    <p class="section-sub" style="margin:16px auto;text-align:center;">
+      Trabajamos con las plataformas tecnológicas más confiables del mundo para ofrecerle soluciones con garantía real.
+    </p>
+  </div>
+  <div class="alliance-grid reveal">
+    <div class="alliance-card">
+      <div class="alliance-logo ms">Microsoft</div>
+      <div class="alliance-label">Partner Oficial</div>
+    </div>
+    <div class="alliance-card">
+      <div class="alliance-logo aws">AWS</div>
+      <div class="alliance-label">Cloud Partner</div>
+    </div>
+    <div class="alliance-card">
+      <div class="alliance-logo cisco" style="font-size:20px;">CISCO</div>
+      <div class="alliance-label">Network Partner</div>
+    </div>
+    <div class="alliance-card">
+      <div class="alliance-logo google" style="font-size:20px;">Google Cloud</div>
+      <div class="alliance-label">Cloud Partner</div>
+    </div>
+    <div class="alliance-card">
+      <div class="alliance-logo iso">ISO</div>
+      <div class="alliance-label">Certificado 27001</div>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;max-width:900px;margin-left:auto;margin-right:auto;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;text-align:center;">
+      <div style="font-family:'Rajdhani',sans-serif;font-size:40px;font-weight:700;color:var(--accent)">SLA</div>
+      <div style="font-size:14px;color:var(--text2);margin-top:4px;">Disponibilidad Absoluta 99.9%</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;text-align:center;">
+      <div style="font-family:'Rajdhani',sans-serif;font-size:40px;font-weight:700;color:var(--accent2)">PET</div>
+      <div style="font-size:14px;color:var(--text2);margin-top:4px;">Equipo en huso horario peruano</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;text-align:center;">
+      <div style="font-family:'Rajdhani',sans-serif;font-size:40px;font-weight:700;color:var(--gold)">SWIFT</div>
+      <div style="font-size:14px;color:var(--text2);margin-top:4px;">Protocolos bancarios alineados</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;text-align:center;">
+      <div style="font-family:'Rajdhani',sans-serif;font-size:40px;font-weight:700;color:var(--danger)">ANPD</div>
+      <div style="font-size:14px;color:var(--text2);margin-top:4px;">Blindaje ante auditorías</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROCESSES -->
+
+<section id="procesos">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+    <div class="reveal">
+      <div class="section-label">Procesos</div>
+      <h2>Cómo trabajamos<br>con <span style="color:var(--accent)">usted.</span></h2>
+      <p class="section-sub">
+        Un proceso estructurado que elimina la incertidumbre y garantiza resultados medibles desde el primer día.
+      </p>
+    </div>
+    <div class="process-timeline">
+      <div class="process-step">
+        <div class="process-num">01</div>
+        <div class="process-content">
+          <div class="process-title">Diagnóstico Inicial Gratuito</div>
+          <div class="process-desc">Evaluamos su infraestructura actual en menos de 48 horas. Sin costo, sin compromiso. Identificamos vulnerabilidades y oportunidades de mejora con un informe ejecutivo claro.</div>
         </div>
-    </section>
-
-    <section id="seguridad" style="background: rgba(10, 15, 20, 0.5);">
-        <div class="container">
-            <h2 class="section-title">División Seguridad & Cumplimiento</h2>
-            <p class="section-subtitle">La ciberdefensa no es un producto, es un estado permanente. Cumplimiento normativo peruano sin excusas.</p>
-            <div class="divisions-grid">
-                <div class="division-card">
-                    <div class="division-icon">🔐</div>
-                    <span class="division-tag">DEFENSA</span>
-                    <h3>SOC & Pentesting</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Centro de operaciones 24/7 con analistas certificados. Simulamos ataques para que usted nunca los sufra.</p>
-                </div>
-                <div class="division-card">
-                    <div class="division-icon">⚖️</div>
-                    <span class="division-tag">NORMATIVA</span>
-                    <h3>LPDP & Gobierno Digital</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Adecuación a Ley 29733, PIDE, SUNAT, firma digital. Blindaje legal ante auditorías de la ANPD.</p>
-                </div>
-                <div class="division-card">
-                    <div class="division-icon">✍️</div>
-                    <span class="division-tag">CONFIANZA</span>
-                    <h3>Firma Digital & Cero Papel</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Validez legal plena bajo Ley 27269. Transformación documental con seguridad jurídica.</p>
-                </div>
-            </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">02</div>
+        <div class="process-content">
+          <div class="process-title">Propuesta Técnica Personalizada</div>
+          <div class="process-desc">Diseñamos una solución adaptada exactamente a su contexto operativo, regulatorio y presupuestario. Sin plantillas genéricas.</div>
         </div>
-    </section>
-
-    <section id="infraestructura">
-        <div class="container">
-            <h2 class="section-title">División Infraestructura Crítica</h2>
-            <p class="section-subtitle">La nube existe gracias a centros de datos físicos. Nosotros los diseñamos y mantenemos con estándares Tier III.</p>
-            <div class="divisions-grid">
-                <div class="division-card">
-                    <div class="division-icon">❄️</div>
-                    <span class="division-tag">AMBIENTE</span>
-                    <h3>HVAC de Precisión</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Control de temperatura y humedad certificado para salas de servidores.</p>
-                </div>
-                <div class="division-card">
-                    <div class="division-icon">⚡</div>
-                    <span class="division-tag">ENERGÍA</span>
-                    <h3>Respaldo Eléctrico</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">UPS y grupos electrógenos con autonomía garantizada para operaciones ininterrumpidas.</p>
-                </div>
-                <div class="division-card">
-                    <div class="division-icon">🔌</div>
-                    <span class="division-tag">RED</span>
-                    <h3>Pozos a Tierra & Fibra</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Infraestructura de red de alto rendimiento y seguridad eléctrica conforme a norma peruana.</p>
-                </div>
-            </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">03</div>
+        <div class="process-content">
+          <div class="process-title">Implementación Controlada</div>
+          <div class="process-desc">Ejecutamos en fases con hitos medibles y sin interrupciones a su operación. Cada cambio es validado y documentado antes de aplicarse.</div>
         </div>
-    </section>
-
-    <section id="somos">
-        <div class="container">
-            <div class="about-grid">
-                <div>
-                    <h2 class="section-title">Nuestra obsesión es que nunca tenga que llamarnos por una emergencia.</h2>
-                </div>
-                <div class="about-text">
-                    <p><strong class="glitch-hover">ECLOSS SAC</strong> nace en Lima en 2026 de un equipo que antes trabajaba en la banca y el sector público. Conocemos las brechas reales de la infraestructura peruana y aplicamos estándares internacionales sin perder el contexto local.</p>
-                    <p>No somos una start-up genérica. Somos una <strong>consultora boutique de ingeniería de sistemas críticos</strong>. Nuestro éxito se mide en la continuidad operativa de nuestros clientes.</p>
-                    <div class="trust-badges">
-                        <div class="badge"><strong>ISO 27001</strong><span>En proceso</span></div>
-                        <div class="badge"><strong>Tier III</strong><span>Design</span></div>
-                        <div class="badge"><strong>PCI-DSS</strong><span>Alineado</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="trust-strip">
-                <div class="trust-item"><h4>Disponibilidad Absoluta</h4><p>SLA 99.9% con monitoreo continuo desde Lima.</p></div>
-                <div class="trust-item"><h4>Seguridad Bancaria</h4><p>Protocolos alineados a SWIFT, PCI-DSS y NIST CSF.</p></div>
-                <div class="trust-item"><h4>Cumplimiento Total</h4><p>Ley 29733, Ley 27269, normativa SBS y PCM.</p></div>
-                <div class="trust-item"><h4>Respuesta Local</h4><p>Equipo en huso horario PET. Sin soporte deslocalizado.</p></div>
-            </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">04</div>
+        <div class="process-content">
+          <div class="process-title">Monitoreo y Mejora Continua</div>
+          <div class="process-desc">Post-implementación, su sistema queda bajo monitoreo continuo desde nuestro SOC. Informes mensuales, mejoras proactivas y soporte inmediato garantizado.</div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="contacto" style="text-align: center;">
-        <div class="container">
-            <h2 class="section-title">Hablemos de su infraestructura crítica</h2>
-            <p class="section-subtitle" style="margin: 0 auto 3rem;">Ingenieros, no comerciales. Respondemos en menos de 24 horas con una evaluación inicial sin costo.</p>
-            <a href="mailto:contacto@ecloss.pe" class="btn-contact" style="font-size: 1rem; padding: 1rem 3rem;">contacto@ecloss.pe</a>
-            <p style="margin-top: 2rem; color: var(--text-secondary);">Lima, Perú · +51 987 654 321</p>
+<div class="divider"></div>
+
+<!-- CONTACT -->
+
+<section id="contacto">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="section-label">Contacto</div>
+      <h2>Hablemos de su<br><span style="color:var(--accent)">infraestructura.</span></h2>
+      <p>
+        Ingenieros, no comerciales. Respondemos en menos de 24 horas con una evaluación inicial sin costo. Si tiene un sistema crítico, tenemos la solución.
+      </p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-item-label">Email Directo</div>
+            <div class="contact-item-val">contacto@ecloss.pe</div>
+          </div>
         </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>© 2026 ECLOSS SAC — Ingeniería de Sistemas Críticos para el Perú. Todos los derechos reservados.</p>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="contact-item-label">WhatsApp &amp; Teléfono</div>
+            <div class="contact-item-val">+51 987 654 321</div>
+          </div>
         </div>
-    </footer>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-item-label">Sede Principal</div>
+            <div class="contact-item-val">Lima, Perú · Zona Horaria PET</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">⏱️</div>
+          <div>
+            <div class="contact-item-label">Tiempo de Respuesta</div>
+            <div class="contact-item-val">Menos de 24 horas hábiles</div>
+          </div>
+        </div>
+      </div>
+      <a href="https://wa.me/51987654321?text=Hola%20ECLOSS,%20me%20interesa%20una%20evaluación%20gratuita%20de%20mi%20infraestructura." class="btn-primary" style="display:inline-flex;" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Escribir por WhatsApp
+      </a>
+    </div>
 
-    <script>
-        // Fondo de partículas tipo red neuronal
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+```
+<div class="contact-form reveal" id="contactForm">
+  <div class="form-title">Evaluación Gratuita</div>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">Nombre *</label>
+      <input type="text" class="form-input" id="fNombre" placeholder="Su nombre completo">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Empresa *</label>
+      <input type="text" class="form-input" id="fEmpresa" placeholder="Nombre de su empresa">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Email Corporativo *</label>
+    <input type="email" class="form-input" id="fEmail" placeholder="nombre@empresa.pe">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Teléfono / WhatsApp</label>
+    <input type="tel" class="form-input" id="fTel" placeholder="+51 9XX XXX XXX">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Servicio de Interés *</label>
+    <select class="form-select" id="fServicio">
+      <option value="">— Seleccione un servicio —</option>
+      <option>Modernización de Sistemas (Legacy Rescue)</option>
+      <option>Automatización con Inteligencia Artificial</option>
+      <option>Arquitectura Cloud Híbrida (AWS/Azure)</option>
+      <option>SOC & Pentesting (Ciberseguridad)</option>
+      <option>Cumplimiento LPDP & Normativa Peruana</option>
+      <option>Firma Digital & Transformación Documental</option>
+      <option>Infraestructura Física (HVAC, UPS, Fibra)</option>
+      <option>Evaluación Integral (Múltiples servicios)</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Describa su situación actual</label>
+    <textarea class="form-textarea" id="fMensaje" placeholder="Cuéntenos brevemente el problema o desafío que enfrenta. Mientras más detalle, mejor podremos ayudarle..."></textarea>
+  </div>
+  <button class="form-submit" onclick="submitForm()">SOLICITAR EVALUACIÓN GRATUITA →</button>
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.4;
-                this.vy = (Math.random() - 0.5) * 0.4;
-                this.size = Math.random() * 1.5;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 229, 255, 0.5)';
-                ctx.fill();
-            }
-        }
+  <div class="form-success" id="formSuccess">
+    <div class="success-icon">✅</div>
+    <h3>¡Mensaje Enviado!</h3>
+    <p>Un ingeniero de ECLOSS se pondrá en contacto con usted en menos de 24 horas hábiles con su evaluación inicial.</p>
+  </div>
+</div>
+```
 
-        for (let i = 0; i < 70; i++) {
-            particles.push(new Particle());
-        }
+  </div>
+</section>
 
-        function connectParticles() {
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 130) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(0, 229, 255, ${0.08 * (1 - dist / 130)})`;
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
+<!-- FOOTER -->
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
-            connectParticles();
-            requestAnimationFrame(animate);
-        }
-        animate();
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>ECL<span>O</span>SS</h3>
+      <p>Ingeniería de sistemas críticos para el Perú. Cuando el sistema no puede fallar, confían en ECLOSS SAC.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#servicios">Modernización Digital</a></li>
+        <li><a href="#servicios">Ciberseguridad</a></li>
+        <li><a href="#servicios">Infraestructura Física</a></li>
+        <li><a href="#servicios">Firma Digital</a></li>
+        <li><a href="#servicios">Automatización IA</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#quienes-somos">Quiénes Somos</a></li>
+        <li><a href="#alianzas">Alianzas</a></li>
+        <li><a href="#procesos">Procesos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#" onclick="return false">Política de Privacidad</a></li>
+        <li><a href="#" onclick="return false">Política de Cookies</a></li>
+        <li><a href="#" onclick="return false">Términos de Servicio</a></li>
+        <li><a href="#" onclick="return false">Ley 29733 - LPDP</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 ECLOSS SAC — RUC: 20XXXXXXXXX · Lima, Perú · <a href="mailto:contacto@ecloss.pe">contacto@ecloss.pe</a></p>
+    <p class="footer-credit">Diseño &amp; Programación: <span>Nolberto · Senoo</span></p>
+  </div>
+</footer>
 
-        // Smooth scroll para navegación
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-    </script>
+<!-- WHATSAPP FLOATING -->
+
+<a href="https://wa.me/51987654321?text=Hola%20ECLOSS,%20me%20interesa%20una%20evaluación%20gratuita%20de%20mi%20infraestructura." class="whatsapp-btn" target="_blank" aria-label="WhatsApp ECLOSS">
+  <div class="wa-tooltip">Escríbenos por WhatsApp</div>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- COOKIE BANNER -->
+
+<div class="cookie-banner" id="cookieBanner">
+  <p>
+    🍪 Usamos cookies propias y de terceros para mejorar su experiencia y analizar el tráfico del sitio web. Al continuar navegando, acepta nuestra <a href="#">Política de Cookies</a> y <a href="#">Política de Privacidad</a> conforme a la Ley 29733 (LPDP).
+  </p>
+  <div class="cookie-btns">
+    <button class="btn-cookie-reject" onclick="rejectCookies()">Solo esenciales</button>
+    <button class="btn-cookie-accept" onclick="acceptCookies()">✓ Aceptar todo</button>
+  </div>
+</div>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+
+// ACTIVE NAV
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(s => observer.observe(s));
+
+// TABS
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// SCROLL REVEAL
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// PROCESS STEPS
+const stepObs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 150);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.process-step').forEach(el => stepObs.observe(el));
+
+// PARTICLES
+const particleContainer = document.getElementById('particles');
+for (let i = 0; i < 30; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.cssText = `
+    left: ${Math.random() * 100}%;
+    bottom: ${Math.random() * 40}%;
+    --dur: ${4 + Math.random() * 8}s;
+    --delay: ${Math.random() * 6}s;
+    width: ${1 + Math.random() * 2}px;
+    height: ${1 + Math.random() * 2}px;
+    background: ${Math.random() > 0.5 ? 'var(--accent)' : 'var(--accent2)'};
+  `;
+  particleContainer.appendChild(p);
+}
+
+// COUNTER ANIMATION
+function animateCount(el, end, suffix) {
+  let start = 0;
+  const step = end / 60;
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= end) { clearInterval(timer); el.textContent = end + suffix; return; }
+    el.textContent = Math.floor(start) + suffix;
+  }, 16);
+}
+
+// FORM
+function submitForm() {
+  const nombre = document.getElementById('fNombre').value;
+  const empresa = document.getElementById('fEmpresa').value;
+  const email = document.getElementById('fEmail').value;
+  const servicio = document.getElementById('fServicio').value;
+
+  if (!nombre || !empresa || !email || !servicio) {
+    alert('Por favor complete los campos obligatorios (*)');
+    return;
+  }
+  const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailReg.test(email)) {
+    alert('Por favor ingrese un email válido');
+    return;
+  }
+  document.querySelector('.form-title').style.display = 'none';
+  document.querySelectorAll('.form-group, .form-row, .form-submit').forEach(el => el.style.display = 'none');
+  document.getElementById('formSuccess').style.display = 'block';
+}
+
+// COOKIES
+function acceptCookies() {
+  document.getElementById('cookieBanner').style.display = 'none';
+  localStorage.setItem('ecloss_cookies', 'accepted');
+}
+function rejectCookies() {
+  document.getElementById('cookieBanner').style.display = 'none';
+  localStorage.setItem('ecloss_cookies', 'essential');
+}
+if (localStorage.getItem('ecloss_cookies')) {
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
 </body>
 </html>
