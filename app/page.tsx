@@ -1,65 +1,73 @@
-import Image from "next/image";
+"use client";
+import { MessageSquare, ShieldCheck, Cpu, Building2, ChevronRight } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen">
+      <nav className="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10 px-6 py-4 flex justify-between items-center">
+        <h1 className="text-xl font-bold tracking-tighter">ECLOSS <span className="text-cyan-500">SAC</span></h1>
+        <div className="flex gap-8 text-sm font-medium text-gray-300">
+          <a href="#servicios" className="hover:text-cyan-500 transition">Servicios</a>
+          <a href="#contacto" className="hover:text-cyan-500 transition">Contacto</a>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </nav>
+
+      <section className="h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
+        <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-6">
+          Ingeniería de <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Resiliencia</span>
+        </h1>
+        <p className="text-lg md:text-xl text-gray-400 max-w-2xl mb-10">
+          Consultoría integral en TI, Ciberseguridad e Infraestructura Crítica. 
+          Blindamos su operación con estándares de clase mundial desde Lima, Perú.
+        </p>
+        <a href="#contacto" className="flex items-center gap-2 bg-cyan-600 px-8 py-4 font-bold hover:bg-cyan-700 transition">
+          Solicitar Diagnóstico <ChevronRight size={18} />
+        </a>
+      </section>
+
+      <section id="servicios" className="py-20 px-6 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold mb-12 text-center">Nuestras Divisiones</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            { title: "Digital", icon: <Cpu />, desc: "Transformación, IA, Nube y Análisis de Datos." },
+            { title: "Compliance", icon: <ShieldCheck />, desc: "Ciberseguridad Avanzada y Ley 29733." },
+            { title: "Infraestructura", icon: <Building2 />, desc: "HVAC, Energía, Seguridad y Facility." }
+          ].map((s, i) => (
+            <div key={i} className="p-8 border border-white/10 bg-white/5 hover:border-cyan-500 transition-all duration-300">
+              <div className="mb-4 text-cyan-500">{s.icon}</div>
+              <h3 className="text-xl font-bold mb-2">{s.title}</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">{s.desc}</p>
+            </div>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+      
+	{/* Formulario */}
+      <section className="p-8 md:p-24">
+        <h2 className="text-3xl font-bold mb-8 text-center">Solicitar Diagnóstico</h2>
+        <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4 bg-gray-900 p-8 rounded-xl border border-cyan-500/30">
+          <input type="text" placeholder="Nombre de la Empresa" className="w-full p-3 bg-black border border-cyan-400 rounded" required />
+          <input type="email" placeholder="Correo Corporativo" className="w-full p-3 bg-black border border-cyan-400 rounded" required />
+          <textarea placeholder="Cuéntanos tu requerimiento" className="w-full p-3 bg-black border border-cyan-400 rounded" rows={4} required />
+          <button type="submit" className="w-full bg-cyan-500 text-black font-bold py-3 rounded hover:bg-cyan-300 transition-colors">
+            Enviar Solicitud
+          </button>
+        </form>
+        {status && <p className="mt-4 text-center text-cyan-400">{status}</p>}
+      </section>	
+
+
+      <footer className="border-t border-white/10 py-16 px-10 text-gray-500 text-sm">
+        <div className="text-center">
+          <p>© 2026 ECLOSS SAC. Lima, Perú. RUC: 20XXXXXXXXX</p>
+          <p className="font-mono mt-2">contacto@ecloss.pe</p>
+        </div>
+      </footer>
+
+      <a href="https://wa.me/519992283448" className="fixed bottom-8 right-8 bg-green-600 p-4 rounded-full shadow-2xl z-50 hover:scale-110 transition duration-300">
+        <MessageSquare size={24} />
+      </a>
+    </main>
   );
 }
