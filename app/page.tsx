@@ -46,7 +46,7 @@ export default function Home() {
 	{/* Formulario */}
       <section className="p-8 md:p-24">
         <h2 className="text-3xl font-bold mb-8 text-center">Solicitar Diagnóstico</h2>
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4 bg-gray-900 p-8 rounded-xl border border-cyan-500/30">
+        <form className="max-w-md mx-auto space-y-4 bg-gray-900 p-8 rounded-xl border border-cyan-500/30">
           <input type="text" placeholder="Nombre de la Empresa" className="w-full p-3 bg-black border border-cyan-400 rounded" required />
           <input type="email" placeholder="Correo Corporativo" className="w-full p-3 bg-black border border-cyan-400 rounded" required />
           <textarea placeholder="Cuéntanos tu requerimiento" className="w-full p-3 bg-black border border-cyan-400 rounded" rows={4} required />
@@ -54,7 +54,6 @@ export default function Home() {
             Enviar Solicitud
           </button>
         </form>
-        {status && <p className="mt-4 text-center text-cyan-400">{status}</p>}
       </section>	
 
 
