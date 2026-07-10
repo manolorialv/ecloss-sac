@@ -56,15 +56,15 @@ const STACK = [
 function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
+  useEffect(function () {
     const consent = window.localStorage.getItem("ecloss-cookie-consent");
     if (!consent) setVisible(true);
   }, []);
 
-  const accept = () => {
+  function accept() {
     window.localStorage.setItem("ecloss-cookie-consent", "accepted");
     setVisible(false);
-  };
+  }
 
   if (!visible) return null;
 
@@ -72,12 +72,12 @@ function CookieBanner() {
     <div className="fixed bottom-0 left-0 right-0 z-[60] bg-panel border-t border-line px-6 py-5 md:px-10">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <p className="text-sm text-muted max-w-2xl">
-          Usamos cookies esenciales y de analítica para mejorar tu experiencia. Consulta nuestra{" "}
-          <a href="/cookies" className="text-technical underline">política de cookies</a>.
+          {"Usamos cookies esenciales y de analítica para mejorar tu experiencia. Consulta nuestra "}
+          <a href="/cookies" className="text-technical underline">politica de cookies</a>.
         </p>
         <div className="flex gap-3 shrink-0">
           <a href="/cookies" className="font-mono text-xs text-muted px-4 py-2.5 border border-line hover:border-technical transition-colors">
-            MÁS INFO
+            MAS INFO
           </a>
           <button onClick={accept} className="font-mono text-xs bg-signal text-ink px-4 py-2.5 hover:bg-signal/90 transition-colors">
             ACEPTAR
@@ -88,53 +88,69 @@ function CookieBanner() {
   );
 }
 
+function NavBar(props) {
+  const menuOpen = props.menuOpen;
+  const setMenuOpen = props.setMenuOpen;
+  const navLinks = props.navLinks;
+
+  return (
+    <nav className="fixed w-full z-50 bg-ink/90 backdrop-blur-md border-b border-line px-6 md:px-10 py-4 flex justify-between items-center">
+      <a href="#" className="font-display font-bold tracking-tight text-lg">
+        {"ECLOSS "}<span className="text-signal">SAC</span>
+      </a>
+      <div className="hidden md:flex gap-8 text-sm font-mono text-muted">
+        {navLinks.map(function (l) {
+          return (
+            <a key={l.href} href={l.href} className="hover:text-paper transition-colors">
+              {l.label}
+            </a>
+          );
+        })}
+      </div>
+      
+        href="#contacto"
+        className="hidden md:inline-flex items-center gap-1.5 font-mono text-xs bg-signal text-ink px-4 py-2.5 hover:bg-signal/90 transition-colors"
+      >
+        {"DIAGNOSTICO "}<ChevronRight size={14} />
+      </a>
+      <button aria-label="Abrir menu" className="md:hidden text-paper" onClick={function () { setMenuOpen(!menuOpen); }}>
+        {menuOpen ? <X size={22} /> : <Menu size={22} />}
+      </button>
+    </nav>
+  );
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "#nosotros", label: "Quiénes somos" },
+    { href: "#nosotros", label: "Quienes somos" },
     { href: "#servicios", label: "Servicios" },
     { href: "#proceso", label: "Proceso" },
-    { href: "#partners", label: "Tecnologías" },
+    { href: "#partners", label: "Tecnologias" },
     { href: "#contacto", label: "Contacto" },
   ];
 
   return (
     <main className="min-h-screen bg-ink text-paper font-body">
-      <nav className="fixed w-full z-50 bg-ink/90 backdrop-blur-md border-b border-line px-6 md:px-10 py-4 flex justify-between items-center">
-        <a href="#" className="font-display font-bold tracking-tight text-lg">
-          ECLOSS <span className="text-signal">SAC</span>
-        </a>
-        <div className="hidden md:flex gap-8 text-sm font-mono text-muted">
-          {navLinks.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-paper transition-colors">{l.label}</a>
-          ))}
-        </div>
-        
-          href="#contacto"
-          className="hidden md:inline-flex items-center gap-1.5 font-mono text-xs bg-signal text-ink px-4 py-2.5 hover:bg-signal/90 transition-colors"
-        >
-          DIAGNÓSTICO <ChevronRight size={14} />
-        </a>
-        <button aria-label="Abrir menú" className="md:hidden text-paper" onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </nav>
+      <NavBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} navLinks={navLinks} />
 
-      {menuOpen && (
+      {menuOpen ? (
         <div className="fixed inset-0 z-40 bg-ink pt-24 px-6 md:hidden">
           <div className="flex flex-col gap-6 font-mono text-lg">
-            {navLinks.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)} className="border-b border-line pb-4">
-                {l.label}
-              </a>
-            ))}
-            <a href="#contacto" onClick={() => setMenuOpen(false)} className="bg-signal text-ink text-center py-3.5 mt-2">
-              SOLICITAR DIAGNÓSTICO
+            {navLinks.map(function (l) {
+              return (
+                <a key={l.href} href={l.href} onClick={function () { setMenuOpen(false); }} className="border-b border-line pb-4">
+                  {l.label}
+                </a>
+              );
+            })}
+            <a href="#contacto" onClick={function () { setMenuOpen(false); }} className="bg-signal text-ink text-center py-3.5 mt-2">
+              SOLICITAR DIAGNOSTICO
             </a>
           </div>
         </div>
-      )}
+      ) : null}
 
       <section className="relative min-h-screen flex items-center blueprint-grid pt-24 overflow-hidden">
         <div className="absolute top-24 left-6 md:left-10 w-4 h-4 border-l border-t corner-mark" />
@@ -145,10 +161,10 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-16 items-center w-full">
           <div>
             <p className="font-mono text-xs tracking-widest text-technical uppercase mb-6">
-              Ingeniería de sistemas críticos — Lima, PE
+              Ingenieria de sistemas criticos, Lima PE
             </p>
             <h1 className="font-display font-bold text-5xl md:text-6xl leading-[1.05] mb-6">
-              Diseñamos<br />
+              Disenamos<br />
               <span className="relative inline-block">
                 resiliencia
                 <svg className="absolute -bottom-3 left-0 w-full" height="10" viewBox="0 0 240 10" preserveAspectRatio="none">
@@ -160,7 +176,7 @@ export default function Home() {
               <span className="text-muted">.</span>
             </h1>
             <p className="text-muted text-base md:text-lg max-w-md mb-10 leading-relaxed">
-              Consultoría integral en TI, ciberseguridad e infraestructura crítica.
+              Consultoria integral en TI, ciberseguridad e infraestructura critica.
               Arquitecturas con redundancia real, no promesas de marketing.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -168,7 +184,7 @@ export default function Home() {
                 href="#contacto"
                 className="inline-flex items-center gap-2 bg-signal text-ink font-mono font-medium text-sm px-6 py-3.5 hover:bg-signal/90 transition-colors"
               >
-                SOLICITAR DIAGNÓSTICO <ChevronRight size={16} />
+                {"SOLICITAR DIAGNOSTICO "}<ChevronRight size={16} />
               </a>
               
                 href="#servicios"
@@ -189,7 +205,7 @@ export default function Home() {
               <line x1="320" y1="60" x2="200" y2="290" stroke="#4FD1C5" strokeWidth="1" strokeDasharray="4 4" opacity="0.4" />
 
               <circle cx="200" cy="170" r="34" fill="#10151F" stroke="#FF6B35" strokeWidth="1.5" className="pulse" />
-              <text x="200" y="166" textAnchor="middle" fill="#EDF1F7" fontSize="9" fontFamily="JetBrains Mono">NÚCLEO</text>
+              <text x="200" y="166" textAnchor="middle" fill="#EDF1F7" fontSize="9" fontFamily="JetBrains Mono">NUCLEO</text>
               <text x="200" y="178" textAnchor="middle" fill="#8A94A6" fontSize="8" fontFamily="JetBrains Mono">SAC</text>
 
               <circle cx="80" cy="60" r="26" fill="#10151F" stroke="#1F2A3A" strokeWidth="1.5" />
@@ -203,55 +219,57 @@ export default function Home() {
               <text x="200" y="296" textAnchor="middle" fill="#EDF1F7" fontSize="7" fontFamily="JetBrains Mono">RUCTURA</text>
             </svg>
             <p className="font-mono text-[10px] text-muted text-center -mt-4">
-              rutas primarias — rutas de respaldo (N+1)
+              rutas primarias, rutas de respaldo (N+1)
             </p>
           </div>
         </div>
       </section>
 
       <section id="nosotros" className="py-24 px-6 md:px-10 max-w-6xl mx-auto border-t border-line">
-        <p className="font-mono text-xs text-technical uppercase tracking-widest mb-3">Quiénes somos</p>
+        <p className="font-mono text-xs text-technical uppercase tracking-widest mb-3">Quienes somos</p>
         <h2 className="font-display font-bold text-3xl md:text-4xl mb-8 max-w-2xl">
-          Ingenieros primero, consultores después.
+          Ingenieros primero, consultores despues.
         </h2>
         <p className="text-muted text-base md:text-lg max-w-2xl leading-relaxed mb-16">
-          ECLOSS SAC nace de la convicción de que la resiliencia operativa no se improvisa: se diseña.
-          Integramos tecnología, cumplimiento normativo e infraestructura física bajo un mismo criterio
-          de ingeniería, para que cada decisión de negocio esté respaldada por un sistema que no falla
-          en el momento crítico.
+          ECLOSS SAC nace de la conviccion de que la resiliencia operativa no se improvisa: se disena.
+          Integramos tecnologia, cumplimiento normativo e infraestructura fisica bajo un mismo criterio
+          de ingenieria, para que cada decision de negocio este respaldada por un sistema que no falla
+          en el momento critico.
         </p>
         <div className="grid md:grid-cols-2 gap-px bg-line">
           <div className="bg-ink p-8">
             <Target size={20} className="text-signal mb-4" />
-            <h3 className="font-display font-bold text-lg mb-2">Misión</h3>
+            <h3 className="font-display font-bold text-lg mb-2">Mision</h3>
             <p className="text-muted text-sm leading-relaxed">
               Proteger la continuidad operativa de nuestros clientes mediante arquitecturas
-              tecnológicas y físicas redundantes, seguras y conformes con la normativa vigente.
+              tecnologicas y fisicas redundantes, seguras y conformes con la normativa vigente.
             </p>
           </div>
           <div className="bg-ink p-8">
             <Eye size={20} className="text-signal mb-4" />
-            <h3 className="font-display font-bold text-lg mb-2">Visión</h3>
+            <h3 className="font-display font-bold text-lg mb-2">Vision</h3>
             <p className="text-muted text-sm leading-relaxed">
-              Ser la consultora de referencia en resiliencia de infraestructura crítica en Perú,
-              reconocida por la precisión técnica de cada entrega.
+              Ser la consultora de referencia en resiliencia de infraestructura critica en Peru,
+              reconocida por la precision tecnica de cada entrega.
             </p>
           </div>
         </div>
         <div className="grid sm:grid-cols-3 gap-8 mt-12">
           {[
-            { title: "Precisión", desc: "Cada arquitectura se documenta y valida antes de implementarse." },
-            { title: "Integridad", desc: "Recomendamos lo que tu operación necesita, no lo que es más rentable vender." },
-            { title: "Continuidad", desc: "Diseñamos para el peor escenario, no solo para el día normal." },
-          ].map((v) => (
-            <div key={v.title} className="flex items-start gap-3">
-              <Compass size={16} className="text-technical mt-1 shrink-0" />
-              <div>
-                <p className="font-mono text-sm mb-1">{v.title}</p>
-                <p className="text-muted text-xs leading-relaxed">{v.desc}</p>
+            { title: "Precision", desc: "Cada arquitectura se documenta y valida antes de implementarse." },
+            { title: "Integridad", desc: "Recomendamos lo que tu operacion necesita, no lo que es mas rentable vender." },
+            { title: "Continuidad", desc: "Disenamos para el peor escenario, no solo para el dia normal." },
+          ].map(function (v) {
+            return (
+              <div key={v.title} className="flex items-start gap-3">
+                <Compass size={16} className="text-technical mt-1 shrink-0" />
+                <div>
+                  <p className="font-mono text-sm mb-1">{v.title}</p>
+                  <p className="text-muted text-xs leading-relaxed">{v.desc}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -261,61 +279,71 @@ export default function Home() {
             <p className="font-mono text-xs text-technical uppercase tracking-widest mb-3">Servicios</p>
             <h2 className="font-display font-bold text-3xl">Divisiones</h2>
           </div>
-          <span className="font-mono text-xs text-muted">CATÁLOGO / 03 UNIDADES</span>
+          <span className="font-mono text-xs text-muted">CATALOGO / 03 UNIDADES</span>
         </div>
         <div className="grid md:grid-cols-3 gap-px bg-line">
-          {DIVISIONS.map((s) => (
-            <div key={s.code} className="bg-ink p-8 hover:bg-panel transition-colors group flex flex-col">
-              <div className="flex items-center justify-between mb-6">
-                <span className="font-mono text-[11px] text-signal">{s.code}</span>
-                <s.icon size={18} className="text-muted group-hover:text-technical transition-colors" />
+          {DIVISIONS.map(function (s) {
+            const Icon = s.icon;
+            return (
+              <div key={s.code} className="bg-ink p-8 hover:bg-panel transition-colors group flex flex-col">
+                <div className="flex items-center justify-between mb-6">
+                  <span className="font-mono text-[11px] text-signal">{s.code}</span>
+                  <Icon size={18} className="text-muted group-hover:text-technical transition-colors" />
+                </div>
+                <h3 className="font-display font-bold text-lg mb-2">{s.title}</h3>
+                <p className="text-muted text-sm leading-relaxed mb-5">{s.desc}</p>
+                <ul className="space-y-2.5 mt-auto pt-5 border-t border-line">
+                  {s.items.map(function (item) {
+                    return (
+                      <li key={item} className="text-xs text-muted flex gap-2">
+                        <span className="text-technical shrink-0">-</span>{item}
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
-              <h3 className="font-display font-bold text-lg mb-2">{s.title}</h3>
-              <p className="text-muted text-sm leading-relaxed mb-5">{s.desc}</p>
-              <ul className="space-y-2.5 mt-auto pt-5 border-t border-line">
-                {s.items.map((item) => (
-                  <li key={item} className="text-xs text-muted flex gap-2">
-                    <span className="text-technical shrink-0">—</span>{item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
       <section id="proceso" className="py-24 px-6 md:px-10 max-w-6xl mx-auto border-t border-line">
-        <p className="font-mono text-xs text-technical uppercase tracking-widest mb-3">Cómo trabajamos</p>
+        <p className="font-mono text-xs text-technical uppercase tracking-widest mb-3">Como trabajamos</p>
         <h2 className="font-display font-bold text-3xl mb-12">Proceso de trabajo</h2>
         <div className="grid md:grid-cols-4 gap-8">
-          {PROCESS.map((p, i) => (
-            <div key={p.n} className="relative">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="font-mono text-xs text-signal">{p.n}</span>
-                <p.icon size={16} className="text-technical" />
+          {PROCESS.map(function (p, i) {
+            const Icon = p.icon;
+            return (
+              <div key={p.n} className="relative">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="font-mono text-xs text-signal">{p.n}</span>
+                  <Icon size={16} className="text-technical" />
+                </div>
+                <h3 className="font-display font-bold text-base mb-2">{p.title}</h3>
+                <p className="text-muted text-xs leading-relaxed">{p.desc}</p>
+                {i < PROCESS.length - 1 ? (
+                  <div className="hidden md:block absolute top-2 -right-4 w-8 h-px bg-line" />
+                ) : null}
               </div>
-              <h3 className="font-display font-bold text-base mb-2">{p.title}</h3>
-              <p className="text-muted text-xs leading-relaxed">{p.desc}</p>
-              {i < PROCESS.length - 1 && (
-                <div className="hidden md:block absolute top-2 -right-4 w-8 h-px bg-line" />
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
       <section id="partners" className="py-24 px-6 md:px-10 max-w-6xl mx-auto border-t border-line">
-        <p className="font-mono text-xs text-technical uppercase tracking-widest mb-3">Ecosistema técnico</p>
-        <h2 className="font-display font-bold text-3xl mb-4">Tecnologías y estándares con los que trabajamos</h2>
+        <p className="font-mono text-xs text-technical uppercase tracking-widest mb-3">Ecosistema tecnico</p>
+        <h2 className="font-display font-bold text-3xl mb-4">Tecnologias y estandares con los que trabajamos</h2>
         <p className="text-muted text-sm max-w-xl mb-10">
           Implementamos sobre plataformas y marcos reconocidos por la industria.
         </p>
         <div className="flex flex-wrap gap-3">
-          {STACK.map((tech) => (
-            <span key={tech} className="font-mono text-xs border border-line px-4 py-2.5 text-muted hover:border-technical hover:text-paper transition-colors">
-              {tech}
-            </span>
-          ))}
+          {STACK.map(function (tech) {
+            return (
+              <span key={tech} className="font-mono text-xs border border-line px-4 py-2.5 text-muted hover:border-technical hover:text-paper transition-colors">
+                {tech}
+              </span>
+            );
+          })}
         </div>
       </section>
 
@@ -324,12 +352,12 @@ export default function Home() {
           <p className="font-mono text-xs text-technical uppercase tracking-widest mb-3 text-center">
             Formulario de requerimiento
           </p>
-          <h2 className="font-display font-bold text-3xl mb-8 text-center">Solicitar diagnóstico</h2>
+          <h2 className="font-display font-bold text-3xl mb-8 text-center">Solicitar diagnostico</h2>
           <form className="space-y-4">
             <input type="text" placeholder="Nombre de la empresa" className="w-full p-3.5 bg-panel border border-line focus:border-signal outline-none text-sm placeholder:text-muted transition-colors" required />
             <input type="email" placeholder="Correo corporativo" className="w-full p-3.5 bg-panel border border-line focus:border-signal outline-none text-sm placeholder:text-muted transition-colors" required />
-            <input type="tel" placeholder="Teléfono de contacto" className="w-full p-3.5 bg-panel border border-line focus:border-signal outline-none text-sm placeholder:text-muted transition-colors" />
-            <textarea placeholder="Cuéntanos tu requerimiento" className="w-full p-3.5 bg-panel border border-line focus:border-signal outline-none text-sm placeholder:text-muted transition-colors resize-none" rows={4} required />
+            <input type="tel" placeholder="Telefono de contacto" className="w-full p-3.5 bg-panel border border-line focus:border-signal outline-none text-sm placeholder:text-muted transition-colors" />
+            <textarea placeholder="Cuentanos tu requerimiento" className="w-full p-3.5 bg-panel border border-line focus:border-signal outline-none text-sm placeholder:text-muted transition-colors resize-none" rows={4} required />
             <button type="submit" className="w-full bg-signal text-ink font-mono font-medium text-sm py-3.5 hover:bg-signal/90 transition-colors">
               ENVIAR SOLICITUD
             </button>
@@ -340,13 +368,13 @@ export default function Home() {
       <footer className="border-t border-line py-16 px-6 md:px-10">
         <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-10 mb-10">
           <div>
-            <p className="font-display font-bold mb-3">ECLOSS <span className="text-signal">SAC</span></p>
-            <p className="text-muted text-xs leading-relaxed">Ingeniería de sistemas críticos desde Lima, Perú.</p>
+            <p className="font-display font-bold mb-3">{"ECLOSS "}<span className="text-signal">SAC</span></p>
+            <p className="text-muted text-xs leading-relaxed">Ingenieria de sistemas criticos desde Lima, Peru.</p>
           </div>
           <div>
-            <p className="font-mono text-xs text-technical mb-3">NAVEGACIÓN</p>
+            <p className="font-mono text-xs text-technical mb-3">NAVEGACION</p>
             <ul className="space-y-2 text-xs text-muted">
-              <li><a href="#nosotros" className="hover:text-paper">Quiénes somos</a></li>
+              <li><a href="#nosotros" className="hover:text-paper">Quienes somos</a></li>
               <li><a href="#servicios" className="hover:text-paper">Servicios</a></li>
               <li><a href="#proceso" className="hover:text-paper">Proceso</a></li>
               <li><a href="#contacto" className="hover:text-paper">Contacto</a></li>
@@ -355,8 +383,8 @@ export default function Home() {
           <div>
             <p className="font-mono text-xs text-technical mb-3">LEGAL</p>
             <ul className="space-y-2 text-xs text-muted">
-              <li><a href="/privacidad" className="hover:text-paper">Política de privacidad</a></li>
-              <li><a href="/cookies" className="hover:text-paper">Política de cookies</a></li>
+              <li><a href="/privacidad" className="hover:text-paper">Politica de privacidad</a></li>
+              <li><a href="/cookies" className="hover:text-paper">Politica de cookies</a></li>
             </ul>
           </div>
           <div>
@@ -364,12 +392,12 @@ export default function Home() {
             <ul className="space-y-2 text-xs text-muted">
               <li>contacto@ecloss.pe</li>
               <li>+51 999 228 3448</li>
-              <li>Lima, Perú</li>
+              <li>Lima, Peru</li>
             </ul>
           </div>
         </div>
         <div className="max-w-6xl mx-auto pt-8 border-t border-line text-xs text-muted font-mono flex flex-col md:flex-row justify-between gap-4">
-          <p>© 2026 ECLOSS SAC — RUC 20XXXXXXXXX</p>
+          <p>2026 ECLOSS SAC - RUC 20XXXXXXXXX</p>
           <p>-12.0464, -77.0428</p>
         </div>
       </footer>
