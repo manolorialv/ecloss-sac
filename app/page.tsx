@@ -570,7 +570,7 @@ export default function Home() {
       <Reveal><FAQ /></Reveal>
       <Reveal><Contacto /></Reveal>
       <Footer />
-      
+      <a
         href="https://wa.me/519992283448"
         aria-label="Contactar por WhatsApp"
         className="fixed bottom-8 right-8 bg-[#25D366] text-white p-3.5 rounded-full shadow-lg z-50 hover:scale-110 transition-transform duration-300"

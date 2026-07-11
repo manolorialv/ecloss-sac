@@ -1,11 +1,12 @@
 import "./globals.css";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 
-var spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-display" });
-var inter = Inter({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-body" });
-var jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-display" });
+const inter = Inter({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-body" });
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono" });
 
 export var metadata = {
+  metadataBase: new URL("https://ecloss-sac.vercel.app"),
   title: "ECLOS GROUP | Ingenieria Digital, Compliance e Infraestructura Critica en Peru",
   description: "Consultoria integral en transformacion digital, ciberseguridad, cumplimiento normativo (Ley 29733) e infraestructura critica para empresas en Peru.",
   keywords: "consultoria TI Peru, ciberseguridad Lima, Ley 29733, infraestructura critica Peru, transformacion digital, ISO 27001 Peru, HVAC salas de servidores",
