@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   ChevronRight, Cpu, ShieldCheck, Building2, Menu, X,
   Target, Eye, Compass, Search, PenTool, Wrench, Activity, ChevronDown,
@@ -14,6 +14,29 @@ function WhatsAppIcon(props) {
       <path d="M16 3C9.373 3 4 8.373 4 15c0 2.386.7 4.607 1.902 6.47L4 29l7.72-1.865A11.93 11.93 0 0 0 16 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 21.8c-1.99 0-3.85-.58-5.41-1.58l-.39-.24-4.03.97 1-3.86-.26-.4A9.76 9.76 0 0 1 5.2 15C5.2 9.04 10.04 4.2 16 4.2S26.8 9.04 26.8 15 21.96 24.8 16 24.8zm5.4-7.34c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.66.15-.2.3-.76.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5-.17 0-.37-.02-.57-.02s-.52.07-.8.37c-.27.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.17 4.56.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.75-.71 2-1.4.24-.68.24-1.27.17-1.4-.07-.13-.27-.2-.57-.35z" />
     </svg>
   );
+}
+
+function Reveal(props) {
+  var ref = useRef(null);
+  var state = useState(false);
+  var visible = state[0];
+  var setVisible = state[1];
+
+  useEffect(function () {
+    var el = ref.current;
+    if (!el) return;
+    var observer = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        setVisible(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.12 });
+    observer.observe(el);
+    return function () { observer.disconnect(); };
+  }, []);
+
+  var cls = "transition-all duration-700 ease-out " + (visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8");
+  return <div ref={ref} className={cls}>{props.children}</div>;
 }
 
 var SERVICE_CATEGORIES = [
@@ -136,7 +159,7 @@ function NavBar(props) {
           return <a key={l.href} href={l.href} className="hover:text-paper transition-colors">{l.label}</a>;
         })}
       </div>
-      <a href="#contacto" className="hidden md:inline-flex items-center gap-1.5 font-mono text-xs bg-signal text-ink px-4 py-2.5 hover:bg-signal/90 transition-colors">DIAGNOSTICO <ChevronRight size={14} /></a>
+      <a href="#contacto" className="hidden md:inline-flex items-center gap-1.5 font-mono text-xs bg-signal text-ink px-4 py-2.5 hover:bg-signal/90 hover:shadow-lg hover:shadow-signal/20 transition-all duration-300">DIAGNOSTICO <ChevronRight size={14} /></a>
       <button aria-label="Abrir menu" className="md:hidden text-paper" onClick={function () { setMenuOpen(!menuOpen); }}>
         {menuOpen ? <X size={22} /> : <Menu size={22} />}
       </button>
@@ -185,13 +208,13 @@ function Hero() {
           <p className="text-muted text-base md:text-lg max-w-md mb-10 leading-relaxed">
             Unificamos transformacion digital, ciberseguridad y infraestructura critica bajo un solo equipo, para que tu empresa siga operando incluso en el peor escenario.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <a href="#contacto" className="inline-flex items-center gap-2 bg-signal text-ink font-mono font-medium text-sm px-6 py-3.5 hover:bg-signal/90 transition-colors">SOLICITAR DIAGNOSTICO <ChevronRight size={16} /></a>
-            <a href="#servicios" className="inline-flex items-center gap-2 border border-line font-mono text-sm px-6 py-3.5 hover:border-technical transition-colors">VER SERVICIOS</a>
+          <div className="flex flex-wrap items-center gap-6">
+            <a href="#contacto" className="inline-flex items-center gap-2 bg-signal text-ink font-mono font-medium text-sm px-6 py-3.5 hover:bg-signal/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-signal/20 transition-all duration-300">SOLICITAR DIAGNOSTICO <ChevronRight size={16} /></a>
+            <a href="#servicios" className="inline-flex items-center gap-1.5 font-mono text-sm text-muted hover:text-paper transition-colors duration-300 border-b border-transparent hover:border-technical pb-1">VER SERVICIOS</a>
           </div>
         </div>
 
-        <div className="relative hidden md:block">
+        <div className="relative hidden md:block diagram-glow">
           <svg viewBox="0 0 400 340" className="w-full h-auto">
             <line x1="200" y1="170" x2="80" y2="60" stroke="#1F2A3A" strokeWidth="1.5"></line>
             <line x1="200" y1="170" x2="320" y2="60" stroke="#1F2A3A" strokeWidth="1.5"></line>
@@ -231,12 +254,12 @@ function Nosotros() {
         ECLOS GROUP nace de la conviccion de que la resiliencia operativa no se improvisa: se disena. Integramos tecnologia, cumplimiento normativo e infraestructura fisica bajo un mismo criterio de ingenieria, para que cada decision de negocio este respaldada por un sistema que no falla en el momento critico.
       </p>
       <div className="grid md:grid-cols-2 gap-px bg-line">
-        <div className="bg-ink p-8">
+        <div className="bg-ink p-8 hover:-translate-y-1 hover:bg-panel transition-all duration-300">
           <Target size={20} className="text-signal mb-4" />
           <h3 className="font-display font-bold text-lg mb-2">Mision</h3>
           <p className="text-muted text-sm leading-relaxed">Proteger la continuidad operativa de nuestros clientes mediante arquitecturas tecnologicas y fisicas redundantes, seguras y conformes con la normativa vigente.</p>
         </div>
-        <div className="bg-ink p-8">
+        <div className="bg-ink p-8 hover:-translate-y-1 hover:bg-panel transition-all duration-300">
           <Eye size={20} className="text-signal mb-4" />
           <h3 className="font-display font-bold text-lg mb-2">Vision</h3>
           <p className="text-muted text-sm leading-relaxed">Ser el grupo de referencia en resiliencia de infraestructura critica en Peru, reconocido por la precision tecnica de cada entrega.</p>
@@ -266,8 +289,8 @@ function ServiceCategory(props) {
   var Icon = cat.icon;
 
   return (
-    <div className="border border-line">
-      <button onClick={onToggle} className="w-full flex items-center justify-between gap-4 p-6 md:p-8 text-left hover:bg-panel transition-colors">
+    <div className="border border-line hover:border-technical/40 transition-colors duration-300">
+      <button onClick={onToggle} className="w-full flex items-center justify-between gap-4 p-6 md:p-8 text-left hover:bg-panel transition-all duration-300">
         <div className="flex items-center gap-5">
           <span className="font-mono text-xs text-signal shrink-0">{cat.code}</span>
           <Icon size={22} className="text-technical shrink-0" />
@@ -276,7 +299,7 @@ function ServiceCategory(props) {
             <p className="font-mono text-xs text-muted mt-1">{cat.subtitle}</p>
           </div>
         </div>
-        <ChevronDown size={20} className={isOpen ? "text-signal shrink-0 rotate-180 transition-transform" : "text-muted shrink-0 transition-transform"} />
+        <ChevronDown size={20} className={isOpen ? "text-signal shrink-0 rotate-180 transition-transform duration-300" : "text-muted shrink-0 transition-transform duration-300"} />
       </button>
       {isOpen ? (
         <div className="px-6 md:px-8 pb-8 border-t border-line pt-6">
@@ -339,7 +362,7 @@ function Proceso() {
         {PROCESS.map(function (p) {
           var Icon = p.icon;
           return (
-            <div key={p.n} className="relative">
+            <div key={p.n} className="relative hover:-translate-y-1 transition-transform duration-300">
               <div className="flex items-center gap-3 mb-4">
                 <span className="font-mono text-xs text-signal">{p.n}</span>
                 <Icon size={16} className="text-technical" />
@@ -363,7 +386,7 @@ function PorQueElegirnos() {
         {DIFERENCIADORES.map(function (d) {
           var Icon = d.icon;
           return (
-            <div key={d.title}>
+            <div key={d.title} className="hover:-translate-y-1 transition-transform duration-300">
               <Icon size={22} className="text-signal mb-4" />
               <p className="font-display font-bold text-base mb-2">{d.title}</p>
               <p className="text-muted text-xs leading-relaxed">{d.desc}</p>
@@ -383,7 +406,7 @@ function Partners() {
       <p className="text-muted text-sm max-w-xl mb-10">Implementamos sobre plataformas y marcos reconocidos por la industria.</p>
       <div className="flex flex-wrap gap-3">
         {STACK.map(function (tech) {
-          return <span key={tech} className="font-mono text-xs border border-line px-4 py-2.5 text-muted hover:border-technical hover:text-paper transition-colors">{tech}</span>;
+          return <span key={tech} className="font-mono text-xs border border-line px-4 py-2.5 text-muted hover:border-technical hover:text-paper hover:-translate-y-0.5 transition-all duration-300">{tech}</span>;
         })}
       </div>
     </section>
@@ -399,12 +422,12 @@ function BlogTeaser() {
           <p className="font-mono text-xs text-technical uppercase tracking-widest mb-3">Blog</p>
           <h2 className="font-display font-bold text-3xl">Ultimos articulos</h2>
         </div>
-        <a href="/blog" className="font-mono text-xs text-technical hover:text-paper transition-colors">VER TODOS</a>
+        <a href="/blog" className="font-mono text-xs text-technical hover:text-paper transition-colors duration-300">VER TODOS</a>
       </div>
       <div className="grid md:grid-cols-3 gap-px bg-line">
         {latest.map(function (post) {
           return (
-            <a key={post.slug} href={"/blog/" + post.slug} className="bg-ink p-8 hover:bg-panel transition-colors">
+            <a key={post.slug} href={"/blog/" + post.slug} className="bg-ink p-8 hover:bg-panel hover:-translate-y-1 transition-all duration-300">
               <div className="flex items-center gap-3 mb-4">
                 <span className="font-mono text-xs text-signal">{post.category}</span>
               </div>
@@ -426,7 +449,7 @@ function FAQItem(props) {
     <div className="border-b border-line">
       <button onClick={onToggle} className="w-full flex items-center justify-between gap-4 py-6 text-left">
         <span className="font-mono text-sm">{faq.q}</span>
-        <ChevronDown size={18} className={isOpen ? "text-signal shrink-0 rotate-180 transition-transform" : "text-muted shrink-0 transition-transform"} />
+        <ChevronDown size={18} className={isOpen ? "text-signal shrink-0 rotate-180 transition-transform duration-300" : "text-muted shrink-0 transition-transform duration-300"} />
       </button>
       {isOpen ? <p className="text-muted text-sm leading-relaxed pb-6 max-w-2xl">{faq.a}</p> : null}
     </div>
@@ -465,11 +488,11 @@ function Contacto() {
         <p className="font-mono text-xs text-technical uppercase tracking-widest mb-3 text-center">Formulario de requerimiento</p>
         <h2 className="font-display font-bold text-3xl mb-8 text-center">Solicitar diagnostico</h2>
         <form className="space-y-4">
-          <input type="text" placeholder="Nombre de la empresa" className="w-full p-3.5 bg-panel border border-line focus:border-signal outline-none text-sm placeholder:text-muted transition-colors" required />
-          <input type="email" placeholder="Correo corporativo" className="w-full p-3.5 bg-panel border border-line focus:border-signal outline-none text-sm placeholder:text-muted transition-colors" required />
-          <input type="tel" placeholder="Telefono de contacto" className="w-full p-3.5 bg-panel border border-line focus:border-signal outline-none text-sm placeholder:text-muted transition-colors" />
-          <textarea placeholder="Cuentanos tu requerimiento" className="w-full p-3.5 bg-panel border border-line focus:border-signal outline-none text-sm placeholder:text-muted transition-colors resize-none" rows={4} required></textarea>
-          <button type="submit" className="w-full bg-signal text-ink font-mono font-medium text-sm py-3.5 hover:bg-signal/90 transition-colors">ENVIAR SOLICITUD</button>
+          <input type="text" placeholder="Nombre de la empresa" className="w-full p-3.5 bg-panel border border-line focus:border-signal outline-none text-sm placeholder:text-muted transition-colors duration-300" required />
+          <input type="email" placeholder="Correo corporativo" className="w-full p-3.5 bg-panel border border-line focus:border-signal outline-none text-sm placeholder:text-muted transition-colors duration-300" required />
+          <input type="tel" placeholder="Telefono de contacto" className="w-full p-3.5 bg-panel border border-line focus:border-signal outline-none text-sm placeholder:text-muted transition-colors duration-300" />
+          <textarea placeholder="Cuentanos tu requerimiento" className="w-full p-3.5 bg-panel border border-line focus:border-signal outline-none text-sm placeholder:text-muted transition-colors duration-300 resize-none" rows={4} required></textarea>
+          <button type="submit" className="w-full bg-signal text-ink font-mono font-medium text-sm py-3.5 hover:bg-signal/90 hover:shadow-lg hover:shadow-signal/20 transition-all duration-300">ENVIAR SOLICITUD</button>
         </form>
       </div>
     </section>
@@ -487,18 +510,18 @@ function Footer() {
         <div>
           <p className="font-mono text-xs text-technical mb-3">NAVEGACION</p>
           <ul className="space-y-2 text-xs text-muted">
-            <li><a href="#nosotros" className="hover:text-paper">Quienes somos</a></li>
-            <li><a href="#servicios" className="hover:text-paper">Servicios</a></li>
-            <li><a href="#proceso" className="hover:text-paper">Proceso</a></li>
-            <li><a href="/blog" className="hover:text-paper">Blog</a></li>
-            <li><a href="#contacto" className="hover:text-paper">Contacto</a></li>
+            <li><a href="#nosotros" className="hover:text-paper transition-colors duration-300">Quienes somos</a></li>
+            <li><a href="#servicios" className="hover:text-paper transition-colors duration-300">Servicios</a></li>
+            <li><a href="#proceso" className="hover:text-paper transition-colors duration-300">Proceso</a></li>
+            <li><a href="/blog" className="hover:text-paper transition-colors duration-300">Blog</a></li>
+            <li><a href="#contacto" className="hover:text-paper transition-colors duration-300">Contacto</a></li>
           </ul>
         </div>
         <div>
           <p className="font-mono text-xs text-technical mb-3">LEGAL</p>
           <ul className="space-y-2 text-xs text-muted">
-            <li><a href="/privacidad" className="hover:text-paper">Politica de privacidad</a></li>
-            <li><a href="/cookies" className="hover:text-paper">Politica de cookies</a></li>
+            <li><a href="/privacidad" className="hover:text-paper transition-colors duration-300">Politica de privacidad</a></li>
+            <li><a href="/cookies" className="hover:text-paper transition-colors duration-300">Politica de cookies</a></li>
           </ul>
         </div>
         <div>
@@ -538,19 +561,19 @@ export default function Home() {
       <NavBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} navLinks={navLinks} />
       {menuOpen ? <MobileMenu navLinks={navLinks} close={closeMenu} /> : null}
       <Hero />
-      <Nosotros />
-      <Servicios />
-      <Proceso />
-      <PorQueElegirnos />
-      <Partners />
-      <BlogTeaser />
-      <FAQ />
-      <Contacto />
+      <Reveal><Nosotros /></Reveal>
+      <Reveal><Servicios /></Reveal>
+      <Reveal><Proceso /></Reveal>
+      <Reveal><PorQueElegirnos /></Reveal>
+      <Reveal><Partners /></Reveal>
+      <Reveal><BlogTeaser /></Reveal>
+      <Reveal><FAQ /></Reveal>
+      <Reveal><Contacto /></Reveal>
       <Footer />
-      <a
+      
         href="https://wa.me/519992283448"
         aria-label="Contactar por WhatsApp"
-        className="fixed bottom-8 right-8 bg-[#25D366] text-white p-3.5 rounded-full shadow-lg z-50 hover:scale-105 transition-transform"
+        className="fixed bottom-8 right-8 bg-[#25D366] text-white p-3.5 rounded-full shadow-lg z-50 hover:scale-110 transition-transform duration-300"
       >
         <WhatsAppIcon size={26} />
       </a>

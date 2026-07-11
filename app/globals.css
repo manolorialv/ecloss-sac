@@ -1,17 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-}
-
 body {
   background-color: #0A0E17;
+  background-image: radial-gradient(circle at 15% -10%, rgba(255,107,53,0.08), transparent 40%), radial-gradient(circle at 85% 5%, rgba(79,209,197,0.06), transparent 35%);
+  background-attachment: fixed;
   color: #EDF1F7;
 }
 
@@ -28,6 +22,10 @@ body {
   height: 16px;
   border-color: #4FD1C5;
   opacity: 0.5;
+}
+
+.diagram-glow {
+  filter: drop-shadow(0 0 40px rgba(255, 107, 53, 0.15));
 }
 
 @keyframes pulse-node {

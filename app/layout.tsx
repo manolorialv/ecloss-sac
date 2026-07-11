@@ -1,4 +1,9 @@
 import "./globals.css";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+
+var spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-display" });
+var inter = Inter({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-body" });
+var jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono" });
 
 export var metadata = {
   title: "ECLOS GROUP | Ingenieria Digital, Compliance e Infraestructura Critica en Peru",
@@ -12,10 +17,15 @@ export var metadata = {
   },
 };
 
+export var viewport = {
+  themeColor: "#0A0E17",
+};
+
 export default function RootLayout(props) {
+  var fontVars = spaceGrotesk.variable + " " + inter.variable + " " + jetbrainsMono.variable;
   return (
     <html lang="es">
-      <body>{props.children}</body>
+      <body className={fontVars}>{props.children}</body>
     </html>
   );
 }
