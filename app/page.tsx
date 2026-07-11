@@ -547,7 +547,7 @@ export default function Home() {
       <FAQ />
       <Contacto />
       <Footer />
-      
+      <a
         href="https://wa.me/519992283448"
         aria-label="Contactar por WhatsApp"
         className="fixed bottom-8 right-8 bg-[#25D366] text-white p-3.5 rounded-full shadow-lg z-50 hover:scale-105 transition-transform"
